@@ -48,12 +48,12 @@ export default {
         "error-50": "#FDF6F6",
 
         // neutral color
-        "nutral-divider": "#E4E5F0",
-        "nutral-border": "#BCBFD6",
-        "nutral-placeholder": "#A7ABC3",
-        "nutral-text-secondary": "#82869E",
-        "nutral-text-primary": "#434657",
-        "nutral-text-title": "#1B1D29",
+        "neutral-divider": "#E4E5F0",
+        "neutral-border": "#BCBFD6",
+        "neutral-placeholder": "#A7ABC3",
+        "neutral-text-secondary": "#82869E",
+        "neutral-text-primary": "#434657",
+        "neutral-text-title": "#1B1D29",
       },
       backgroundImage: {
         "gradient-primary": "linear-gradient(180deg, #00D2FF 0%, #059DBE 100%)",
