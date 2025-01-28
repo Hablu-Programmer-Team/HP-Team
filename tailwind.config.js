@@ -48,6 +48,9 @@ export default {
         "error-50": "#FDF6F6",
 
         // neutral color
+        "neutral-table-header": "#FBFBFD",
+        "neutral-background": "#F8F8FC",
+        "neutral-disable": "#DCDEE9",
         "neutral-divider": "#E4E5F0",
         "neutral-border": "#BCBFD6",
         "neutral-placeholder": "#A7ABC3",
