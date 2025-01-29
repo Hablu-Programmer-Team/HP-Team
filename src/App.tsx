@@ -1,8 +1,5 @@
+import { Dashboard, Login, Profile, Registration } from "@/components/pages";
 import { Route, Routes } from "react-router";
-import Dashboard from "./components/pages/dashboard";
-import Login from "./components/pages/login";
-import Profile from "./components/pages/profile";
-import Registration from "./components/pages/registration";
 
 export const App = () => {
   return (
