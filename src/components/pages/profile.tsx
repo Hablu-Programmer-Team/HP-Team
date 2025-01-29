@@ -1,3 +1,1 @@
-export const Profile = () => {
-  return <div>profile</div>;
-};
+export const Profile = () => <div>profile</div>;
