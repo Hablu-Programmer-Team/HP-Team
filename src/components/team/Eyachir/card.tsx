@@ -1,3 +1,10 @@
 export const Card = () => {
-  return <div>Card</div>;
+  return (
+    <div>
+      <h1>Task Name</h1>
+      <div>
+        <div></div>
+      </div>
+    </div>
+  );
 };
