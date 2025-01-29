@@ -1,8 +1,3 @@
-
-function Profile() {
-  return (
-    <div>Profile</div>
-  )
-}
-
-export default Profile
+export const Profile = () => {
+  return <div>profile</div>;
+};

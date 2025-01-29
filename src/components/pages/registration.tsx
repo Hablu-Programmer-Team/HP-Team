@@ -1,8 +1,3 @@
-
-function Registration() {
-  return (
-    <div>Registration</div>
-  )
-}
-
-export default Registration
+export const Registration = () => {
+  return <div>registration</div>;
+};
