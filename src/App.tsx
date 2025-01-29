@@ -1,7 +1,12 @@
-export const App = () => {
-  return (
-    <div className="flex w-full justify-center h-screen items-center">
-      <p className="text-4xl bg-link-700 ">Hello HP Team</p>
-    </div>
-  );
-};
+import { Dashboard, Login, Profile, Registration } from "@/components/pages";
+import { Route, Routes } from "react-router";
+
+export const App = () => (
+  <Routes>
+    <Route index element={<Dashboard />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/registration" element={<Registration />} />
+    <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/profile" element={<Profile />} />
+  </Routes>
+);
