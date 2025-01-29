@@ -9,21 +9,27 @@ export const Navbar: FC = () => {
     year: "numeric",
   });
   return (
-    <div className="flex justify-between items-center px-10 py-4 ">
+    <div className="flex justify-between items-center px-10 py-4 shadow-sm ">
       <h1 className="font-bold text-xl">Hi Salman Vai👋</h1>
       <div className="flex items-center space-x-[22px]">
         <SearchIcon />
-        <NotificationIcon />
-        <div className="flex">
+        <div className="relative">
+        <NotificationIcon  />
+        <div className="bg-[#FFA048] size-2   absolute top-0 right-0 rounded-full ">
+        <div className="absolute bg-[#FFA048]  size-full animate-ping top-0 right-0  rounded-full "></div>
+        </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
           <CalendarIcon />
-          <p>{currentDate}</p>
+          <p className="text-base text-black/50 font-semibold">{currentDate}</p>
         </div>
         <div className="relative">
           <button onClick={() => setIsProfileOpen(!profileOpen)}>
             <img src="/profile.png" alt="" />
           </button>
-          {profileOpen && (
-            <div className="absolute  right-0 mt-2 w-48 bg-white z-10 py-2 ">
+          {profileOpen && ( 
+            <div className="absolute  right-0 mt-4 w-36 rounded  bg-gray-100 z-10 py-2 text-center  ">
               <a href="" className="block">
                 Profile Settings
               </a>
