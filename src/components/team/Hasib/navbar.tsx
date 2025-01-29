@@ -10,7 +10,7 @@ export const Navbar: FC = () => {
   });
   return (
     <div className="flex justify-between items-center px-10 py-4 ">
-      <h1 className="font-bold text-xl">Hello Salman Vai👋</h1>
+      <h1 className="font-bold text-xl">Hi Salman Vai👋</h1>
       <div className="flex items-center space-x-[22px]">
         <SearchIcon />
         <NotificationIcon />
