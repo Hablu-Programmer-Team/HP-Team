@@ -29,13 +29,16 @@ export const Navbar: FC = () => {
             <img src="/profile.png" alt="" />
           </button>
           {profileOpen && ( 
-            <div className="absolute  right-0 mt-4 w-36 rounded  bg-gray-100 z-10 py-2 text-center  ">
-              <a href="" className="block">
+            <div className="absolute  right-0 mt-4 w-48 rounded  bg-gray-100 z-10 py-2 text-center  ">
+             <div className="flex flex-col gap-2 ">
+             <a href="" className="flex items-center justify-center font-semibold gap-3">
+                <img src="/user.svg" alt="" />
                 Profile Settings
               </a>
               <a href="" className="block">
                 Log Out
               </a>
+             </div>
             </div>
           )}
         </div>
