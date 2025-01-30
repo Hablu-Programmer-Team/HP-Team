@@ -57,6 +57,8 @@
 }
 
 @layer components {
+
+    /* Typhography Style Start  */
   .h1 {
     @apply text-[2.25rem] leading-[3rem]  md:text-[2.5rem] md:leading-[3.5rem] lg:text-[3rem] lg:leading-[4rem];
   }
@@ -78,4 +80,5 @@
   .p {
     @apply text-[0.875rem] leading-[1.25rem] lg:text-[1rem] lg:leading-[1.5rem];
   }
+    /* Typhography Style End  */
 }
