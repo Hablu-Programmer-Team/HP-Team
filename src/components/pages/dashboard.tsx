@@ -5,7 +5,6 @@ export const Dashboard = () => (
       <Button
         hover="auto"
         colors="white"
-        font="b"
         flex
         size="lg"
         variant="primary"
@@ -17,28 +16,24 @@ export const Dashboard = () => (
         />
         click
       </Button>
-      <Button size="responsive" round="sm" variant="secondary">
-        click
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="gost" colors="text-gray-300">
+        Gost
       </Button>
-      <Button color="white" round="md" variant="bg-green-500" size="sm">
-        click me
-      </Button>
-      <Button variant="bg-yellow-500">Only Me</Button>
-      <Button flex size="lg" variant="white">
+      <Button flex variant="normal">
         <img
           className="size-5"
           src="https://cdn.pixabay.com/photo/2017/03/05/21/55/emoticon-2120024_640.png"
           alt=""
         />
-        click me
+        Normal
       </Button>
-      <Button variant="bg-purple-950" colors="white">
-        Hello Udoy
+      <Button variant="primary" colors="white" font="b" textSize="2xl">
+        + Text
       </Button>
-      <Button variant="normal">Hello</Button>
-      <Button colors="text-gray-100"  font="b">
-        Without variant
-      </Button>
+      <Button variant="bg-green-500" colors="white" size="responsive" >Custom 1</Button>
+      <Button variant="bg-purple-900" colors="white">Custom 2</Button>
+      
     </div>
   </div>
 );
