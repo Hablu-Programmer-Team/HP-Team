@@ -18,7 +18,7 @@ export const priorityData = [
   },
 ];
 
-const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
+export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [truthy, setTruthy] = useState<boolean>(false);
   const [editPriority, setEditPriority] = useState<boolean>(false);

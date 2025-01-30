@@ -23,7 +23,7 @@ export interface IPriorityProp{
 }
 
 export interface IPriorityObj{
-    event: () => void;
+    event: (e: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
     condition: string;
     color: string;

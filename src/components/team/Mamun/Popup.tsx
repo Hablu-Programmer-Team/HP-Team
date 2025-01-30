@@ -1,5 +1,5 @@
-import AddTasks from './Add'
-import EditTask from './Edit'
+import { AddTasks } from "./Add"
+import {  EditTask } from "./Edit"
 
 export const Popup = () => {
   return (

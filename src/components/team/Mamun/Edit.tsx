@@ -5,19 +5,19 @@ import PriorityCommon from "./PriorityCommon";
 const priorityData = [
   {
     name: "Extream",
-    color: "bg-secondary-600"
+    color: "bg-secondary-600",
   },
   {
     name: "Moderate",
-    color: "bg-link-600"
+    color: "bg-link-600",
   },
   {
     name: "Low",
-    color: "bg-secondary-600"
+    color: "bg-secondary-600",
   },
 ];
 
-export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
+export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [submittedData, setSubmittedData] = useState<IFormData[]>([]);
   const [formData, setFormData] = useState<IFormData>({
@@ -46,31 +46,31 @@ export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
   const Submit = () => {
     // Destructuring formData
     const { title, date, priority, description } = formData;
-  
+
     // Validation checks
     if (title.trim() === "") {
       alert("Title cannot be empty!");
       return;
     }
-  
+
     if (!date) {
       alert("Please select a valid date!");
       return;
     }
-  
+
     if (!priority) {
       alert("Please select a priority level!");
       return;
     }
-  
+
     if (description.trim().length < 10) {
       alert("Description must be at least 10 characters long!");
       return;
     }
-  
+
     // If all validations pass, store the submitted data
     setSubmittedData((prevData) => [...prevData, formData]);
-  
+
     // Reset the form after submission
     setFormData({
       title: "",
@@ -78,10 +78,9 @@ export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
       priority: "",
       description: "",
     });
-  
+
     console.log("AddData", formData); // Log formData for debugging
   };
-  
 
   return (
     <>
@@ -98,7 +97,10 @@ export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
               <div className="flex md:justify-between items-center flex-col md:flex-row">
                 <p className="font-semibold">{cardName}</p>
                 <div className="flex gap-2 items-center justify-between md:justify-end w-full flex-1 mt-3 md:mt-0">
-                  <button className="font-semibold bg-lime-200 rounded-xl px-3 py-1 cursor-pointer" onClick={onClick}>
+                  <button
+                    className="font-semibold bg-lime-200 rounded-xl px-3 py-1 cursor-pointer"
+                    onClick={onClick}
+                  >
                     Go Back
                   </button>
                   <button
@@ -117,7 +119,8 @@ export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
                       <div className="flex flex-col gap-2">
                         <label
                           htmlFor="title"
-                          className="font-semibold text-sm" autoFocus
+                          className="font-semibold text-sm"
+                          autoFocus
                         >
                           Title
                         </label>
@@ -152,11 +155,15 @@ export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
                     <div className="mt-4">
                       <p className="font-semibold text-sm">Priority</p>
                       <div className="flex gap-2 md:gap-[53px] flex-col md:flex-row">
-                        {
-                          priorityData.map((value, index) => (
-                            <PriorityCommon key={index} condition={formData.priority} value={value.name} event={handleChange} color={value.color}/>
-                          ))
-                        }
+                        {priorityData.map((value, index) => (
+                          <PriorityCommon
+                            key={index}
+                            condition={formData.priority}
+                            value={value.name}
+                            event={(e) => handleChange(e)} // Ensure proper event typing
+                            color={value.color}
+                          />
+                        ))}
                       </div>
                     </div>
 
@@ -189,4 +196,4 @@ export const AddTasks: FC<IAdd> = ({cardName, btnName}) => {
       )}
     </>
   );
-}
+};
