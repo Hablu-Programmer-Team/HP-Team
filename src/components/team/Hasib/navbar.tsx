@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { CalendarIcon, NotificationIcon, SearchIcon } from "./icon";
+import { Link } from "react-router";
 
 export const Navbar: FC = () => {
   const [profileOpen, setIsProfileOpen] = useState(false);
@@ -62,37 +63,38 @@ export const Navbar: FC = () => {
           </button>
           {profileOpen && (
             <div className="absolute  right-0 mt-4 w-64 rounded border border-gray-200 shadow z-10 py-2 text-center ease-in-out transition-all duration-500 origin-top-right ">
-              <div className="flex flex-col gap-2 p-3  ">
-                <a
-                  href=""
-                  className="flex items-center font-semibold gap-3 hover:text-[#78D700] hover:scale-105 "
+              <div className="flex flex-col gap-2 p-3">
+                <Link
+                  to="/profile"
+                  className="flex items-center font-semibold gap-3 hover:text-[#78D700] hover:scale-105 transition-all delay-150 "
                 >
-                  <img src="/user.svg" alt="" />
+                  <img src="/user.svg" alt=""/>
                   MY Profile
-                </a>
-                <a
-                  href=""
-                  className="flex items-center font-semibold gap-3 py-2 hover:text-[#78D700] hover:scale-105  "
+                </Link>
+                <Link
+                  to="/contact"
+                  className="flex items-center font-semibold gap-3 py-2 hover:text-[#78D700] hover:scale-105 transition-all delay-150 "
                 >
                   <img src="/contact.svg" alt="Contact-Img" />
                   MY Contact
-                </a>
-                <a
-                  href=""
-                  className="flex items-center  font-semibold gap-3 hover:text-[#78D700] hover:scale-105 "
+                </Link>
+                <Link
+                  to="/setting"
+                  className="flex items-center  font-semibold gap-3 hover:text-[#78D700] hover:scale-105 transition-all delay-150 "
                 >
                   <img src="/setting.svg" alt="Setting-Img" />
                   Account Setting
-                </a>
+                </Link>
               </div>
               <div className=" border-gray-300 border-t">
-                <a
-                  href=""
-                  className="flex items-center font-semibold gap-3 ps-4 py-2 hover:text-[#78D700] hover:scale-105  "
+                
+                <Link
+                  to="/logout"
+                  className="flex items-center font-semibold gap-3 ps-4 py-2 hover:text-[#78D700] hover:scale-105 transition-all delay-150  "
                 >
                   <img src="/logout.svg" alt="LogOut-Img" />
                   Log Out
-                </a>
+                </Link>
               </div>
             </div>
           )}
