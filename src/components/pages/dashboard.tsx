@@ -2,7 +2,7 @@ import { Button } from "../team/Udoy/button";
 export const Dashboard = () => (
   <div className="h-screen grid place-content-center">
     <div className="flex gap-5">
-      <Button
+      {/* <Button
         hover="auto"
         colors="white"
         flex
@@ -32,7 +32,8 @@ export const Dashboard = () => (
         + Text
       </Button>
       <Button variant="bg-green-500" colors="white" size="responsive" >Custom 1</Button>
-      <Button variant="bg-purple-900" colors="white">Custom 2</Button>
+      <Button variant="bg-purple-900" colors="white">Custom 2</Button> */}
+      <Button className="helo" >HELLO</Button>
       
     </div>
   </div>

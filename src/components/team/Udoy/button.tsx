@@ -45,7 +45,7 @@ export const Button: FC<IProps> = ({
 }) => {
   // ......................
   // =====------------=========
-//   every thigns will come from props
+  //   every thigns will come from props
   const hoverStyle = hover === "auto" ? "hover:scale-105" : hover;
   const roundedStyle =
     round === "sm" ? "rounded-sm" : round === "md" ? "rounded-md" : round;
@@ -59,14 +59,14 @@ export const Button: FC<IProps> = ({
   }`;
   const fontBoldStyle =
     font === "b" ? "font-bold" : font === "ex" ? "font-extrabold" : font;
-// every thins will come from props end 
+  // every thins will come from props end
   const generateClassNames = (...classes: unknown[]): string =>
     classes.filter(Boolean).join(" ");
 
   const btnClasses =
     className ||
     generateClassNames(
-      fontBoldStyle || "font-normal",
+      fontBoldStyle,
       textColor,
       textSize || "text-[0.8125rem]",
       flex && flexStyle,
@@ -78,7 +78,6 @@ export const Button: FC<IProps> = ({
       disabled ? "cursor-not-allowed" : "cursor-pointer",
       "transition duration-200"
     );
-
   return (
     <button onClick={onClick} disabled={disabled} className={btnClasses}>
       {children}
