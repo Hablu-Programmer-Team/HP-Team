@@ -67,7 +67,7 @@ export const Button: FC<IProps> = ({
   //   font pros will do same thing
   const fontBoldStyle =
     font === "b" ? "font-bold" : font === "ex" ? "font-extrabold" : font;
-  //   generateClassNames function will return all the className if her arguments are turthy value;
+  //   generateClassNames function will return all the className if its arguments are turthy value;
   const generateClassNames = (...classes: unknown[]): string =>
     classes.filter(Boolean).join(" ");
 
