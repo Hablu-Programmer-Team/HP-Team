@@ -11,14 +11,15 @@ interface IProps extends ButtonProps {
   round?: string;
   font?: string;
   colors?: string;
-  extra?: string;
   textSize?: string;
 }
+// size styles by default button size will be response style
 const sizeStyles: Record<string, string> = {
   sm: "px-[1rem] py-[0.375rem]",
   lg: "px-[1rem] py-[0.5rem]",
   responsive: "px-[1rem] py-[0.375rem] lg:px-[0.75rem] lg:py-[0.5rem]",
 };
+// variant styles by default variant style will be primary
 const variantStyles: Record<string, string> = {
   primary: "bg-link-700",
   secondary: "border border-link-700 text-link-700",
@@ -29,27 +30,38 @@ const variantStyles: Record<string, string> = {
 
 export const Button: FC<IProps> = ({
   children,
+  //   varient if you pass variant props like variant="primary" or "secodary" then it will get coustom style. which has given in the variantStyles object that has decleared above the Button components. if you do not want to use my coustom styles then you can give your coustome class in this props like px-* , py-* or widht ,hight; also can change background style like bg-green-500 , by default variant style will be primary
   variant = "primary",
+
+  //   if you pass size props like size="sm" it will work because of my coustom classes. which has given in the sizeStyles props. if you do not want to use my coustom style then you can pass your default style like px-* py* or you can use width height like w-[100px] or h-96. by default it will be responsve style
   size = "responsive",
+  //   if button is disabled
   disabled,
   onClick,
+  //   you can pass hover effect also, if you dont pass hover props then it will be default style
   hover = "hover:opacity-80",
   flex,
   round,
+//   you can change text color, to passing colors props like colors="white" or black or you can use coustom talwindcss class like text-gray-600.
   colors,
-  extra,
   font,
   textSize,
   className = "",
   disabledClass = "opacity-50 border border-gray-400 bg-gray-400",
 }) => {
+    // first of all you need to read every coad.
   // ......................
   // =====------------=========
-  //   every thigns will come from props
+  //   user will be able to cahanged hover style by passing prpos like hover="hover:text-bg-green" or they can use hover:"auto" for getting deafult custom hover;
+  //   if does not pass hover props in this case hoverStyle will take default value. which has given in the props as a default value
   const hoverStyle = hover === "auto" ? "hover:scale-105" : hover;
+  //   user will be able to cahanged rouned style by passing prpos like round="sm" or "md" or they can use there coustom class;
+  //   if does not pass hover pros it will take rounded-full
   const roundedStyle =
     round === "sm" ? "rounded-sm" : round === "md" ? "rounded-md" : round;
+  // if any user want to use icons then they will be able to use flex for giving flex vibe
   const flexStyle = "flex items-center justify-center text-nowrap gap-1";
+  //  you will be able to change also text color if you dont pass colors props then by default it will balck color. also you can pass taiwlindcss color style like text-green-500 something like.
   const textColor = `${
     colors === "white"
       ? "text-white"
@@ -57,14 +69,19 @@ export const Button: FC<IProps> = ({
       ? "text-black"
       : colors
   }`;
+  //   font pros will do same thing
   const fontBoldStyle =
     font === "b" ? "font-bold" : font === "ex" ? "font-extrabold" : font;
-  // every thins will come from props end
+  //   generateClassNames function will return all the className if her arguments are turthy value ture
   const generateClassNames = (...classes: unknown[]): string =>
     classes.filter(Boolean).join(" ");
 
+  //   above has given className props for coustom styling if you do not want to use my default style then you can use className like you use the button ClassName,
+  //   in this case my coustomclass will not render only will render your coustom class that you will give in the classname props
   const btnClasses =
+//   if you pass className in the button props then my a single coustoms style also won't work. you have passed className props, menas you want to use your coustom class am i right.
     className ||
+    // if you do not pass className that means you want to use my coustom style.  to do that you can pass props to style the button without write long classname
     generateClassNames(
       fontBoldStyle,
       textColor,
@@ -74,7 +91,6 @@ export const Button: FC<IProps> = ({
       hoverStyle,
       sizeStyles[size] || size,
       disabled ? disabledClass : variantStyles[variant] ?? variant,
-      extra,
       disabled ? "cursor-not-allowed" : "cursor-pointer",
       "transition duration-200"
     );
