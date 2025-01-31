@@ -13,13 +13,13 @@ interface IProps extends ButtonProps {
   colors?: string;
   textSize?: string;
 }
-// size styles by default button size will be response style
+// size styles: by default button size will be response style
 const sizeStyles: Record<string, string> = {
   sm: "px-[1rem] py-[0.375rem]",
   lg: "px-[1rem] py-[0.5rem]",
   responsive: "px-[1rem] py-[0.375rem] lg:px-[0.75rem] lg:py-[0.5rem]",
 };
-// variant styles by default variant style will be primary
+// variant styles: by default variant style will be primary
 const variantStyles: Record<string, string> = {
   primary: "bg-link-700",
   secondary: "border border-link-700 text-link-700",
@@ -31,7 +31,7 @@ const variantStyles: Record<string, string> = {
 
 export const Button: FC<IProps> = ({
   children,
-  //   variant if you pass variant props like variant="primary" or "secodary" then it will get coustom style. which has given in the variantStyles object that has decleared above the Button components. if you do not want to use my custom styles then you can give your custom class in this props like px-* , py-* or widht ,hight; also can change background style like bg-green-500 , by default variant style will be primary
+  //   if you pass variant props like variant="primary" or "secodary" then it will get coustom style. which has given in the variantStyles object that has decleared above the Button components. if you do not want to use my custom styles then you can give your custom class in this props like px-* , py-* or widht ,hight; also can change background style like bg-green-500 , by default variant style will be primary
   variant = "primary",
 
   //   if you pass size props like size="sm" it will work because of my custom classes. which has given in the sizeStyles props. if you do not want to use my custom style then you can pass your default style like px-* py* or you can use width height like w-[100px] or h-96. by default it will be responsve style
