@@ -1,6 +1,8 @@
 import { FC, SVGProps } from "react";
 
-export const SearchIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
+type IconSvgProps = SVGProps<SVGSVGElement>;
+
+export const SearchIcon: FC<IconSvgProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
@@ -16,7 +18,7 @@ export const SearchIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-export const NotificationIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
+export const NotificationIcon: FC<IconSvgProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
@@ -32,7 +34,7 @@ export const NotificationIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-export const CalendarIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
+export const CalendarIcon: FC<IconSvgProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
