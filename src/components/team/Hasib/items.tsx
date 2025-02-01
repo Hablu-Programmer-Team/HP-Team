@@ -13,7 +13,7 @@ export const Items: FC = () => {
   return (
     <div className="flex items-center space-x-[10px] lg:space-x-[22px]">
       <button className="cursor-pointer">
-        <SearchIcon />
+        <SearchIcon className="group hover:scale-110" />
       </button>
       <NotificationMenu />
       <div className="relative">
@@ -22,7 +22,7 @@ export const Items: FC = () => {
             onClick={() => setCalendarShow(!calendarShow)}
             className="cursor-pointer"
           >
-            <CalendarIcon />
+            <CalendarIcon className="group hover:scale-110" />
           </button>
           <p className=" hidden sm:inline-block text-xs lg:text-base text-black/50 font-semibold">
             {currentDate}

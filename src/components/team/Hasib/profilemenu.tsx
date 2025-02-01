@@ -16,7 +16,7 @@ export const ProfileMenu: FC = () => {
         <img
           className="cursor-pointer duration-300 hover:scale-110 size-6 lg:size-[36px]"
           src="/profile.png"
-          alt=""
+          alt="Profile-Image"
         />
       </button>
       {profileOpen && (

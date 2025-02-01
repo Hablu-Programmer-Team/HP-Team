@@ -7,7 +7,7 @@ export const SearchIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
     height="22"
     fill="none"
     {...props}
-    className="group hover:scale-110"
+    
   >
     <path
       className="fill-[#1C1D22] group-hover:fill-[#FF7979]  "
@@ -23,7 +23,7 @@ export const NotificationIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
     height="22"
     fill="none"
     {...props}
-    className="group hover:scale-110"
+   
   >
     <path
       className="fill-[#1C1D22] group-hover:fill-[#FF7979] "
@@ -39,7 +39,6 @@ export const CalendarIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
     height="22"
     fill="none"
     {...props}
-    className="group hover:scale-110"
   >
     <path
       className="fill-[#1C1D22] group-hover:fill-[#FF7979] "
