@@ -1,6 +1,6 @@
 export const priorityData = [
   {
-    name: "Extream",
+    name: "Extreme",
     color: "bg-secondary-600",
   },
   {
@@ -14,7 +14,7 @@ export const priorityData = [
 ];
 export const priorityDataForEdit = [
   {
-    name: "Extream",
+    name: "Extreme",
     color: "bg-secondary-600",
   },
   {
