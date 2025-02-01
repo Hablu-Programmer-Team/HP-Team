@@ -100,7 +100,7 @@ export const Sidebar: FC = () => {
 
           {/* Sidebar Footer Section  */}
           <div className="border-t-2 border-gray-400 pt-2">
-            <span className="flex gap-x-5 p-3 stroke-white hover:bg-white hover:stroke-secondary-500 rounded-md hover:text-secondary-500 cursor-pointer">
+            <span className="flex gap-x-5 p-3 font-semibold stroke-white hover:bg-white hover:stroke-secondary-500 rounded-md hover:text-secondary-500 cursor-pointer">
               <LeaveIcon />
               <span>Logout</span>
             </span>
