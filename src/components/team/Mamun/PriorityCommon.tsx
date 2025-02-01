@@ -1,7 +1,7 @@
 import { IPriorityObj } from "./index";
 import { FC } from "react";
 
-const PriorityCommon: FC<IPriorityObj> = ({event, value, condition, color}) => {
+export const PriorityCommon: FC<IPriorityObj> = ({event, value, condition, color}) => {
   return (
     <div className="flex gap-2.5 items-center">
       <div className="flex items-center gap-[7px]">
@@ -25,5 +25,3 @@ const PriorityCommon: FC<IPriorityObj> = ({event, value, condition, color}) => {
     </div>
   );
 };
-
-export default PriorityCommon;
