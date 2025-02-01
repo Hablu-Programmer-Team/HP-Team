@@ -17,13 +17,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
-
+ const className = "bg-link-700 text-black shadow hover:bg-link-700/90"
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: "bg-link-700 text-black shadow hover:bg-link-700/90",
+        primary: className,
         secondary:
           "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         accent: "hover:bg-primary-500 ",
