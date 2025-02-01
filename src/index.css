@@ -64,14 +64,6 @@
       transparent 10%
     );
   }
-  .bgConic2 {
-    background-image: conic-gradient(
-      from -70deg,
-      #3d2609,
-      rgb(6, 40, 75),
-      transparent 15%
-    );
-  }
 }
 
 @layer components {
