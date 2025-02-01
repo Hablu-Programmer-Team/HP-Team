@@ -84,7 +84,7 @@ export const TaskIcon: FC<IconSvgProps> = () => (
     />
   </svg>
 );
-export const TaskCategIcon: FC<IconSvgProps> = () => (
+export const CategoryIcon: FC<IconSvgProps> = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

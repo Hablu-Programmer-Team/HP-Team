@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from "react";
-import myStyle from "./sidebar.module.css";
-import { ArrowDownIcon, LeaveIcon, UserProfileIcon } from "./icons";
-import { dashItems } from "./data";
 import { NavLink } from "react-router";
+import { dashItems } from "./data";
+import { ArrowDownIcon, LeaveIcon, UserProfileIcon } from "./icons";
+import myStyle from "./sidebar.module.css";
 
 export const Sidebar: FC = () => {
   const [openNestMenu, setOpenNestMenu] = useState<{ [key: number]: boolean }>(
@@ -47,7 +47,7 @@ export const Sidebar: FC = () => {
               <div className="size-23 p-1.5 mb-4 flex justify-center items-center rounded-full ring-2 ring-white ring-inset border-3 border-secondary-500 bg-black/20 overflow-hidden">
                 {<UserProfileIcon />}
               </div>
-              <h2 className="font-semibold text-lg">Your Name</h2>
+              <h2 className="font-bold text-lg">Your Name</h2>
               <p className="text-sm">example@gmail.com</p>
             </div>
 
@@ -58,13 +58,13 @@ export const Sidebar: FC = () => {
                 <li key={idx} onClick={() => handleNestMenu(idx)}>
                   <NavLink to={path || "#"}>
                     <div
-                      className={`flex justify-between items-center p-3 hover:bg-white hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer ${
+                      className={`flex justify-between items-center p-3 hover:bg-white hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer font-semibold ${
                         isActive === idx &&
                         "bg-white text-secondary-500 fill-secondary-500 stroke-secondary-500"
                       }`}
                     >
                       <div className="flex gap-x-5">
-                        <span className="">{icon}</span>
+                        <span>{icon}</span>
                         <span>{label}</span>
                       </div>
                       <span
@@ -79,7 +79,7 @@ export const Sidebar: FC = () => {
 
                   {/* Sidebar Sub List Items Section */}
                   <ul
-                    className={`ps-18 space-y-1 overflow-hidden ${
+                    className={`ml-10 space-y-1 overflow-hidden ${
                       !openNestMenu[idx] && "h-0"
                     }`}
                   >
@@ -87,7 +87,7 @@ export const Sidebar: FC = () => {
                       <li
                         key={subIdx}
                         onClick={(e) => e.stopPropagation()}
-                        className='py-1 px-2 my-1 rounded-md hover:bg-white hover:text-secondary-500 cursor-pointer'
+                        className="py-1.5 pl-6 font-medium px-2 my-1 rounded-md hover:bg-white hover:text-secondary-500 cursor-pointer"
                       >
                         <NavLink to={path || "#"}>{label}</NavLink>
                       </li>

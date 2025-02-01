@@ -1,9 +1,9 @@
 import {
+  CategoryIcon,
   DashboardIcon,
   HelpIcon,
   ProjectIcon,
   SettingIcon,
-  TaskCategIcon,
   TaskIcon,
 } from "./icons";
 
@@ -67,7 +67,7 @@ export const dashItems: SidebarItems[] = [
       },
     ],
   },
-  { label: "Task Categories", icon: <TaskCategIcon />, path: "/task-category" },
+  { label: "Task Categories", icon: <CategoryIcon />, path: "/task-categories" },
   { label: "Settings", icon: <SettingIcon />, path: "/settings" },
   { label: "Help", icon: <HelpIcon />, path: "/help" },
 ];
