@@ -1,22 +1,18 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { IPriorityObj } from "./index";
 
-export const PriorityCommon: FC<IPriorityObj> = ({ event, value, condition, color }) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
-
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsSelected(true);
-    event(e);
-  };
-
+export const PriorityCommon: FC<IPriorityObj> = ({
+  event,
+  value,
+  condition,
+  color,
+}) => {
   return (
     <div className="flex gap-2.5 items-center">
-      {!isSelected && (
-        <div className="flex items-center gap-[7px]">
-          <div className={`w-2 h-2 rounded-full ${color}`}></div>
-          <p className="text-neutral-text-secondary">{value}</p>
-        </div>
-      )}
+      <div className="flex items-center gap-[7px]">
+        <div className={`w-2 h-2 rounded-full ${color}`}></div>
+        <p className="text-neutral-text-secondary">{value}</p>
+      </div>
       <form action="">
         <label htmlFor="priority">
           <input
@@ -25,8 +21,8 @@ export const PriorityCommon: FC<IPriorityObj> = ({ event, value, condition, colo
             id="priority"
             value={value}
             checked={condition === value}
-            onChange={handleRadioChange}
-            className="w-[14px] h-[14px]"
+            onChange={event}
+            className="w-[14px] h-[14px]" style={{accentColor: "#fcad03"}}
             placeholder="Enter "
           />
         </label>
