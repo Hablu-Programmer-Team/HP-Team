@@ -4,6 +4,7 @@ import { FC } from "react";
 import { CSButton, ZoomOnHover } from ".";
 import { Deadline } from "./deadline";
 import { CommentIcon, ProgressIcon, ShareIcon } from "./icons";
+import { WrapperDiv } from "./wrapperDiv";
 
 interface CardProps {
   taskName: string;
@@ -21,9 +22,9 @@ export const Card: FC<CardProps> = (props) => {
   const progressPercentage = (completed / total) * 100;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black/90">
-      <ConicGradientDiv classNmae="bgConic shadow-lg shadow-white/2 hover:shadow-white/5 relative animate-rotate-border w-full max-w-[500px] transition duration-500 p-[1px] rounded-lg">
-        <div className="relative max-w-[500px] bg-[#202020] w-full rounded-lg">
+    <div className="bg-black flex items-center justify-center rounded-lg max-w-[500px] w-full">
+      <ConicGradientDiv className="bgConic relative shadow-lg shadow-white/2   hover:shadow-white/5  w-full max-w-[500px] transition duration-500 pt-[5px] rounded-lg">
+        <WrapperDiv className="max-w-[500px] rounded-lg w-full">
           <div className="h-[70px] w-[70px] bg-pending-500/20 absolute bottom-0 rounded-lg"></div>
           <div className="relative bg-neutral-text-title/20 backdrop-blur-2xl  rounded-lg p-5 space-y-5 cursor-pointer duration-200 z-20">
             <h1
@@ -83,7 +84,7 @@ export const Card: FC<CardProps> = (props) => {
               </div>
             </div>
           </div>
-        </div>
+        </WrapperDiv>
       </ConicGradientDiv>
     </div>
   );

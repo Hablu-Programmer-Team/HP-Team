@@ -58,9 +58,17 @@
 @layer utilities {
   .bgConic {
     background-image: conic-gradient(
-    from 32deg,
-      var(--color-link-700),
+      from 32deg,
       var(--color-pending-700),
+      var(--color-link-700),
+      transparent 10%
+    );
+  }
+  .bgConic2 {
+    background-image: conic-gradient(
+      from -70deg,
+      #3d2609,
+      rgb(6, 40, 75),
       transparent 15%
     );
   }

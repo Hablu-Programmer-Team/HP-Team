@@ -4,8 +4,6 @@ interface ChildProps {
   children?: ReactNode;
   className?: string;
 }
-const ConicGradientDiv: FC<ChildProps> = ({ children, className }) => (
+export const WrapperDiv: FC<ChildProps> = ({ className, children }) => (
   <div className={className}>{children}</div>
 );
-
-export default ConicGradientDiv;
