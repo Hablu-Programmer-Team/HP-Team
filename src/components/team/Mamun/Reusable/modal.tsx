@@ -5,10 +5,7 @@ export const Modal: FC<IModal> = ({
   children,
   cardName,
   toggleModal,
-  submit,
-  togglePriority,
-  priorityBtn,
-  goBackPermission = true,
+  submit
 }) => {
   return (
     <div className="absolute w-full h-screen bg-[#404042]/50 top-0 left-0 z-50 overflow-y-auto">
@@ -16,15 +13,7 @@ export const Modal: FC<IModal> = ({
         <div className="px-6 md:px-[62px] pt-6 md:pt-[46px]">
           <div className="flex md:justify-between items-center flex-col md:flex-row">
             <p className="font-semibold">{cardName}</p>
-            <div className="flex gap-2 items-center justify-between md:justify-end w-full flex-1 mt-3 md:mt-0">
-              {goBackPermission ? (
-                <button
-                  className="font-semibold bg-lime-200 rounded-xl px-3 py-1 cursor-pointer"
-                  onClick={toggleModal}
-                >
-                  Go Back
-                </button>
-              ) : null}
+            <div className="flex gap-2 items-center justify-end md:justify-end w-full flex-1 mt-3 md:mt-0">
               <button
                 className="font-medium bg-red-400 hover:scale-105 hover:bg-red-500 w-7 h-7 rounded-full cursor-pointer active:translate-y-0.5 transition-all"
                 onClick={toggleModal}

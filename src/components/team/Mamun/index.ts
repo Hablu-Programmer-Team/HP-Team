@@ -36,5 +36,4 @@ export interface IModal{
     submit: () => void;
     togglePriority?: () => void;
     priorityBtn?: boolean;
-    goBackPermission?: boolean;
 }
