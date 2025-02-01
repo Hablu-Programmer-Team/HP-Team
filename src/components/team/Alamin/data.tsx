@@ -1,5 +1,4 @@
 import {
-  ArrowDownIcon,
   DashboardIcon,
   HelpIcon,
   ProjectIcon,
@@ -8,21 +7,67 @@ import {
   TaskIcon,
 } from "./icons";
 
-export const dashItems = [
-  { label: "Dashboard", icon: <DashboardIcon /> },
+interface Item {
+  label: string;
+  path?: string;
+  icon?: JSX.Element;
+}
+
+interface SidebarItems extends Item {
+  option?: Item[];
+}
+
+export const dashItems: SidebarItems[] = [
+  {
+    label: "Dashboard",
+    icon: <DashboardIcon />,
+    path: "/dashboard",
+  },
   {
     label: "Projects",
     icon: <ProjectIcon />,
-    childs: ["All Projects", "Design System", "User Flow", "UX Research"],
-    arrowIcon: <ArrowDownIcon />,
+    option: [
+      {
+        label: "All Projects",
+        path: "/all-projects",
+      },
+      {
+        label: "Design System",
+        path: "/design-system",
+      },
+      {
+        label: "User Flow",
+        path: "/user-flow",
+      },
+      {
+        label: "UX Research",
+        path: "/ux-research",
+      },
+    ],
   },
   {
     label: "Task",
     icon: <TaskIcon />,
-    childs: ["All Tasks", "To-Do", "In Progress", "Done"],
-    arrowIcon: <ArrowDownIcon />,
+    option: [
+      {
+        label: "All Tasks",
+        path: "/all-tasks",
+      },
+      {
+        label: "To-Do",
+        path: "/to-do",
+      },
+      {
+        label: "In Progress",
+        path: "/in-progress",
+      },
+      {
+        label: "Done",
+        path: "/done",
+      },
+    ],
   },
-  { label: "Task Categories", icon: <TaskCategIcon /> },
-  { label: "Settings", icon: <SettingIcon /> },
-  { label: "Help", icon: <HelpIcon /> },
+  { label: "Task Categories", icon: <TaskCategIcon />, path: "/task-category" },
+  { label: "Settings", icon: <SettingIcon />, path: "/settings" },
+  { label: "Help", icon: <HelpIcon />, path: "/help" },
 ];

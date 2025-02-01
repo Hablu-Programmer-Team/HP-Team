@@ -1,23 +1,26 @@
 import { FC, useEffect, useState } from "react";
 import myStyle from "./sidebar.module.css";
-import { LeaveIcon, UserProfileIcon } from "./icons";
+import { ArrowDownIcon, LeaveIcon, UserProfileIcon } from "./icons";
 import { dashItems } from "./data";
+import { NavLink } from "react-router";
 
 export const Sidebar: FC = () => {
-  const [openNestMenu, isOpenNestMenu] = useState<{ [key: number]: boolean }>(
+  const [openNestMenu, setOpenNestMenu] = useState<{ [key: number]: boolean }>(
     {}
   );
   const [openSidebar, setOpenSidebar] = useState<boolean>();
+  const [isActive, setIsActive] = useState(0);
 
   // Sub List Open and Close
-  const handleNestMenu = (index: number) => {
-    isOpenNestMenu((prev) => ({ ...prev, [index]: !prev[index] }));
+  const handleNestMenu = (idx: number) => {
+    setOpenNestMenu((prev) => ({ ...prev, [idx]: !prev[idx] }));
+    setIsActive(idx);
   };
 
   // Sidebar Open and Close
   useEffect(() => {
     const checkScreenSize = () => {
-      if (window.innerWidth < 640) {
+      if (window.innerWidth < 426) {
         setOpenSidebar(false);
       } else {
         setOpenSidebar(true);
@@ -49,36 +52,44 @@ export const Sidebar: FC = () => {
             </div>
 
             <ul
-              className={`space-y-2.5 max-h-[80%] overflow-y-scroll ${myStyle.scrollNone}`}
+              className={`space-y-2 max-h-[80%] overflow-y-scroll ${myStyle.scrollNone}`}
             >
-              {dashItems.map(({ label, icon, childs, arrowIcon }, idx) => (
+              {dashItems.map(({ label, path, icon, option }, idx) => (
                 <li key={idx} onClick={() => handleNestMenu(idx)}>
-                  <div className="flex justify-between items-center p-3 hover:bg-white hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer">
-                    <div className="flex gap-x-5">
-                      <span>{icon}</span>
-                      <span>{label}</span>
-                    </div>
-                    <span
-                      className={`flex items-center justify-center size-8 hover:bg-gray-100 rounded-full transition duration-200 ${
-                        openNestMenu[idx] && "rotate-180"
+                  <NavLink to={path || "#"}>
+                    <div
+                      className={`flex justify-between items-center p-3 hover:bg-white hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer ${
+                        isActive === idx &&
+                        "bg-white text-secondary-500 fill-secondary-500 stroke-secondary-500"
                       }`}
                     >
-                      {arrowIcon}
-                    </span>
-                  </div>
+                      <div className="flex gap-x-5">
+                        <span className="">{icon}</span>
+                        <span>{label}</span>
+                      </div>
+                      <span
+                        className={`flex items-center justify-center size-8 hover:bg-gray-100 rounded-full transition duration-200 ${
+                          openNestMenu[idx] && "rotate-180"
+                        }`}
+                      >
+                        {option && <ArrowDownIcon />}
+                      </span>
+                    </div>
+                  </NavLink>
 
-                  {/* Sidebar Sub List Items Section  */}
+                  {/* Sidebar Sub List Items Section */}
                   <ul
                     className={`ps-18 space-y-1 overflow-hidden ${
                       !openNestMenu[idx] && "h-0"
                     }`}
                   >
-                    {childs?.map((child, subIdx) => (
+                    {option?.map(({ label, path }, subIdx) => (
                       <li
                         key={subIdx}
-                        className="py-1 px-2 rounded-md hover:bg-white hover:text-secondary-500 cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
+                        className='py-1 px-2 my-1 rounded-md hover:bg-white hover:text-secondary-500 cursor-pointer'
                       >
-                        {child}
+                        <NavLink to={path || "#"}>{label}</NavLink>
                       </li>
                     ))}
                   </ul>
@@ -88,7 +99,7 @@ export const Sidebar: FC = () => {
           </div>
 
           {/* Sidebar Footer Section  */}
-          <div className="border-t-2 border-gray-400">
+          <div className="border-t-2 border-gray-400 pt-2">
             <span className="flex gap-x-5 p-3 stroke-white hover:bg-white hover:stroke-secondary-500 rounded-md hover:text-secondary-500 cursor-pointer">
               <LeaveIcon />
               <span>Logout</span>
