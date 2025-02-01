@@ -7,7 +7,7 @@ export const Navbar: FC = () => (
   
   <div className="flex  justify-end sm:justify-between items-center px-5 lg:px-10 py-4 shadow-sm ">
     <h1 className="hidden sm:block font-bold text-base lg:text-xl ">
-      Hello{" "}
+      Hello
       <span className="bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text ">
         Salman
       </span>{" "}
