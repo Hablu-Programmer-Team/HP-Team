@@ -1,5 +1,5 @@
 import { IPriorityProp } from "./index";
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 
 export const Priority: FC<IPriorityProp> = ({toggle, name}) => {
   const [title, setTitle] = useState<string>("");
@@ -18,11 +18,6 @@ export const Priority: FC<IPriorityProp> = ({toggle, name}) => {
   const settingPriority = () => {
     setPriority((prev) => [...prev, { title: title, status: status }]);
   };
-
-  // Use useEffect to observe state updates
-  useEffect(() => {
-    console.log("Updated Priority:", Priority);
-  }, [Priority]);
   return (
     <>
     <div className="absolute w-full h-screen bg-[#404042]/50 top-0 left-0 z-50 overflow-y-auto">
@@ -37,7 +32,6 @@ export const Priority: FC<IPriorityProp> = ({toggle, name}) => {
               <div className="border border-[#ACADB5] mt-6 md:mt-[39px] rounded-2xl">
               <div className="px-4 py-[14px]">
               <form>
-                      {/* Title Input */}
                       <div className="flex flex-col gap-2">
                         <label
                           htmlFor="title"

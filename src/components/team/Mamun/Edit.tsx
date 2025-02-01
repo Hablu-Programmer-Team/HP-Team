@@ -14,32 +14,27 @@ export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
     description: "",
   });
 
-  // Toggle popup visibility
   const onClick = (): void => {
     setIsOpen(!isOpen);
   };
 
-  // Handle input field changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target?.value, // Correctly update the property being changed
+      [e.target.name]: e.target?.value,
     }));
   };
 
-  // Handle form submission
   const Submit = () => {
     const errorMessage = validateForm(formData);
     if (errorMessage) {
       alert(errorMessage);
       return;
     }
-    // If all validations pass, store the submitted data
     setSubmittedData((prevData) => [...prevData, formData]);
 
-    // Reset the form after submission
     setFormData({
       title: "",
       date: "",
