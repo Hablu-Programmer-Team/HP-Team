@@ -2,22 +2,6 @@ import { cn } from "@/lib/utils/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import { forwardRef, type ButtonHTMLAttributes } from "react";
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants>;
-
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, radius, children, ...props }, ref) => (
-    <button
-      className={cn(buttonVariants({ variant, radius, size, className }))}
-      ref={ref}
-      children={<div className="relative z-10"> {children} </div>}
-      {...props}
-    />
-  )
-);
-
-Button.displayName = "Button";
-
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
@@ -50,3 +34,19 @@ const buttonVariants = cva(
     defaultVariants: { variant: "primary", size: "md", radius: "md" },
   }
 );
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, radius, children, ...props }, ref) => (
+    <button
+      className={cn(buttonVariants({ variant, radius, size, className }))}
+      ref={ref}
+      children={<div className="relative z-10">{children}</div>}
+      {...props}
+    />
+  )
+);
+
+Button.displayName = "Button";
