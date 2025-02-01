@@ -37,11 +37,29 @@ export const AllButton = () => (
         <ButtonGroup key={variant} variant={variant} radius="full" />
       ))}
     </div>
+    {/* Extra Large Radius Buttons */}
+    <div className="flex flex-col gap-3 justify-center items-center">
+      {buttonVariants.map((variant) => (
+        <ButtonGroup key={variant} variant={variant} radius="xl" />
+      ))}
+    </div>
 
     {/* Large Radius Buttons */}
     <div className="flex flex-col gap-3 justify-center items-center">
       {buttonVariants.map((variant) => (
         <ButtonGroup key={variant} variant={variant} radius="lg" />
+      ))}
+    </div>
+    {/* Medium radius Buttons */}
+    <div className="flex flex-col gap-3 justify-center items-center">
+      {buttonVariants.map((variant) => (
+        <ButtonGroup key={variant} variant={variant} radius="md" />
+      ))}
+    </div>
+    {/* Small radius Buttons */}
+    <div className="flex flex-col gap-3 justify-center items-center">
+      {buttonVariants.map((variant) => (
+        <ButtonGroup key={variant} variant={variant} radius="sm" />
       ))}
     </div>
   </div>
