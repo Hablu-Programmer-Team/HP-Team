@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index";
-import { validateForm } from "./validator";
-import { TaskForm } from "./taskForm";
-import { Modal } from "./modal";
+import { validateForm } from "./Reusable/validator";
+import { Modal } from "./Reusable/modal";
+import { TaskForm } from "./Reusable/taskForm";
 
 export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
