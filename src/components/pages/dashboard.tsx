@@ -1,1 +1,1 @@
-export const Dashboard = () => <div>dashboard</div>;
+export const Dashboard = () => <div>Dashboards</div>;
