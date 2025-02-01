@@ -1,2 +1,3 @@
+import { Navbar } from "../team/Hasib";
 
-export const Dashboard = () => <div>Dashboard</div>;
+export const Dashboard = () => <div><Navbar/></div>;

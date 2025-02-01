@@ -2,6 +2,8 @@ import { FC } from "react";
 
 import { ProfileMenu } from "./profilemenu";
 import { Items } from "./items";
+import { SearchItem } from "./searchitem";
+
 
 export const Navbar: FC = () => (
   
@@ -15,8 +17,9 @@ export const Navbar: FC = () => (
     </h1>
 
     {/* Navbar Icon & Profile */}
-
+     
     <div className="flex items-center space-x-[10px] lg:space-x-[22px]">
+      <SearchItem/>
       <Items />
       <ProfileMenu />
     </div>

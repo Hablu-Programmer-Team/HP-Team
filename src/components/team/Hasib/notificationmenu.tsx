@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { NotificationIcon } from "./icons";
 
+
 export const NotificationMenu: FC = () => (
   <div className="relative flex items-center">
     <button className="cursor-pointer">
