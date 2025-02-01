@@ -1,4 +1,4 @@
-import { IFormData } from ".";
+import { IFormData } from "..";
 
 export const validateForm = (formData: IFormData) => {
     const { title, date, priority, description } = formData;

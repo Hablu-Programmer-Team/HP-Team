@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { priorityData } from "./data";
-import PriorityCommon from "./PriorityCommon";
-import { TaskFormProps } from ".";
+import { priorityData } from "../data/data";
+import PriorityCommon from "../PriorityCommon";
+import { TaskFormProps } from "..";
 
 export const TaskForm: FC<TaskFormProps> = ({data, event}) => {
  return(

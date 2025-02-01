@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index";
 import Priority from "./Priority";
-import { validateForm } from "./validator";
-import { TaskForm } from "./taskForm";
-import { Modal } from "./modal";
+import { validateForm } from "./Reusable/validator";
+import { TaskForm } from "./Reusable/taskForm";
+import { Modal } from "./Reusable/modal";
 
 export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -56,7 +56,7 @@ export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
         {btnName}
       </button>
       {isOpen && (
-        <Modal cardName={cardName} toggleModal={onClick} togglePriority={togglePriority} submit={Submit} priorityBtn={true}>
+        <Modal cardName={cardName} toggleModal={onClick} togglePriority={togglePriority} submit={Submit} priorityBtn={true} goBackPermission={false}>
           <TaskForm data={formData} event={handleChange}/>
         </Modal>
       )}
