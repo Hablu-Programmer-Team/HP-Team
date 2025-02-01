@@ -7,7 +7,7 @@ const WatchOutput = () => (
         <Card
           taskName="Udoy"
           total={10}
-          completed={10}
+          completed={5}
           deadline={1}
           comments={50}
           shares={30}

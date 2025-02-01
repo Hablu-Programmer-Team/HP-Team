@@ -58,7 +58,7 @@
 @layer utilities {
   .bgConic {
     background-image: conic-gradient(
-      from 32deg,
+      from 35deg,
       var(--color-pending-700),
       var(--color-link-700),
       transparent 10%

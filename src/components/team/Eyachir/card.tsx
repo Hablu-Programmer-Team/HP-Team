@@ -23,7 +23,7 @@ export const Card: FC<CardProps> = (props) => {
 
   return (
     <div className="bg-black flex items-center justify-center rounded-lg max-w-[500px] w-full">
-      <ConicGradientDiv className="bgConic relative shadow-lg shadow-white/2   hover:shadow-white/5  w-full max-w-[500px] transition duration-500 pt-[5px] rounded-lg">
+      <ConicGradientDiv className="bgConic relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[500px] transition duration-500 pt-[1px] rounded-lg">
         <WrapperDiv className="max-w-[500px] rounded-lg w-full">
           <div className="h-[70px] w-[70px] bg-pending-500/20 absolute bottom-0 rounded-lg"></div>
           <div className="relative bg-neutral-text-title/20 backdrop-blur-2xl  rounded-lg p-5 space-y-5 cursor-pointer duration-200 z-20">

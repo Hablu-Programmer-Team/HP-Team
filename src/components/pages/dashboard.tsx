@@ -1,5 +1,1 @@
-import WatchOutput from "../team/Eyachir/watchOutput";
-
-export const Dashboard = () => <div>
-    <WatchOutput />
-</div>;
+export const Dashboard = () => <div>Dashboard</div>;
