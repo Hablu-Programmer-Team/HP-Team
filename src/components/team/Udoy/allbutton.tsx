@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { Button } from "./button";
 import { CommentIcon } from "../Eyachir/icons";
+import { Button } from "./button";
 
-type ButtonVariants = "primary" | "secondary" | "accent" | "outline" | "icon";
-type ButtonSizes = "sm" | "md" | "lg" | "xl";
+type ButtonVariants = "primary" | "secondary" | "accent" | "outline";
+type ButtonSizes = "sm" | "md" | "lg" | "xl" | "icon";
 type ButtonRadius = "sm" | "md" | "lg" | "xl" | "full";
 
 const buttonVariants: ButtonVariants[] = [
@@ -12,7 +12,7 @@ const buttonVariants: ButtonVariants[] = [
   "accent",
   "outline",
 ];
-const buttonSizes: ButtonSizes[] = ["sm", "md", "lg", "xl"];
+const buttonSizes: ButtonSizes[] = ["sm", "md", "lg", "xl", "icon"];
 interface ButtonGroupProps {
   variant: ButtonVariants;
   radius: ButtonRadius;
@@ -23,7 +23,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({ variant, radius }) => (
     <Button variant={variant}>Click me</Button>
     {buttonSizes.map((size) => (
       <Button key={size} variant={variant} size={size} radius={radius}>
-        {variant === "icon" ? <CommentIcon /> : "Click me"}
+        {size === "icon" ? <CommentIcon /> : "Click me"}
       </Button>
     ))}
   </div>
