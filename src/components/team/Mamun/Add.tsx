@@ -2,21 +2,7 @@ import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index"; // Assuming IFormData is defined correctly in types
 import Priority from "./Priority";
 import PriorityCommon from "./PriorityCommon";
-
-export const priorityData = [
-  {
-    name: "Extream",
-    color: "bg-secondary-600",
-  },
-  {
-    name: "Moderate",
-    color: "bg-link-600",
-  },
-  {
-    name: "Low",
-    color: "bg-secondary-600",
-  },
-];
+import { priorityData } from "./data";
 
 export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

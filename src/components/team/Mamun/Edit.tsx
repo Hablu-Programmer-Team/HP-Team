@@ -1,21 +1,7 @@
 import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index"; // Assuming IFormData is defined correctly in types
 import PriorityCommon from "./PriorityCommon";
-
-const priorityData = [
-  {
-    name: "Extream",
-    color: "bg-secondary-600",
-  },
-  {
-    name: "Moderate",
-    color: "bg-link-600",
-  },
-  {
-    name: "Low",
-    color: "bg-secondary-600",
-  },
-];
+import { priorityDataForEdit } from "./data";
 
 export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -155,7 +141,7 @@ export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
                     <div className="mt-4">
                       <p className="font-semibold text-sm">Priority</p>
                       <div className="flex gap-2 md:gap-[53px] flex-col md:flex-row">
-                        {priorityData.map((value, index) => (
+                        {priorityDataForEdit.map((value, index) => (
                           <PriorityCommon
                             key={index}
                             condition={formData.priority}
