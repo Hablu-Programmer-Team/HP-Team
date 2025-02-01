@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils/cn";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { CSButton, ZoomOnHover } from ".";
+import { Deadline } from "./deadline";
 import { CommentIcon, ProgressIcon, ShareIcon } from "./icons";
 
 interface CardProps {
@@ -12,70 +13,11 @@ interface CardProps {
   shares: number;
 }
 
-export const Card: FC<CardProps> = ({
-  taskName,
-  completed,
-  total,
-  deadline,
-  comments,
-  shares,
-}) => {
+const CSIcons = [{ Icon: CommentIcon }, { Icon: ShareIcon }];
+export const Card: FC<CardProps> = (props) => {
+  const { taskName, completed, total, ...others } = props;
+  const { deadline, comments, shares } = others;
   const progressPercentage = (completed / total) * 100;
-  const [timeLeft, setTimeLeft] = useState("");
-  const [timeColor, setTimeColor] = useState("");
-
-  useEffect(() => {
-    const storageKey = `deadline_${taskName}`;
-
-    const storedDeadline =
-      localStorage.getItem(storageKey) ||
-      (localStorage.setItem(
-        storageKey,
-        (Date.now() + deadline * 86400000).toString()
-      ),
-      localStorage.getItem(storageKey)!);
-
-    const deadlineTimestamp = parseInt(storedDeadline, 10);
-
-    const updateTimer = () => {
-      const timeDiff = deadlineTimestamp - Date.now();
-      const percentageLeft = (timeDiff / (deadline * 86400000)) * 100;
-
-      if (completed === total)
-        return (
-          setTimeLeft("Completed"),
-          setTimeColor("bg-success-200/30 text-success-500/50")
-        );
-      if (timeDiff <= 0)
-        return (
-          setTimeLeft("Incomplete"),
-          setTimeColor("bg-error-200/30 text-error-500/50")
-        );
-
-      const format = (n: number) => n.toString().padStart(2, "0");
-      setTimeLeft(
-        `${
-          Math.floor(timeDiff / 86400000)
-            ? `${Math.floor(timeDiff / 86400000)}D`
-            : ""
-        } ${format(Math.floor((timeDiff % 86400000) / 3600000))}:${format(
-          Math.floor((timeDiff % 3600000) / 60000)
-        )}:${format(Math.floor((timeDiff % 60000) / 1000))}`
-      );
-
-      setTimeColor(
-        percentageLeft > 65
-          ? "bg-success-200/30 text-success-500/50"
-          : percentageLeft > 30
-          ? "bg-pending-200/30 text-pending-500/50"
-          : "bg-error-200/30 text-error-500/50"
-      );
-    };
-
-    updateTimer();
-    const timer = setInterval(updateTimer, 1000);
-    return () => clearInterval(timer);
-  }, [completed, total, taskName]);
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-neutral-background">
@@ -119,26 +61,19 @@ export const Card: FC<CardProps> = ({
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <p
-              className={cn(
-                `p-1.5 text-[12px] font-bold rounded-xl`,
-                timeColor,
-                ZoomOnHover
-              )}
-              title="Time Left"
-            >
-              {timeLeft}
-            </p>
+            <Deadline
+              completed={completed}
+              total={total}
+              deadline={deadline}
+              taskName={taskName}
+            />
 
             <div className="flex gap-1">
-              {[
-                { Icon: CommentIcon, count: comments },
-                { Icon: ShareIcon, count: shares },
-              ].map(({ Icon, count }, i) => (
+              {CSIcons.map(({ Icon }, i) => (
                 <div key={i} className={cn("group", ZoomOnHover, CSButton)}>
                   <Icon className="text-neutral-400 group-hover:text-neutral-600" />
                   <span className="text-neutral-400 group-hover:text-neutral-600">
-                    {count}
+                    {i === 0 ? comments : shares}
                   </span>
                 </div>
               ))}
