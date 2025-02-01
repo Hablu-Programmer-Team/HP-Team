@@ -1,3 +1,1 @@
-import { Navbar } from "@/components/team/Hasib";
-
-export const Dashboard = () => <div><Navbar/></div>;
+export const Dashboard = () => <div>dashboard</div>;
