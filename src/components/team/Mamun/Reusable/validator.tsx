@@ -1,21 +1,14 @@
 import { IFormData } from "..";
 
 export const validateForm = (formData: IFormData) => {
-    const { title, date, priority, description } = formData;
-  
-    if (title.trim() === "") {
-      return "Title cannot be empty!";
-    }
-    if (!date) {
-      return "Please select a valid date!";
-    }
-    if (!priority) {
-      return "Please select a priority level!";
-    }
-    if (description.trim().length < 10) {
-      return "Description must be at least 10 characters long!";
-    }
-  
-    return null;
-  };
-  
+  const { title, date, priority, description } = formData;
+  return title.trim() === ""
+    ? "Title cannot be empty!"
+    : !date
+    ? "Please select a valid date!"
+    : !priority
+    ? "Please select a priority level!"
+    : description.trim().length < 10
+    ? "Description must be at least 10 characters long!"
+    : null;
+};
