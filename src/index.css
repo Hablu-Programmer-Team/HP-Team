@@ -55,9 +55,18 @@
   --color-neutral-text-primary: #434657;
   --color-neutral-text-title: #1b1d29;
 }
+@layer utilities {
+  .bgConic {
+    background-image: conic-gradient(
+    from 32deg,
+      var(--color-link-700),
+      var(--color-pending-700),
+      transparent 15%
+    );
+  }
+}
 
 @layer components {
-
   /* Typhography Style Start  */
   .h1 {
     @apply text-[2.25rem] leading-[3rem] md:text-[2.5rem] md:leading-[3.5rem] lg:text-[3rem] lg:leading-[4rem];
