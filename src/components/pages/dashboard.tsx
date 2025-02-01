@@ -1,3 +1,1 @@
-import { Popup } from "../team/Mamun/Popup";
-
-export const Dashboard = () => <div><Popup/></div>;
+export const Dashboard = () => <div>dashboard</div>;
