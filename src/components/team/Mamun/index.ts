@@ -1,12 +1,5 @@
 import { ReactNode } from "react";
 
-export interface IType {
-  title: string;
-  date: string;
-  priority: string;
-  description: string;
-}
-
 export interface IFormData {
   title: string;
   date: string;

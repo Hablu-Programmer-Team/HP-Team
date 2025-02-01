@@ -1,7 +1,7 @@
 import { IPriorityProp } from "./index";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 
-const Priority: FC<IPriorityProp> = ({toggle, name}) => {
+export const Priority: FC<IPriorityProp> = ({toggle, name}) => {
   const [title, setTitle] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [Priority, setPriority] = useState<{ title: string; status: string }[]>([
@@ -85,5 +85,3 @@ const Priority: FC<IPriorityProp> = ({toggle, name}) => {
     </>
   )
 }
-
-export default Priority;
