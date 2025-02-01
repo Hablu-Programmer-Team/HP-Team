@@ -23,15 +23,16 @@ export const ProfileMenu: FC = () => {
         <div className="absolute  right-0 mt-4 w-64 rounded border border-gray-200 shadow z-10 py-2 text-center ease-in-out transition-all duration-500 origin-top-right ">
           <div className="flex flex-col gap-2 p-3">
             {menuItems.map((item, index) => (
-              <div key={index}>
+              
                 <Link
+                key={index}
                   to={item.to}
                   className="flex items-center font-semibold gap-3 ps-4 py-2 hover:text-[#78D700] hover:scale-105 transition-all delay-150  "
                 >
                   <img src={item.icon} alt={item.label} />
                   {item.label}
                 </Link>
-              </div>
+            
             ))}
           </div>
           <div className=" border-gray-300 border-t">
