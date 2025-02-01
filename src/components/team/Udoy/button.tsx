@@ -2,42 +2,51 @@ import { cn } from "@/lib/utils/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import { forwardRef, type ButtonHTMLAttributes } from "react";
 
-export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => (
+  ({ className, variant, size, radius, children, ...props }, ref) => (
     <button
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, radius, size, className }))}
       ref={ref}
+      children={<div className="relative z-10"> {children} </div>}
       {...props}
     />
   )
 );
 
 Button.displayName = "Button";
- const className = "relative overflow-hidden bg-[#2D2ACD] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56"
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: className,
+        primary:
+          "relative overflow-hidden bg-[#2D2ACD] text-white shadow-2xl transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orange-600 before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56 cursor-pointer",
         secondary:
-          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        accent: "hover:bg-primary-500 ",
+          "relative overflow-hidden border bg-[#2A2E44] border-[#2A2E44]  text-[#DE8A2A] shadow-2xl transition-all before:absolute before:left-0 before:right-0 before:top-0 before:h-0 before:w-full before:bg-[#DE8A2A] before:duration-500 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0 after:w-full after:bg-[#DE8A2A] after:duration-500 hover:text-white hover:shadow-[#DE8A2A] hover:before:h-2/4 hover:after:h-2/4 cursor-pointer",
+        accent:
+          "relative flex items-center justify-center overflow-hidden bg-[#A649DA] font-medium text-white shadow-2xl transition-all duration-300 before:absolute before:inset-0 before:border-0 before:border-white before:duration-100 before:ease-linear hover:bg-white hover:text-blue-600 hover:shadow-blue-600 hover:before:border-[25px] cursor-pointer ",
         outline:
-          "border bg-background shadow-sm border border-link-700 text-link-700 hover:bg-link-700 ",
+          "relative bg-transparent overflow-hidden border border-pink-400 text-pink-400 shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-pink-400 hover:before:w-2/4 hover:before:bg-pink-400 hover:after:w-2/4 hover:after:bg-pink-400 cursor-pointer",
       },
       size: {
-        sm: "rounded-md text-xs px-[1rem] py-[0.375rem]",
-        md: "px-4 py-2 rounded-md px-8",
-        lg: "px-8 py-3",
+        sm: "px-2.5 py-1 text-[10px]",
+        md: "rounded-md text-xs px-[1rem] py-[0.375rem]",
+        lg: "px-4 py-2 rounded-md px-8",
+        xl: "px-8 py-2.5",
         icon: "size-9",
       },
+      radius: {
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        xl: "rounded-xl",
+        full: "rounded-full",
+      },
     },
-    defaultVariants: { variant: "primary", size: "md" },
+    defaultVariants: { variant: "primary", size: "md", radius: "md" },
   }
 );
