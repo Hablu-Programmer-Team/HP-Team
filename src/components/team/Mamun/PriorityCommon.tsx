@@ -22,7 +22,7 @@ export const PriorityCommon: FC<IPriorityObj> = ({
             value={value}
             checked={condition === value}
             onChange={event}
-            className="w-[14px] h-[14px]" style={{accentColor: "#fcad03"}}
+            className="w-[14px] h-[14px] accent-[#fcad03]"
             placeholder="Enter "
           />
         </label>

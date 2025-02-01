@@ -34,21 +34,13 @@ export const Modal: FC<IModal> = ({
             </div>
           </div>
           {children}
-          <div className="flex justify-between items-start">
+          <div className="flex justify-end items-start">
             <button
               className="mt-4 bg-amber-200 text-gray-500 hover:scale-105 transition-all cursor-pointer font-bold py-1 md:py-2 px-2 md:px-4 rounded-md mb-2"
               onClick={submit}
             >
               Submit
             </button>
-            {priorityBtn ? (
-              <button
-                className="mt-4 bg-red-200 text-gray-500 hover:scale-105 transition-all cursor-pointer font-bold py-1 md:py-2 px-2 md:px-4 rounded-md mb-2"
-                onClick={togglePriority}
-              >
-                Add Priority
-              </button>
-            ) : null}
           </div>
         </div>
       </section>

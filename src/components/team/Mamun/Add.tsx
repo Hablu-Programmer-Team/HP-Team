@@ -1,6 +1,5 @@
 import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index";
-import { Priority } from "./Priority";
 import { Modal } from "./reusable/modal";
 import { TaskForm } from "./reusable/taskForm";
 import { validateForm } from "./reusable/validator";
@@ -59,9 +58,6 @@ export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
         <Modal cardName={cardName} toggleModal={onClick} togglePriority={togglePriority} submit={Submit} priorityBtn={true} goBackPermission={false}>
           <TaskForm data={formData} event={handleChange}/>
         </Modal>
-      )}
-      {truthy && (
-        <Priority toggle={togglePriority} name="Add Task Priority Title" />
       )}
     </>
   );
