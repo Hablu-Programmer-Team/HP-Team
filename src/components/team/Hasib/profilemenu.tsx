@@ -36,7 +36,7 @@ export const ProfileMenu: FC = () => {
             ))}
           </div>
           <div className=" border-gray-300 border-t">
-            <button className="flex items-center font-semibold gap-3 ps-8 py-2 hover:text-[#78D700] hover:scale-105 transition-all delay-150  ">
+            <button className="flex items-center font-semibold gap-3 cursor-pointer ps-8 py-2 hover:text-[#78D700] hover:scale-105 transition-all delay-150  ">
               <img src="/logout.svg" alt="LogOut-Img" />
               Log Out
             </button>
