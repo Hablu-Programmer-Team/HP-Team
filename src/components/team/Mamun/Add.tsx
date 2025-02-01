@@ -3,6 +3,7 @@ import { IAdd, IFormData } from "./index"; // Assuming IFormData is defined corr
 import Priority from "./Priority";
 import PriorityCommon from "./PriorityCommon";
 import { priorityData } from "./data";
+import { validateForm } from "./validator";
 
 export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -39,28 +40,11 @@ export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
 
   // Handle form submission
   const Submit = () => {
-    const { title, date, priority, description } = formData;
-
-    if (title.trim() === "") {
-      alert("Title cannot be empty!");
+    const errorMessage = validateForm(formData);
+    if(errorMessage){
+      alert(errorMessage);
       return;
     }
-
-    if (!date) {
-      alert("Please select a valid date!");
-      return;
-    }
-
-    if (!priority) {
-      alert("Please select a priority level!");
-      return;
-    }
-
-    if (description.trim().length < 10) {
-      alert("Description must be at least 10 characters long!");
-      return;
-    }
-
     setSubmittedData((prevData) => [...prevData, formData]);
     setFormData({
       title: "",
@@ -68,8 +52,6 @@ export const AddTasks: FC<IAdd> = ({ cardName, btnName }) => {
       priority: "",
       description: "",
     });
-
-    console.log("AddData", formData);
   };
 
   return (

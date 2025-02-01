@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index"; // Assuming IFormData is defined correctly in types
 import PriorityCommon from "./PriorityCommon";
 import { priorityDataForEdit } from "./data";
+import { validateForm } from "./validator";
 
 export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -30,30 +31,11 @@ export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {
 
   // Handle form submission
   const Submit = () => {
-    // Destructuring formData
-    const { title, date, priority, description } = formData;
-
-    // Validation checks
-    if (title.trim() === "") {
-      alert("Title cannot be empty!");
+    const errorMessage = validateForm(formData);
+    if(errorMessage){
+      alert(errorMessage);
       return;
     }
-
-    if (!date) {
-      alert("Please select a valid date!");
-      return;
-    }
-
-    if (!priority) {
-      alert("Please select a priority level!");
-      return;
-    }
-
-    if (description.trim().length < 10) {
-      alert("Description must be at least 10 characters long!");
-      return;
-    }
-
     // If all validations pass, store the submitted data
     setSubmittedData((prevData) => [...prevData, formData]);
 
