@@ -23,18 +23,17 @@ export const Deadline: FC<TimeLeftProps> = ({ taskName, completed, total, deadli
                 storageKey,
                 (Date.now() + deadline * 86400000).toString()
             ),
-                localStorage.getItem(storageKey)!);
-
+            localStorage.getItem(storageKey)!);
+            
         const deadlineTimestamp = parseInt(storedDeadline, 10);
 
         const updateTimer = () => {
             const timeDiff = deadlineTimestamp - Date.now();
             const percentageLeft = (timeDiff / (deadline * 86400000)) * 100;
-
             if (completed === total)
                 return (
                     setTimeLeft("Completed"),
-                    setTimeColor("bg-success-200/30 text-success-500/50")
+                    setTimeColor("bg-success-700/20 text-success-500")
                 );
             if (timeDiff <= 0)
                 return (
@@ -64,7 +63,7 @@ export const Deadline: FC<TimeLeftProps> = ({ taskName, completed, total, deadli
         updateTimer();
         const timer = setInterval(updateTimer, 1000);
         return () => clearInterval(timer);
-    }, [completed, total, taskName]);
+    }, [completed, total, taskName,deadline]);
 
     return (
         <div>
