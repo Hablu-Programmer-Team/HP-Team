@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/cn";
 import { FC, useEffect, useState } from "react";
 import { CBlur } from ".";
 import { Deadline } from "./deadline";
-import { CommentIcon, ProgressIcon, ShareIcon } from "./icons";
+import { ProgressIcon } from "./icons";
 import { WrapperDiv } from "./wrapper";
 
 interface CardProps {
@@ -12,10 +12,12 @@ interface CardProps {
   deadline: number;
   comments: number;
   shares: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export const Card: FC<CardProps> = (props) => {
-  const { taskName, completed, total, deadline } = props;
+  const { taskName, completed, total, deadline, createdAt } = props;
 
   const [percentageLeft, setPercentageLeft] = useState(0);
   const [bgConic, setBgConic] = useState("");
@@ -35,7 +37,7 @@ export const Card: FC<CardProps> = (props) => {
     } else if (percentageLeft <= 0) {
       setBgConic("bg-error-700/10 shadow-0");
     }
-  }, [percentageLeft]);
+  }, [completed, percentageLeft, total]);
 
   return (
     <div className="bg-neutral-950 flex items-center justify-center rounded-lg max-w-[400px] w-full">
@@ -90,6 +92,7 @@ export const Card: FC<CardProps> = (props) => {
             </div>
             <div>
               <Deadline
+                createdAt={createdAt}
                 completed={completed}
                 total={total}
                 deadline={deadline}

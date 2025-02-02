@@ -11,6 +11,8 @@ export const WatchOutput = () => (
         deadline={0.0002}
         comments={50}
         shares={30}
+        createdAt={new Date("31 January 2025 07:00 AM")}
+        updatedAt={new Date()}
       />
     </WrapperDiv>
   </div>
