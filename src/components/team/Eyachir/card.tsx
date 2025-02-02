@@ -1,9 +1,8 @@
-import ConicGradientDiv from "@/components/team/Eyachir/conicGradient";
 import { cn } from "@/lib/utils/cn";
-import { FC } from "react";
-import { CSButton, ZoomOnHover } from ".";
+import { FC, useEffect, useState } from "react";
+import { CBlur } from ".";
 import { Deadline } from "./deadline";
-import { CommentIcon, ProgressIcon, ShareIcon } from "./icons";
+import { ProgressIcon } from "./icons";
 
 interface CardProps {
   taskName: string;
@@ -12,20 +11,45 @@ interface CardProps {
   deadline: number;
   comments: number;
   shares: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-const CSIcons = [{ Icon: CommentIcon }, { Icon: ShareIcon }];
 export const Card: FC<CardProps> = (props) => {
-  const { taskName, completed, total, ...others } = props;
-  const { deadline, comments, shares } = others;
+  const { taskName, completed, total, deadline, createdAt } = props;
+
+  const [percentageLeft, setPercentageLeft] = useState(0);
+  const [bgConic, setBgConic] = useState("");
   const progressPercentage = (completed / total) * 100;
 
+  useEffect(() => {
+    setBgConic(
+      percentageLeft > 65
+        ? "shadow-success-200/30 text-success-500/50 bg-success-700/10"
+        : percentageLeft > 30
+        ? "shadow-pending-200/30 text-pending-500/50 bg-pending-700/10"
+        : "shadow-error-200/30 text-error-500/50 bg-error-700/10"
+    );
+
+    if (completed === total) {
+      setBgConic("bg-success-700/10 shadow-0");
+    } else if (percentageLeft <= 0) {
+      setBgConic("bg-error-700/10 shadow-0");
+    }
+  }, [completed, percentageLeft, total]);
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black/90">
-      <ConicGradientDiv classNmae="bgConic shadow-lg shadow-white/2 hover:shadow-white/5 relative animate-rotate-border w-full max-w-[500px] transition duration-500 p-[1px] rounded-lg">
-        <div className="relative max-w-[500px] bg-[#202020] w-full rounded-lg">
-          <div className="h-[70px] w-[70px] bg-pending-500/20 absolute bottom-0 rounded-lg"></div>
-          <div className="relative bg-neutral-text-title/20 backdrop-blur-2xl  rounded-lg p-5 space-y-5 cursor-pointer duration-200 z-20">
+    <div className="bg-neutral-950 flex items-center justify-center rounded-lg max-w-[400px] w-full">
+      <div
+        className={cn(
+          "relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[400px] transition duration-500 rounded-lg",
+          bgConic
+        )}
+      >
+        <div className="max-w-[500px] rounded-lg w-full">
+          <div className={cn("bottom-0 left-0", CBlur)} />
+          <div className={cn("top-0 right-0", CBlur)} />
+          <div className="relative bg-neutral-text-title/20 backdrop-blur-lg  rounded-lg p-5 space-y-5 cursor-pointer duration-200 z-20">
             <h1
               title={taskName}
               className="md:text-3xl text-gray-300 text-2xl font-semibold text-ellipsis overflow-hidden whitespace-nowrap"
@@ -60,31 +84,23 @@ export const Card: FC<CardProps> = (props) => {
                       : "from-error-100 to-error-500"
                   )}
                   style={{ width: `${progressPercentage}%` }}
-                ></div>
+                />
               </div>
             </div>
-            <div className="flex justify-between items-center">
+            <div>
               <Deadline
+                createdAt={createdAt}
                 completed={completed}
                 total={total}
                 deadline={deadline}
                 taskName={taskName}
+                percentageLeft={percentageLeft}
+                setPercentageLeft={setPercentageLeft}
               />
-
-              <div className="flex gap-1">
-                {CSIcons.map(({ Icon }, i) => (
-                  <div key={i} className={cn("group", ZoomOnHover, CSButton)}>
-                    <Icon className="text-neutral-400 group-hover:text-neutral-100" />
-                    <span className="text-neutral-400 group-hover:text-neutral-100">
-                      {i === 0 ? comments : shares}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
-      </ConicGradientDiv>
+      </div>
     </div>
   );
 };
