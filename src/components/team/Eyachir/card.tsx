@@ -97,17 +97,6 @@ export const Card: FC<CardProps> = (props) => {
                 percentageLeft={percentageLeft}
                 setPercentageLeft={setPercentageLeft}
               />
-
-              {/* <div className="flex gap-1">
-                {CSIcons.map(({ Icon }, i) => (
-                  <div key={i} className={cn("group", ZoomOnHover, CSButton)}>
-                    <Icon className="text-neutral-400 group-hover:text-neutral-100" />
-                    <span className="text-neutral-400 group-hover:text-neutral-100">
-                      {i === 0 ? comments : shares}
-                    </span>
-                  </div>
-                ))}
-              </div> */}
             </div>
           </div>
         </WrapperDiv>

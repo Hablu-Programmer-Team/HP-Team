@@ -17,10 +17,13 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
 
   const [buttonText, setButtonText] = useState("");
   const [btnColor, setBtnColor] = useState("");
+  const [timeAgo, setTimeAgo] = useState("");
 
   useEffect(() => {
     const storageKey = `deadline_${taskName}`;
+    const createdKey = `created_${taskName}`;
 
+    // fetch or set deadline
     const storedDeadline =
       localStorage.getItem(storageKey) ||
       (localStorage.setItem(
@@ -28,8 +31,14 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
         (Date.now() + deadline * 86400000).toString()
       ),
       localStorage.getItem(storageKey)!);
-
     const deadlineTimestamp = parseInt(storedDeadline, 10);
+
+    // fetch or set created time
+    const storedCreated =
+      localStorage.getItem(createdKey) ||
+      (localStorage.setItem(createdKey, Date.now().toString()),
+      localStorage.getItem(createdKey)!);
+    const createdTimestamp = parseInt(storedCreated, 10);
 
     const updateTimer = () => {
       const timeDifference = deadlineTimestamp - Date.now();
@@ -61,6 +70,20 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
       );
     };
 
+    const timeAgoDifference = Date.now() - createdTimestamp;
+
+    setTimeAgo(
+      timeAgoDifference < 60000
+        ? "Just now"
+        : timeAgoDifference < 3600000
+        ? timeAgoDifference / 60000 + " " + "min ago"
+        : timeAgoDifference < 86400000
+        ? timeAgoDifference / 3600000 + " " + "hours ago"
+        : timeAgoDifference / 86400000 + " " + "days ago"
+        ? timeAgoDifference / 2592000 + " " + "months ago"
+        : timeAgoDifference / 31536000 + " " + "years ago"
+    );
+
     updateTimer();
     const timer = setInterval(updateTimer, 1000);
     return () => clearInterval(timer);
@@ -78,8 +101,14 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
       >
         {buttonText}
       </p>
-      <p className={cn(" text-neutral-200/40", ZoomOnHover)}>time ago</p>
-      {/* <p>created{timeAgo}</p> */}
+      <p
+        className={cn(
+          " text-neutral-200/40 hover:text-neutral-100",
+          ZoomOnHover
+        )}
+      >
+        {timeAgo}
+      </p>
     </div>
   );
 };
