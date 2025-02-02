@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, SVGProps } from "react";
 
-interface IconSvgProps extends React.SVGProps<SVGSVGElement> {}
+type IconSvgProps = SVGProps<SVGSVGElement>;
 
 export const ProgressIcon: FC<IconSvgProps> = (props) => (
   <svg
