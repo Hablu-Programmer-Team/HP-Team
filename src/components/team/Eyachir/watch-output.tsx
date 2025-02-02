@@ -1,12 +1,11 @@
 import { Card } from "./card";
-import { WrapperDiv } from "./wrapper";
 
 export const WatchOutput = () => (
   <div className=" bg-[#0f0f0f] bg-no-repeat h-screen">
-    <WrapperDiv className="backdrop-blur-3xl w-full h-full flex items-center justify-center">
+    <div className="backdrop-blur-3xl w-full h-full flex items-center justify-center">
       <Card
-        taskName="Task no 123"
-        completed={9}
+        taskName="Task no 12345"
+        completed={8}
         total={10}
         deadline={0.0002}
         comments={50}
@@ -14,6 +13,6 @@ export const WatchOutput = () => (
         createdAt={new Date("31 January 2025 07:00 AM")}
         updatedAt={new Date()}
       />
-    </WrapperDiv>
+    </div>
   </div>
 );

@@ -3,7 +3,6 @@ import { FC, useEffect, useState } from "react";
 import { CBlur } from ".";
 import { Deadline } from "./deadline";
 import { ProgressIcon } from "./icons";
-import { WrapperDiv } from "./wrapper";
 
 interface CardProps {
   taskName: string;
@@ -41,13 +40,13 @@ export const Card: FC<CardProps> = (props) => {
 
   return (
     <div className="bg-neutral-950 flex items-center justify-center rounded-lg max-w-[400px] w-full">
-      <WrapperDiv
+      <div
         className={cn(
           "relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[400px] transition duration-500 rounded-lg",
           bgConic
         )}
       >
-        <WrapperDiv className="max-w-[500px] rounded-lg w-full">
+        <div className="max-w-[500px] rounded-lg w-full">
           <div className={cn("bottom-0 left-0", CBlur)} />
           <div className={cn("top-0 right-0", CBlur)} />
           <div className="relative bg-neutral-text-title/20 backdrop-blur-lg  rounded-lg p-5 space-y-5 cursor-pointer duration-200 z-20">
@@ -78,13 +77,11 @@ export const Card: FC<CardProps> = (props) => {
                 <div
                   className={cn(
                     "absolute top-1/2 bottom-1/2 -translate-y-1/2 h-2 rounded-2xl bg-gradient-to-r transition-all duration-300",
-                    "from-error-100 to-error-500",
-                    {
-                      "from-success-100 to-success-500":
-                        progressPercentage > 65,
-                      "from-pending-100 to-pending-500":
-                        progressPercentage > 30,
-                    }
+                    progressPercentage > 65
+                      ? "from-success-100 to-success-500"
+                      : progressPercentage > 30
+                      ? "from-pending-100 to-pending-500"
+                      : "from-error-100 to-error-500"
                   )}
                   style={{ width: `${progressPercentage}%` }}
                 />
@@ -102,8 +99,8 @@ export const Card: FC<CardProps> = (props) => {
               />
             </div>
           </div>
-        </WrapperDiv>
-      </WrapperDiv>
+        </div>
+      </div>
     </div>
   );
 };
