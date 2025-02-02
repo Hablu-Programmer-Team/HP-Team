@@ -55,18 +55,27 @@
   --color-neutral-text-primary: #434657;
   --color-neutral-text-title: #1b1d29;
 }
+
 @layer utilities {
   .bgConic {
-    background-image: conic-gradient(
-      from 35deg,
-      var(--color-pending-700),
-      var(--color-link-700),
-      transparent 10%
-    );
+    background-image: conic-gradient(from 35deg,
+        var(--color-pending-700),
+        var(--color-link-700),
+        transparent 10%);
   }
 }
 
+/* @layer utilities {
+  .bgConic {
+    background-image: conic-gradient(from 35deg,
+        var(--tw-gradient-start),
+        var(--tw-gradient-end),
+        transparent 10%);
+  }
+} */
+
 @layer components {
+
   /* Typhography Style Start  */
   .h1 {
     @apply text-[2.25rem] leading-[3rem] md:text-[2.5rem] md:leading-[3.5rem] lg:text-[3rem] lg:leading-[4rem];

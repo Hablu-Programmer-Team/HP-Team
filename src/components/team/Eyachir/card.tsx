@@ -1,10 +1,9 @@
-import ConicGradientDiv from "@/components/team/Eyachir/conicGradient";
 import { cn } from "@/lib/utils/cn";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CSButton, ZoomOnHover } from ".";
 import { Deadline } from "./deadline";
 import { CommentIcon, ProgressIcon, ShareIcon } from "./icons";
-import { WrapperDiv } from "./wrapperDiv";
+import { WrapperDiv } from "./wrapperdiv";
 
 interface CardProps {
   taskName: string;
@@ -13,6 +12,21 @@ interface CardProps {
   deadline: number;
   comments: number;
   shares: number;
+  // gradientStart?: string;
+  // gradientEnd?: string;
+  // style?: React.CSSProperties;
+}
+
+{
+  /* <div
+  className="bgConic w-40 h-40"
+  style={
+    {
+      "--tw-gradient-start": "#ff5733", // Dynamic Start Color
+      "--tw-gradient-end": "#33b5ff", // Dynamic End Color
+    } as React.CSSProperties
+  }
+/>; */
 }
 
 const CSIcons = [{ Icon: CommentIcon }, { Icon: ShareIcon }];
@@ -20,10 +34,26 @@ export const Card: FC<CardProps> = (props) => {
   const { taskName, completed, total, ...others } = props;
   const { deadline, comments, shares } = others;
   const progressPercentage = (completed / total) * 100;
+  const [timeColor, setTimeColor] = useState("");
+
+  // useEffect(() => {
+  //   setTimeColor(
+  //       percentageLeft > 65
+  //         ? `shadow-success-200/30 text-success-500/50 bg-success-700/10`
+  //         : percentageLeft > 30
+  //         ? "shadow-pending-200/30 text-pending-500/50 bg-pending-700/10"
+  //         : "shadow-error-200/30 text-error-500/50 bg-error-700/20"
+  //     );
+  // }
 
   return (
-    <div className="bg-black flex items-center justify-center rounded-lg max-w-[500px] w-full">
-      <ConicGradientDiv className="bgConic relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[500px] transition duration-500 pt-[1px] rounded-lg">
+    <div className="bg-black flex items-center justify-center rounded-lg max-w-[400px] w-full">
+      <WrapperDiv
+        className={cn(
+          "bgConic relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[400px] transition duration-500 pt-[1px] rounded-lg",
+          timeColor
+        )}
+      >
         <WrapperDiv className="max-w-[500px] rounded-lg w-full">
           <div className="h-[70px] w-[70px] bg-pending-500/20 absolute bottom-0 rounded-lg"></div>
           <div className="relative bg-neutral-text-title/20 backdrop-blur-2xl  rounded-lg p-5 space-y-5 cursor-pointer duration-200 z-20">
@@ -70,6 +100,8 @@ export const Card: FC<CardProps> = (props) => {
                 total={total}
                 deadline={deadline}
                 taskName={taskName}
+                // timeColor={timeColor}
+                // setTimeColor={setTimeColor}
               />
 
               <div className="flex gap-1">
@@ -85,7 +117,7 @@ export const Card: FC<CardProps> = (props) => {
             </div>
           </div>
         </WrapperDiv>
-      </ConicGradientDiv>
+      </WrapperDiv>
     </div>
   );
 };
