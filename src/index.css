@@ -1,57 +1,101 @@
 @import "tailwindcss";
 
 @theme {
-    /* link color */
-    --color-link-700: #0F5699;
-    --color-link-600: #1473CC;
-    --color-link-500: #1990FF;
-    --color-link-200: #A3D3FF;
-    --color-link-100: #D1E9FF;
-    --color-link-50: #E8F4FF;
-     /* primary color */
-    --color-primary-700: #2422A4;
-    --color-primary-600: #2926B9;
-    --color-primary-500: #4E0657;
-    --color-primary-200: #D5D4F5;
-    --color-primary-100: #EAEAFA;
-    --color-primary-50: #F5F4FD;
-     /* secondary color */
-    --color-secondary-700: #CC515D;
-    --color-secondary-600: #E65B68;
-    --color-secondary-500: #FF6574;
-    --color-secondary-200: #FFE0E3;
-    --color-secondary-100: #FFF0F1;
-    --color-secondary-50: #FFF7F8;
-      /* succes color */
-    --color-success-700: #26A44D;
-    --color-success-600: #2BB956;
-    --color-success-500: #30CD60;
-    --color-success-200: #D6F5DF;
-    --color-success-100: #EAFAEF;
-    --color-success-50: #F5FDF7;
-     /* pending color */
-    --color-pending-700: #CC8733;
-    --color-pending-600: #E6983A;
-    --color-pending-500: #FFA940;
-    --color-pending-200: #FFEED9;
-    --color-pending-100: #FFF6EC;
-    --color-pending-50 : #FFFBF5;
-     /* error color */
-    --color-error-700: #AE3636;
-    --color-error-600: #C43C3C;
-    --color-error-500: #DA4343;
-    --color-error-200: #F8D9D9;
-    --color-error-100: #FBECEC;
-    --color-error-50 : #FDF6F6;
+  /* link color */
+  --color-link-700: #0f5699;
+  --color-link-600: #1473cc;
+  --color-link-500: #1990ff;
+  --color-link-200: #a3d3ff;
+  --color-link-100: #d1e9ff;
+  --color-link-50: #e8f4ff;
+  /* primary color */
+  --color-primary-700: #2422a4;
+  --color-primary-600: #2926b9;
+  --color-primary-500: #4e0657;
+  --color-primary-200: #d5d4f5;
+  --color-primary-100: #eaeafa;
+  --color-primary-50: #f5f4fd;
+  /* secondary color */
+  --color-secondary-700: #cc515d;
+  --color-secondary-600: #e65b68;
+  --color-secondary-500: #ff6574;
+  --color-secondary-200: #ffe0e3;
+  --color-secondary-100: #fff0f1;
+  --color-secondary-50: #fff7f8;
+  /* succes color */
+  --color-success-700: #26a44d;
+  --color-success-600: #2bb956;
+  --color-success-500: #30cd60;
+  --color-success-200: #d6f5df;
+  --color-success-100: #eafaef;
+  --color-success-50: #f5fdf7;
+  /* pending color */
+  --color-pending-700: #cc8733;
+  --color-pending-600: #e6983a;
+  --color-pending-500: #ffa940;
+  --color-pending-200: #ffeed9;
+  --color-pending-100: #fff6ec;
+  --color-pending-50: #fffbf5;
+  /* error color */
+  --color-error-700: #ae3636;
+  --color-error-600: #c43c3c;
+  --color-error-500: #da4343;
+  --color-error-200: #f8d9d9;
+  --color-error-100: #fbecec;
+  --color-error-50: #fdf6f6;
 
-     /*--color-neutral color */
-    --color-neutral-table-header: #FBFBFD;
-    --color-neutral-background: #F8F8FC;
-    --color-neutral-disable: #DCDEE9;
-    --color-neutral-divider: #E4E5F0;
-    --color-neutral-border: #BCBFD6;
-    --color-neutral-placeholder: #A7ABC3;
-    --color-neutral-text-secondary: #82869E;
-    --color-neutral-text-primary: #434657;
-    --color-neutral-text-title: #1B1D29;
+  /*--color-neutral color */
+  --color-neutral-table-header: #fbfbfd;
+  --color-neutral-background: #f8f8fc;
+  --color-neutral-disable: #dcdee9;
+  --color-neutral-divider: #e4e5f0;
+  --color-neutral-border: #bcbfd6;
+  --color-neutral-placeholder: #a7abc3;
+  --color-neutral-text-secondary: #82869e;
+  --color-neutral-text-primary: #434657;
+  --color-neutral-text-title: #1b1d29;
 }
+
+@layer components {
+
+  /* Typhography Style Start  */
+  .h1 {
+    @apply text-[2.25rem] leading-[3rem] md:text-[2.5rem] md:leading-[3.5rem] lg:text-[3rem] lg:leading-[4rem];
+  }
+
+  .h2 {
+    @apply text-[2rem] leading-[2.5rem] md:text-[2.25rem] md:leading-[3rem] lg:text-[2.5rem] lg:leading-[3.5rem];
+  }
+
+  .h3 {
+    @apply text-[1.5rem] leading-[2rem] md:text-[2rem] md:leading-[2.5rem] lg:text-[2.25rem] lg:leading-[3rem];
+  }
+
+  .h4 {
+    @apply text-[1.25rem] leading-[1.75rem] md:text-[1.5rem] md:leading-[2rem] lg:text-[2rem] lg:leading-[2.5rem];
+  }
+
+  .title-1 {
+    @apply text-[1.25rem] leading-[1.75rem] lg:text-[1.5rem] lg:leading-[2rem];
+  }
+
+  .title-2 {
+    @apply text-[1.125rem] leading-[1.625rem] lg:text-[1.25rem] lg:leading-[1.75rem];
+  }
+
+  .p {
+    @apply text-[0.875rem] leading-[1.25rem] lg:text-[1rem] lg:leading-[1.5rem];
+  }
+
+  /* Typhography Style End  */
+}
+
+/* For future update */
+/* @layer utilities {
+  .bgConic {
+    background-image: conic-gradient(from 35deg,
+        rgb(73, 57, 57),
+        rgb(50, 49, 49),
+        transparent 10%);
+  }
+} */
