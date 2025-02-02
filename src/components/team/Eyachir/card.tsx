@@ -23,15 +23,15 @@ export const Card: FC<CardProps> = (props) => {
   const progressPercentage = (completed / total) * 100;
 
   return (
-    <div className="bg-black flex items-center justify-center rounded-lg max-w-[400px] w-full">
+    <div className="bg-neutral-950 flex items-center justify-center rounded-lg max-w-[400px] w-full">
       <WrapperDiv
         className={cn(
           "bgConic relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[400px] transition duration-500 pt-[1px] rounded-lg",
           percentageLeft > 65
-            ? `bg-green-500`
+            ? `bgConic`
             : percentageLeft > 30
-            ? "bg-amber-400"
-            : "bg-red-500"
+            ? "bgConic1"
+            : "bgConic2"
         )}
       >
         <WrapperDiv className="max-w-[500px] rounded-lg w-full">

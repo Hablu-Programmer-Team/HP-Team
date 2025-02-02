@@ -2,7 +2,7 @@ import { Card } from "./card";
 import { WrapperDiv } from "./wrapper";
 
 export const WatchOutput = () => (
-  <div className=" bg-[#030712] bg-no-repeat h-screen">
+  <div className=" bg-[#0f0f0f] bg-no-repeat h-screen">
     <WrapperDiv className="backdrop-blur-3xl w-full h-full flex items-center justify-center">
       <Card
         taskName="Task 2555"
