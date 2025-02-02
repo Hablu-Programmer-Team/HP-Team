@@ -5,8 +5,8 @@ export const WatchOutput = () => (
   <div className=" bg-[#0f0f0f] bg-no-repeat h-screen">
     <WrapperDiv className="backdrop-blur-3xl w-full h-full flex items-center justify-center">
       <Card
-        taskName="Task 2555"
-        completed={5}
+        taskName="Task dgff"
+        completed={10}
         total={10}
         deadline={0.0002}
         comments={50}

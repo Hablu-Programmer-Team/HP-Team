@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils/cn";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { ZoomOnHover } from ".";
 
 interface TimeLeftProps {
   taskName: string;
@@ -35,13 +36,17 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
       setPercentageLeft((timeDifference / (deadline * 86400000)) * 100);
 
       if (completed === total) {
-        return (
-          setButtonText("Completed"),
-          setBtnColor("bg-success-700/10 text-success-500")
-        );
+        return setButtonText("Completed"), setBtnColor("text-success-500/70");
       } else if (timeDifference <= 0) {
-        return setButtonText("Incomplete"), setBtnColor(" text-error-500/60");
+        return setButtonText("Incomplete"), setBtnColor("text-error-500/60");
       }
+      setBtnColor(
+        percentageLeft > 65
+          ? "shadow-success-200/30 text-success-500/50 bg-success-700/10"
+          : percentageLeft > 30
+          ? "shadow-pending-200/30 text-pending-500/50 bg-pending-700/10"
+          : "shadow-error-200/30 text-error-500/50 bg-error-700/10"
+      );
 
       const format = (n: number) => n.toString().padStart(2, "0");
 
@@ -62,16 +67,18 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
   }, [completed, total, taskName, deadline, percentageLeft, setPercentageLeft]);
 
   return (
-    <div className="">
+    <div className="flex items-center justify-between">
       <p
         className={cn(
           `p-1.5 text-[12px] border shadow-md font-bold rounded-xl `,
-          btnColor
+          btnColor,
+          ZoomOnHover
         )}
         title="Time Left"
       >
         {buttonText}
       </p>
+      <p className={cn(" text-neutral-200/40", ZoomOnHover)}>time ago</p>
       {/* <p>created{timeAgo}</p> */}
     </div>
   );
