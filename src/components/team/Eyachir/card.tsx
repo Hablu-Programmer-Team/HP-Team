@@ -27,9 +27,11 @@ export const Card: FC<CardProps> = (props) => {
       <WrapperDiv
         className={cn(
           "bgConic relative shadow-lg shadow-white/2 hover:shadow-white/5  w-full max-w-[400px] transition duration-500 pt-[1px] rounded-lg",
-          percentageLeft < 0 && "bg-red-600",
-          percentageLeft > 0 && "bg-green-500"
-          // timeColor
+          percentageLeft > 65
+            ? `bg-green-500`
+            : percentageLeft > 30
+            ? "bg-amber-400"
+            : "bg-red-500"
         )}
       >
         <WrapperDiv className="max-w-[500px] rounded-lg w-full">

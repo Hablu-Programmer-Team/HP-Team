@@ -13,7 +13,6 @@ interface TimeLeftProps {
 export const Deadline: FC<TimeLeftProps> = (props) => {
   const { taskName, completed, total, deadline, ...oth } = props;
   const { percentageLeft, setPercentageLeft } = oth;
-  console.log("🚀 ~ percentageLeft:", percentageLeft);
 
   const [buttonText, setButtonText] = useState("");
   const [btnColor, setBtnColor] = useState("");
