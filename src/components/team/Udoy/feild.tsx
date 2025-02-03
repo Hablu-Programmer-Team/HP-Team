@@ -6,20 +6,18 @@ interface FeildProps extends IClassNameWithChildren {
   label?: string;
 }
 
-const Feild: FC<FeildProps> = ({ label, children, htmlFor, error,className }) => (
+const Field: FC<FeildProps> = ({
+  label,
+  children,
+  htmlFor,
+  error,
+  className,
+}) => (
   // const id = htmlFor || getChildID(children);
-  <div className={`${className} overflow-hidden rounded-xl`} >
-    {label && (
-      <label htmlFor={htmlFor}>
-        {label}
-      </label>
-    )}
+  <div className={`${className} overflow-hidden rounded-xl`}>
+    {label && <label htmlFor={htmlFor}>{label}</label>}
     {children}
-    {!!error && (
-      <div role="alert">
-        {error}
-      </div>
-    )}
+    {!!error && <div role="alert">{error}</div>}
   </div>
 );
 // const getChildID = (children: ReactNode) {
@@ -29,4 +27,4 @@ const Feild: FC<FeildProps> = ({ label, children, htmlFor, error,className }) =>
 //   }
 // }
 
-export default Feild;
+export default Field;
