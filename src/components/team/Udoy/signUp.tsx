@@ -24,7 +24,6 @@ export const SignUp: FC = () => {
   });
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(user);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const names: string = e.target.name;
@@ -78,7 +77,7 @@ export const SignUp: FC = () => {
               <button
                 className={`relative max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% ${buttonBeforeAbsolute}  ${buttonAfterAbsolute} after:w-full hover:after:w-0 before:w-full hover:before:w-0`}
               >
-                <span className="relative z-50  tracking-widest font-bold text-gray-300 bg-linear-to-r  ">
+                <span className="relative z-50  tracking-widest font-bold  bg-linear-to-r  bg-clip-text text-transparent text_conic_color  ">
                   Sign Up
                 </span>
               </button>

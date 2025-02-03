@@ -22,7 +22,6 @@ export const Login = () => {
   });
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(user);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const names: string = e.target.name;
