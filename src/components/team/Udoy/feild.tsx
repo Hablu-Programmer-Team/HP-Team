@@ -1,4 +1,4 @@
-import { FC, type  } from "react";
+import { FC } from "react";
 
 interface FeildProps extends IClassNameWithChildren {
   htmlFor?: string;

@@ -1,11 +1,11 @@
 import React, { useState, type FC } from "react";
 import {
   AuthWrapper,
-  animateInputWrapperStyle,
   buttonAfterAbsolute,
   buttonBeforeAbsolute,
-  feildStyles,
+  animateInputWrapperStyle,
   inputsStyles,
+  feildStyles
 } from "./authWrapper";
 import Feild from "./feild";
 
@@ -14,6 +14,7 @@ interface UserStateProps {
   userEmail: string;
   password: string;
 }
+
 
 export const SignUp: FC = () => {
   const [user, setUser] = useState<UserStateProps>({

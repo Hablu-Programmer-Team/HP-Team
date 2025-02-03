@@ -37,18 +37,6 @@ export const Login = () => {
       <div>
         <form onSubmit={handleSubmit} className="w-full space-y-6">
           <div className={animateInputWrapperStyle}>
-            <div className="absolute w-[400px] h-[400px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
-            <Feild className={`${feildStyles} flex items-center gap-5`}>
-              <input
-                onChange={handleInputChange}
-                className={inputsStyles}
-                type="text"
-                name="userName"
-                placeholder="Enter Your Name"
-              />
-            </Feild>
-          </div>
-          <div className={animateInputWrapperStyle}>
             <div className="absolute animate-animateBorderInput w-[300px] h-[200px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Feild className="bg-[#030721]">
               <input
