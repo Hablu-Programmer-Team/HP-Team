@@ -10,7 +10,7 @@ export const Sidebar:FC = () => {
     setIsActive(idx);
   };
   return (
-    <div className="h-[90%] w-[20rem] border-2 border-gray-400/30 rounded-4xl text-neutral-disable pt-10">
+    <aside className="h-[90%] w-[20rem] border-2 border-gray-400/30 rounded-4xl text-neutral-disable pt-10">
       <h2 className="text-[2.5rem] font-medium ps-7 pb-3">Profile.</h2>
 
       <ul className="pt-7 space-y-1 border-t-2 border-gray-400/30">
@@ -28,6 +28,6 @@ export const Sidebar:FC = () => {
           </NavLink>
         ))}
       </ul>
-    </div>
+    </aside>
   );
 };
