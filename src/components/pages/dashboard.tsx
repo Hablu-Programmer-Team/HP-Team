@@ -1,1 +1,4 @@
-export const Dashboard = () => <div>Deshboard</div>;
+import { Profile } from "../team/Alamin/profile-page";
+
+
+export const Dashboard = () => <div><Profile/></div>
