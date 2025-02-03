@@ -54,13 +54,7 @@
   --color-neutral-text-secondary: #82869e;
   --color-neutral-text-primary: #434657;
   --color-neutral-text-title: #1b1d29;
-  --animate-spin: spin 5s linear infinite;
   --animate-animateBorderInput: animateBorderInput 10s infinite;
-  @keyframes spin {
-    from {
-      transform: rotate(-360deg);
-    };
-   }
   @keyframes animateBorderInput {
     100% {
       transform: rotate(360deg);
