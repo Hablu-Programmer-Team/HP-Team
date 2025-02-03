@@ -52,7 +52,7 @@ export const Sidebar: FC = () => {
             </div>
 
             <ul
-              className={`space-y-2 max-h-[80%] overflow-y-scroll ${myStyle.scrollNone}`}
+              className={`space-y-2 max-h-[80%] overflow-y-auto ${myStyle.scrollNone}`}
             >
               {dashItems.map(({ label, path, icon, option }, idx) => (
                 <li key={idx} onClick={() => handleNestMenu(idx)}>

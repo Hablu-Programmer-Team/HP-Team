@@ -29,11 +29,12 @@ export interface TaskFormProps {
   event: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export interface IModal{
-    children: ReactNode;
-    cardName: string;
-    toggleModal: () => void;
-    submit: () => void;
-    togglePriority?: () => void;
-    priorityBtn?: boolean;
+export interface IModal {
+  children: ReactNode;
+  cardName: string;
+  toggleModal: () => void;
+  submit: () => void;
+  togglePriority?: () => void;
+  priorityBtn?: boolean;
+  goBackPermission?: boolean;
 }
