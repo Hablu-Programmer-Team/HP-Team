@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { NavLink } from "react-router";
-import { profileItems } from "./data";
+import { profileItems } from "../data";
 
 
 export const Sidebar:FC = () => {
