@@ -54,10 +54,21 @@
   --color-neutral-text-secondary: #82869e;
   --color-neutral-text-primary: #434657;
   --color-neutral-text-title: #1b1d29;
+  --animate-spin: spin 5s linear infinite;
+  --animate-animateBorderInput: animateBorderInput 10s infinite;
+  @keyframes spin {
+    from {
+      transform: rotate(-360deg);
+    };
+   }
+  @keyframes animateBorderInput {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @layer components {
-
   /* Typhography Style Start  */
   .h1 {
     @apply text-[2.25rem] leading-[3rem] md:text-[2.5rem] md:leading-[3.5rem] lg:text-[3rem] lg:leading-[4rem];
@@ -90,12 +101,28 @@
   /* Typhography Style End  */
 }
 
-/* For future update */
-/* @layer utilities {
-  .bgConic {
-    background-image: conic-gradient(from 35deg,
-        rgb(73, 57, 57),
-        rgb(50, 49, 49),
-        transparent 10%);
+@layer utilities {
+  .text_conic_color {
+    background-image: conic-gradient(
+      var(--color-error-700),
+      var(--color-success-700),
+      #1168af,
+      var(--color-pending-700),
+      #29347e,
+      var(--color-secondary-700),
+      var(--color-primary-700),
+      var(--color-link-700)
+    );
   }
-} */
+  .innerShadow {
+    box-shadow: inset 10px 10px 50px 10px rgba(0, 0, 0, 0.1);
+  }
+  .input_conic_gradient {
+    background: conic-gradient(
+      from 0.25turn at -90% 60%,
+      #1675c2,
+      #030721,
+      transparent 20deg
+    );
+  }
+}
