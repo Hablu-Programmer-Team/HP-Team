@@ -177,7 +177,7 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
                 name="description"
                 id="des"
                 placeholder="Writing your task description..."
-                className="p-2 w-full rounded-md border  outline-none resize-none border-neutral-placeholder/20 focus:border-neutral-placeholder/40"
+                className="p-2 w-full rounded-md border h-1/2 outline-none resize-none border-neutral-placeholder/20 focus:border-neutral-placeholder/40"
                 rows={8}
                 value={data.description}
                 onChange={handleChange}
