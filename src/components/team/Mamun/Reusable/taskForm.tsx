@@ -37,13 +37,11 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
     addAllTask(formData);
     setFormData({
       title: "",
-      times: {
-        createdAt: "",
-        deadline: "",
-      },
+      createdAt: "",
+      deadline: "",
       priority: "",
       assign: "",
-      sub_task: [],
+      subTask: [],
       description: "",
       timeLeft: "",
     });

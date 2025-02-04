@@ -1,7 +1,7 @@
 import { FC, useState, type Dispatch, type SetStateAction } from "react";
-import { TaskForm } from "./Reusable/taskForm";
-import { Modal } from "./Reusable/taskModal";
 import { IAdd, TaskDataTypes } from "./index";
+import { TaskForm } from "./reusable/taskForm";
+import { Modal } from "./reusable/taskModal";
 
 interface FromPropsTypes extends IAdd {
   addAllTask: Dispatch<SetStateAction<TaskDataTypes>>;
@@ -19,7 +19,7 @@ export const AddTasks: FC<FromPropsTypes> = () => {
   const handleAddAllTask = (task: TaskDataTypes) => {
     setAllTask([...allTask, task]);
   };
-  console.log(allTask)
+  console.log(allTask);
   return (
     <>
       <div className="relative">
