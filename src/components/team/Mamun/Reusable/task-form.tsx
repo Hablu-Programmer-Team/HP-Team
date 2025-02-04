@@ -112,31 +112,60 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
               </div>
             </div>
 
-            {/* Priority Selection */}
-            <div className="my-6">
-              <p className="font-semibold text-lg mb-2">Priority</p>
-              <select name="" id="">
-                <option
-                  className={cn("", SOption)}
-                  value="select-priority"
-                  selected
-                >
-                  Select Priority
-                </option>
-                <option className={cn("", SOption)} value="extreme">
-                  Extreme
-                </option>
-                <option className={cn("", SOption)} value="moderate">
-                  Moderate
-                </option>
-                <option className={cn("", SOption)} value="low">
-                  Low
-                </option>
-              </select>
+            <div className="grid grid-cols-4">
+              <div className="my-6 col-span-1">
+                <p className="font-semibold text-lg mb-2">Priority</p>
+                <select name="" id="">
+                  <option
+                    className={cn("", SOption)}
+                    value="select-priority"
+                    disabled
+                  >
+                    Select Priority
+                  </option>
+                  <option className={cn("", SOption)} value="extreme">
+                    Extreme
+                  </option>
+                  <option className={cn("", SOption)} value="moderate">
+                    Moderate
+                  </option>
+                  <option className={cn("", SOption)} value="low">
+                    Low
+                  </option>
+                </select>
+              </div>
+
+              <div className="my-6 col-span-1">
+                <p className="font-semibold text-lg mb-2">Assign</p>
+                <select name="" id="">
+                  <option
+                    className={cn("", SOption)}
+                    value="select-priority"
+                    disabled
+                  >
+                    Assign
+                  </option>
+                  <option className={cn("", SOption)} value="al-amin">
+                    Al-Amin
+                  </option>
+                  <option className={cn("", SOption)} value="eyachir">
+                    Eyachir
+                  </option>
+                  <option className={cn("", SOption)} value="Hashib">
+                    Hashib
+                  </option>
+                  <option className={cn("", SOption)} value="mamun">
+                    Mamun
+                  </option>
+                  <option className={cn("", SOption)} value="udoy">
+                    Udoy
+                  </option>
+                </select>
+              </div>
             </div>
 
             <div className="my-6 ">
-              <SubTask id={1} taskName="fdgfg" />
+              <SubTask id={1} taskName="task 1" />
             </div>
 
             {/* Task Description */}
