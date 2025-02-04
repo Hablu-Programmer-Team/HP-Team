@@ -1,3 +1,6 @@
+import { IconSvgProps } from "@/types";
+import { FC } from "react";
+
 export const Gallery = () => (
   <svg
     width="64"
@@ -33,6 +36,38 @@ export const Gallery = () => (
       stroke-width="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const CrossIcon: FC<IconSvgProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 32 32"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      fill-rule="evenodd"
+      d="M16 30C8.268 30 2 23.73 2 16S8.268 2 16 2s14 6.27 14 14-6.268 14-14 14m0-30C7.163 0 0 7.16 0 16s7.163 16 16 16 16-7.16 16-16S24.837 0 16 0m5.717 10.28a1.014 1.014 0 0 0-1.425 0l-4.298 4.3-4.236-4.24a1 1 0 0 0-1.414 0 1.006 1.006 0 0 0 0 1.42l4.236 4.23-4.266 4.27a1.015 1.015 0 0 0 0 1.43c.394.39 1.032.39 1.426 0l4.266-4.27 4.236 4.24a1.002 1.002 0 1 0 1.415-1.42l-4.237-4.23 4.297-4.3c.393-.4.393-1.03 0-1.43"
+    />
+  </svg>
+);
+
+export const PlusIcon: FC<IconSvgProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 -0.5 9 9"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      fill-rule="evenodd"
+      d="M9 3v2H5.625v3h-2.25V5H0V3h3.375V0h2.25v3z"
     />
   </svg>
 );

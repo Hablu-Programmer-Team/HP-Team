@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index";
-import { Modal } from "./reusable/modal";
-import { TaskForm } from "./reusable/taskForm";
+import { TaskForm } from "./reusable/task-form";
+import { Modal } from "./reusable/task-modal";
 import { validateForm } from "./reusable/validator";
 
 export const EditTask: FC<IAdd> = ({ cardName, btnName }) => {

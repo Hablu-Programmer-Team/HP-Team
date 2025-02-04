@@ -1,6 +1,6 @@
 type TStatus = "pending" | "in-progress" | "incomplete" | "completed";
 
-interface ISubTask {
+export interface ISubTask {
   taskId: string;
 
   title: string;
@@ -8,7 +8,7 @@ interface ISubTask {
   checked: boolean;
 }
 
-interface ITask {
+export interface ITask {
   id: string;
   userId: string;
 
