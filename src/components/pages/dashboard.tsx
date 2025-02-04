@@ -1,5 +1,5 @@
 import { WatchOutput } from "../team/Eyachir/watch-output";
-import { AddTasks } from "../team/Mamun/start-task";
+import { AddTasks } from "../team/Mamun/startTask";
 
 export const Dashboard = () => (
   <div>
