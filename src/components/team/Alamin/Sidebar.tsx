@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 import { dashItems } from "./data";
-import { ArrowDownIcon, LeaveIcon, UserProfileIcon } from "./icons";
+import { ArrowDownIcon, LeaveIcon, LeftArray, UserIcon } from "./icons";
 import myStyle from "./sidebar.module.css";
 
 export const Sidebar: FC = () => {
@@ -11,13 +11,11 @@ export const Sidebar: FC = () => {
   const [openSidebar, setOpenSidebar] = useState<boolean>();
   const [isActive, setIsActive] = useState(0);
 
-  // Sub List Open and Close
   const handleNestMenu = (idx: number) => {
     setOpenNestMenu((prev) => ({ ...prev, [idx]: !prev[idx] }));
     setIsActive(idx);
   };
 
-  // Sidebar Open and Close
   useEffect(() => {
     const checkScreenSize = () => {
       if (window.innerWidth < 426) {
@@ -26,7 +24,7 @@ export const Sidebar: FC = () => {
         setOpenSidebar(true);
       }
     };
-    //initial Check
+
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
@@ -34,78 +32,64 @@ export const Sidebar: FC = () => {
 
   return (
     <aside
-      className={`max-w-[80%] sm:max-w-[20rem] h-screen relative transition ${
-        !openSidebar && "-translate-x-full"
+      className={`h-screen max-w-xs w-full relative ${
+        !openSidebar ? "-translate-x-[260px]" : ""
       }`}
     >
-      {/* Sidebar Visible Section  */}
-      <div className="h-[80%] w-full text-white fill-white stroke-white bottom-0 absolute bg-secondary-500 rounded-tr-2xl rounded-br-2xl shadow-2xl">
-        <div className="h-full flex flex-col justify-between p-4">
-          <div className="space-y-8 max-h-[90%]">
-            {/* Sidebar Profile Section  */}
-            <div className="flex flex-col justify-center items-center -mt-15">
-              <div className="size-23 p-1.5 mb-4 flex justify-center items-center rounded-full ring-2 ring-white ring-inset border-3 border-secondary-500 bg-black/20 overflow-hidden">
-                {<UserProfileIcon />}
-              </div>
-              <h2 className="font-bold text-lg">Your Name</h2>
-              <p className="text-sm">example@gmail.com</p>
-            </div>
+      <button
+        onClick={() => setOpenSidebar(!openSidebar)}
+        className="absolute -right-4 top-4 z-30 flex justify-center items-center cursor-pointer p-2 bg-gray-700 hover:bg-gray-800 transition-all duration-200 rounded-full border border-gray-100/20 hover:border-gray-100 "
+      >
+        <LeftArray className="text-gray-200" />
+      </button>
 
-            <ul
-              className={`space-y-2 max-h-[80%] overflow-y-auto ${myStyle.scrollNone}`}
-            >
-              {dashItems.map(({ label, path, icon, option }, idx) => (
-                <li key={idx} onClick={() => handleNestMenu(idx)}>
-                  <NavLink to={path || "#"}>
-                    <div
-                      className={`flex justify-between items-center p-3 hover:bg-white hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer font-semibold ${
-                        isActive === idx &&
-                        "bg-white text-secondary-500 fill-secondary-500 stroke-secondary-500"
-                      }`}
-                    >
-                      <div className="flex gap-x-5">
-                        <span>{icon}</span>
-                        <span>{label}</span>
-                      </div>
+      <div
+        className={`h-full w-full text-white fill-white stroke-white  bg-gray-900 border-r border-r-neutral-400/35 scroll-smooth overflow-y-auto ${myStyle.scrollNone}`}
+      >
+        <div className="flex absolute top-0 left-0 z-20 w-full bg-gray-800 flex-col justify-center items-center py-6 border-r border-r-gray-200/30">
+          <div className="size-20 p-1.5 my-3 flex justify-center items-center rounded-full ring-2 ring-white ring-inset border-3 border-secondary-500 bg-black/20 ">
+            {<UserIcon className="size-12" />}
+          </div>
+          <h2 className="font-bold text-lg text-nowrap">Your Name</h2>
+          <p className="text-sm">example@gmail.com</p>
+        </div>
+
+        <div className="flex flex-col relative mt-48">
+          <ul className="space-y-2 pb-2  p-4">
+            {dashItems.map(({ label, path, icon, option }, idx) => (
+              <li key={idx} onClick={() => handleNestMenu(idx)}>
+                <NavLink to={path}>
+                  <div
+                    className={`flex justify-between items-center p-3 hover:bg-gray-800 hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer font-semibold ${
+                      openNestMenu[idx] &&
+                      "bg-gray-800 text-secondary-500 fill-secondary-500 stroke-secondary-500"
+                    }`}
+                  >
+                    <div className="flex gap-x-5">
+                      <span>{icon}</span>
+                      <span>{label}</span>
+                    </div>
+                    {option && (
                       <span
                         className={`flex items-center justify-center size-8 hover:bg-gray-100 rounded-full transition duration-200 ${
                           openNestMenu[idx] && "rotate-180"
                         }`}
                       >
-                        {option && <ArrowDownIcon />}
+                        <ArrowDownIcon />
                       </span>
-                    </div>
-                  </NavLink>
-
-                  {/* Sidebar Sub List Items Section */}
-                  <ul
-                    className={`ml-10 space-y-1 overflow-hidden ${
-                      !openNestMenu[idx] && "h-0"
-                    }`}
-                  >
-                    {option?.map(({ label, path }, subIdx) => (
-                      <li
-                        key={subIdx}
-                        onClick={(e) => e.stopPropagation()}
-                        className="py-1.5 pl-6 font-medium px-2 my-1 rounded-md hover:bg-white hover:text-secondary-500 cursor-pointer"
-                      >
-                        <NavLink to={path || "#"}>{label}</NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Sidebar Footer Section  */}
-          <div className="border-t-2 border-gray-400 pt-2">
-            <span className="flex gap-x-5 p-3 font-semibold stroke-white hover:bg-white hover:stroke-secondary-500 rounded-md hover:text-secondary-500 cursor-pointer">
-              <LeaveIcon />
-              <span>Logout</span>
-            </span>
-          </div>
+                    )}
+                  </div>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
+      </div>
+      <div className="border-t border-r  absolute bottom-0 bg-gray-900 border-gray-400/35 w-full py-2">
+        <span className="flex gap-x-5 mx-4 p-3  font-semibold stroke-white hover:bg-gray-800 hover:stroke-secondary-500 rounded-md hover:text-secondary-500 cursor-pointer">
+          <LeaveIcon />
+          <span>Logout</span>
+        </span>
       </div>
     </aside>
   );

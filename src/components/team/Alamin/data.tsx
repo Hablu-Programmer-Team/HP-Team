@@ -1,15 +1,8 @@
-import {
-  CategoryIcon,
-  DashboardIcon,
-  HelpIcon,
-  ProjectIcon,
-  SettingIcon,
-  TaskIcon,
-} from "./icons";
+import { DashboardIcon, TaskIcon } from "./icons";
 
 interface Item {
   label: string;
-  path?: string;
+  path: string;
   icon?: JSX.Element;
 }
 
@@ -24,50 +17,8 @@ export const dashItems: SidebarItems[] = [
     path: "/dashboard",
   },
   {
-    label: "Projects",
-    icon: <ProjectIcon />,
-    option: [
-      {
-        label: "All Projects",
-        path: "/all-projects",
-      },
-      {
-        label: "Design System",
-        path: "/design-system",
-      },
-      {
-        label: "User Flow",
-        path: "/user-flow",
-      },
-      {
-        label: "UX Research",
-        path: "/ux-research",
-      },
-    ],
-  },
-  {
-    label: "Task",
+    label: "My Tasks",
     icon: <TaskIcon />,
-    option: [
-      {
-        label: "All Tasks",
-        path: "/all-tasks",
-      },
-      {
-        label: "To-Do",
-        path: "/to-do",
-      },
-      {
-        label: "In Progress",
-        path: "/in-progress",
-      },
-      {
-        label: "Done",
-        path: "/done",
-      },
-    ],
+    path: "/my-tasks",
   },
-  { label: "Task Categories", icon: <CategoryIcon />, path: "/task-categories" },
-  { label: "Settings", icon: <SettingIcon />, path: "/settings" },
-  { label: "Help", icon: <HelpIcon />, path: "/help" },
 ];
