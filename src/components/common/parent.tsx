@@ -1,14 +1,26 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Sidebar } from "../team/Alamin";
 import { Navbar } from "../team/Hasib";
+import { cn } from "@/lib/utils/cn";
 
-export const Parent: FC<IChildren> = ({ children }) => (
-  <div className="flex w-full">
-    <Sidebar />
+export const Parent: FC<IChildren> = ({ children }) => {
+  const [openSidebar, setOpenSidebar] = useState<boolean>(true);
 
-    <div className="w-full">
-      <Navbar />
-      <div className="h-[90svh] p-2.5 overflow-y-auto">{children}</div>
+  return (
+    <div className="flex w-full">
+      <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
+      {/* <div className=" max-w-sm"></div> */}
+
+      <div className="transition-all duration-300 w-full">
+        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
+        <div
+          className={cn(
+            "h-[90svh] max-w-screen-2xl mx-auto p-2.5 overflow-y-auto"
+          )}
+        >
+          {children}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+};

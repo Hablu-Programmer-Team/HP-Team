@@ -1,14 +1,18 @@
 import { FC, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { dashItems } from "./data";
-import { ArrowDownIcon, LeaveIcon, LeftArray, UserIcon } from "./icons";
+import { ArrowDownIcon, LeaveIcon, RightArray, UserIcon } from "./icons";
 import myStyle from "./sidebar.module.css";
 
-export const Sidebar: FC = () => {
+interface SidebarProps {
+  openSidebar: boolean;
+  setOpenSidebar: (open: boolean) => void;
+}
+
+export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
   const [openNestMenu, setOpenNestMenu] = useState<{ [key: number]: boolean }>(
     {}
   );
-  const [openSidebar, setOpenSidebar] = useState<boolean>();
   const [isActive, setIsActive] = useState(0);
 
   const handleNestMenu = (idx: number) => {
@@ -16,31 +20,31 @@ export const Sidebar: FC = () => {
     setIsActive(idx);
   };
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      if (window.innerWidth < 426) {
-        setOpenSidebar(false);
-      } else {
-        setOpenSidebar(true);
-      }
-    };
+  // useEffect(() => {
+  //   const checkScreenSize = () => {
+  //     if (window.innerWidth < 426) {
+  //       setOpenSidebar(false);
+  //     } else {
+  //       setOpenSidebar(true);
+  //     }
+  //   };
 
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
+  //   checkScreenSize();
+  //   window.addEventListener("resize", checkScreenSize);
+  //   return () => window.removeEventListener("resize", checkScreenSize);
+  // }, []);
 
   return (
     <aside
-      className={`h-screen max-w-xs w-full relative ${
-        !openSidebar ? "-translate-x-[260px]" : ""
+      className={`h-screen max-w-xs relative transition-transform duration-300 ${
+        openSidebar ? "translate-x-0 w-full" : "-translate-x-[260px] w-0"
       }`}
     >
       <button
         onClick={() => setOpenSidebar(!openSidebar)}
         className="absolute -right-4 top-4 z-30 flex justify-center items-center cursor-pointer p-2 bg-gray-700 hover:bg-gray-800 transition-all duration-200 rounded-full border border-gray-100/20 hover:border-gray-100 "
       >
-        <LeftArray className="text-gray-200" />
+        <RightArray className={`transition-transform text-gray-200`} />
       </button>
 
       <div

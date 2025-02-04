@@ -144,7 +144,22 @@ export const UserIcon: FC<IconSvgProps> = (props) => (
     />
   </svg>
 );
-export const LeftArray: FC<IconSvgProps> = (props) => (
+export const RightArray: FC<IconSvgProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 -6.5 38 38"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      fill-rule="nonzero"
+      d="m26.812.58 10.513 10.424.088.082c.352.349.557.809.587 1.352l-.002.183c-.025.43-.19.842-.514 1.21l-.123.127L26.812 24.42a2.005 2.005 0 0 1-2.822 0 1.985 1.985 0 0 1 0-2.822l7.284-7.224H2C.897 14.375 0 13.486 0 12.385c0-1.102.897-1.992 2-1.992h29.04l-7.05-6.99a1.985 1.985 0 0 1 0-2.822 2.005 2.005 0 0 1 2.822 0"
+    />
+  </svg>
+);
+export const MenuIcon: FC<IconSvgProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -154,10 +169,11 @@ export const LeftArray: FC<IconSvgProps> = (props) => (
     {...props}
   >
     <path
-      fill="currentColor"
-      fill-rule="evenodd"
-      d="M11.707 4.293a1 1 0 0 1 0 1.414L6.414 11H20a1 1 0 1 1 0 2H6.414l5.293 5.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0"
-      clip-rule="evenodd"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M4 6h16M4 12h16M4 18h16"
     />
   </svg>
 );
