@@ -16,11 +16,21 @@ export interface IAdd {
   btnName: string;
 }
 
-
 // export interface IPriorityProp {
 //   name: string;
 //   toggle: () => void;
 // }
+export interface TaskDataTypes {
+  title: string;
+  createdAt: string;
+  deadline: string;
+
+  priority: string;
+  assign: string;
+  subTask: [];
+  description: string;
+  timeLeft?: string;
+}
 
 // priority-common
 export interface IPriorityObj {
@@ -42,18 +52,17 @@ export interface IModal {
   children: ReactNode;
   cardName: string;
   toggleModal: () => void;
-  submit: () => void;
   togglePriority?: () => void;
   priorityBtn?: boolean;
   goBackPermission?: boolean;
 }
 
-export const TaskStatus = `p-2 bg-[#030700] w-full shadow text-neutral-300 hover:bg-neutral-300 hover:text-[#030700] cursor-pointer active:scale-95`
+export const TaskStatus = `p-2 bg-[#030700] w-full shadow text-neutral-300 hover:bg-neutral-300 hover:text-[#030700] cursor-pointer active:scale-95`;
 
-export const InputStyle = `flex-1 border rounded-md outline-none px-2 py-2 border-neutral-placeholder/20 focus:border-neutral-placeholder/40`
+export const InputStyle = `flex-1 border rounded-md outline-none px-2 py-2 border-neutral-placeholder/20 focus:border-neutral-placeholder/40`;
 
-export const InputDateIcon = `filter invert-[60%] sepia-[10%] hue-rotate-[180deg] saturate-[80%] w-full sm:max-w-[88%] sm:ml-auto`
+export const InputDateIcon = `filter invert-[60%] sepia-[10%] hue-rotate-[180deg] saturate-[80%] w-full sm:max-w-[88%] sm:ml-auto`;
 
-export const SOption = `bg-neutral-800 text-neutral-300 hover:bg-neutral-600 cursor-pointer`
+export const SOption = `bg-neutral-800 text-neutral-300 hover:bg-neutral-600 cursor-pointer`;
 
 // bg - [#030712]

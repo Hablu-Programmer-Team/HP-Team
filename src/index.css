@@ -45,6 +45,7 @@
   --color-error-50: #fdf6f6;
 
   /*--color-neutral color */
+
   --color-neutral-table-header: #fbfbfd;
   --color-neutral-background: #f8f8fc;
   --color-neutral-disable: #dcdee9;
@@ -89,13 +90,3 @@
 
   /* Typhography Style End  */
 }
-
-/* For future update */
-/* @layer utilities {
-  .bgConic {
-    background-image: conic-gradient(from 35deg,
-        rgb(73, 57, 57),
-        rgb(50, 49, 49),
-        transparent 10%);
-  }
-} */

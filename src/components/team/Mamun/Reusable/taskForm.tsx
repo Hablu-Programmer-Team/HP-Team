@@ -1,46 +1,53 @@
 import { cn } from "@/lib/utils/cn";
-import { FC, useEffect, useState } from "react";
-import { InputDateIcon, InputStyle, SOption, TaskFormProps } from "..";
-import { SubTask } from "../add-task";
+import { Dispatch, FC, useState, type SetStateAction } from "react";
+import { InputDateIcon, InputStyle, SOption, TaskDataTypes } from "..";
 
-export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
-  const [from, setFrom] = useState(data.from || "");
-  const [to, setTo] = useState(data.to || "");
-  const [timeDifference, setTimeDifference] = useState("");
+interface FromPropsTypes extends TaskDataTypes {
+  onClose: Dispatch<SetStateAction<boolean>>;
+  addAllTask: Dispatch<SetStateAction<unknown>>;
+}
+{
+  /* <HTML | HTMLTextAreaElement | HTMLSelectElement> */
+}
 
-  useEffect(() => {
-    if (from && to) {
-      setTimeDifference(calculateTimeDifference(from, to));
-    }
-  }, [from, to]);
+export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
+  const [formData, setFormData] = useState<TaskDataTypes>({
+    title: "",
+    createdAt: "",
+    deadline: "",
+    priority: "",
+    assign: "",
+    subTask: [],
+    description: "",
+    timeLeft: "",
+  });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
-
-    // Update local state
-    if (name === "from") setFrom(value);
-    if (name === "to") setTo(value);
-
-    // Pass change event to parent
-    event(e);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
-
-  const calculateTimeDifference = (from: string, to: string) => {
-    const fromDate = new Date(from);
-    const toDate = new Date(to);
-    const diffMs = toDate.getTime() - fromDate.getTime();
-
-    if (diffMs < 0) return "Invalid range";
-
-    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-
-    return `${days}d ${hours}h ${minutes}m`;
+  const handleSubmit = () => {
+    addAllTask(formData);
+    setFormData({
+      title: "",
+      times: {
+        createdAt: "",
+        deadline: "",
+      },
+      priority: "",
+      assign: "",
+      sub_task: [],
+      description: "",
+      timeLeft: "",
+    });
+    onClose(false);
   };
 
   return (
@@ -56,7 +63,7 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
                 type="text"
                 id="title"
                 name="title"
-                value={data.title}
+                value={formData.title}
                 className={cn("", InputStyle)}
                 onChange={handleChange}
                 placeholder="Task title..."
@@ -73,8 +80,8 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
                   <input
                     type="datetime-local"
                     id="from"
-                    name="from"
-                    value={from}
+                    name="createdAt"
+                    value={formData.createdAt}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
@@ -87,14 +94,13 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
                   <input
                     type="datetime-local"
                     id="to"
-                    name="to"
-                    value={to}
+                    name="deadline"
+                    value={formData.deadline}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
                 </div>
-
-                <div className="sm:col-span-2 col-span-4 flex flex-col sm:flex-row sm:items-center items-start gap-2">
+                {/* <div className="sm:col-span-2 col-span-4 flex flex-col sm:flex-row sm:items-center items-start gap-2">
                   <label
                     htmlFor="to"
                     className="font-semibold text-sm text-nowrap"
@@ -108,17 +114,17 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
                     readOnly
                     className="flex-1 w-full text-blue-400 sm:max-w-[88%] sm:ml-auto border rounded-md outline-none px-2 py-2 border-none "
                   />
-                </div>
+                </div> */}
               </div>
             </div>
 
             <div className="grid grid-cols-4">
               <div className="my-6 col-span-1">
                 <p className="font-semibold text-lg mb-2">Priority</p>
-                <select name="" id="">
+                <select onChange={handleChange} name="priority" id="">
                   <option
                     className={cn("", SOption)}
-                    value="select-priority"
+                    value={formData.priority}
                     disabled
                   >
                     Select Priority
@@ -137,10 +143,10 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
 
               <div className="my-6 col-span-1">
                 <p className="font-semibold text-lg mb-2">Assign</p>
-                <select name="" id="">
+                <select onChange={handleChange} name="assign" id="">
                   <option
                     className={cn("", SOption)}
-                    value="select-priority"
+                    value={formData.assign}
                     disabled
                   >
                     Assign
@@ -164,9 +170,9 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
               </div>
             </div>
 
-            <div className="my-6 ">
+            {/* <div className="my-6 ">
               <SubTask id={1} taskName="task 1" />
-            </div>
+            </div> */}
 
             {/* Task Description */}
             <div className="mt-4 flex flex-col gap-2">
@@ -179,11 +185,19 @@ export const TaskForm: FC<TaskFormProps> = ({ data, event }) => {
                 placeholder="Writing your task description..."
                 className="p-2 w-full rounded-md border h-1/2 outline-none resize-none border-neutral-placeholder/20 focus:border-neutral-placeholder/40"
                 rows={8}
-                value={data.description}
+                value={formData.description}
                 onChange={handleChange}
               ></textarea>
             </div>
           </form>
+          <div className="flex justify-end mt-4 items-start mb-4">
+            <button
+              className=" bg-green-500  text-white hover:scale-105 transition-all cursor-pointer font-bold py-1 md:py-2 px-2 md:px-6 rounded-md mb-2"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </div>
     </div>
