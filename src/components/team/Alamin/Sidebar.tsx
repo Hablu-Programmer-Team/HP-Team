@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { dashItems } from "./data";
-import { ArrowDownIcon, LeaveIcon, RightArray, UserIcon } from "./icons";
+import { LeaveIcon, RightArray, UserIcon } from "./icons";
 import myStyle from "./sidebar.module.css";
 
 interface SidebarProps {
@@ -10,20 +10,14 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
-  const [openNestMenu, setOpenNestMenu] = useState<{ [key: number]: boolean }>(
-    {}
-  );
-  const [isActive, setIsActive] = useState(0);
-
-  const handleNestMenu = (idx: number) => {
-    setOpenNestMenu((prev) => ({ ...prev, [idx]: !prev[idx] }));
-    setIsActive(idx);
-  };
+  const [isActive, setIsActive] = useState<number | null>(null);
 
   return (
     <aside
-      className={`h-screen max-w-[260px] relative transition-transform duration-300 ${
-        openSidebar ? "translate-x-0 w-full" : "-translate-x-[260px] w-0"
+      className={`h-screen relative transition-transform duration-300 ${
+        openSidebar
+          ? "translate-x-0 w-full max-w-[260px]"
+          : "-translate-x-[260px] w-0"
       }`}
     >
       <button
@@ -50,28 +44,20 @@ export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
 
         <div className="flex flex-col relative mt-48">
           <ul className="space-y-2 pb-2  p-4">
-            {dashItems.map(({ label, path, icon, option }, idx) => (
-              <li key={idx} onClick={() => handleNestMenu(idx)}>
+            {dashItems.map(({ label, path, icon }, idx) => (
+              <li key={idx} onClick={() => setIsActive(idx)}>
                 <NavLink to={path}>
                   <div
-                    className={`flex justify-between items-center p-3 hover:bg-gray-800 hover:text-secondary-500 hover:fill-secondary-500 hover:stroke-secondary-500 rounded-lg cursor-pointer font-semibold ${
-                      openNestMenu[idx] &&
-                      "bg-gray-800 text-secondary-500 fill-secondary-500 stroke-secondary-500"
+                    className={`flex justify-between items-center p-3   rounded-lg cursor-pointer font-semibold ${
+                      isActive === idx
+                        ? "bg-gray-800 text-secondary-500 "
+                        : "hover:text-secondary-500 hover:bg-gray-800/30"
                     }`}
                   >
                     <div className="flex gap-x-5">
                       <span>{icon}</span>
                       <span>{label}</span>
                     </div>
-                    {option && (
-                      <span
-                        className={`flex items-center justify-center size-8 hover:bg-gray-100 rounded-full transition duration-200 ${
-                          openNestMenu[idx] && "rotate-180"
-                        }`}
-                      >
-                        <ArrowDownIcon />
-                      </span>
-                    )}
                   </div>
                 </NavLink>
               </li>
@@ -80,7 +66,7 @@ export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
         </div>
       </div>
       <div className="border-t border-r  absolute bottom-0 bg-gray-900 border-gray-400/35 w-full py-2">
-        <span className="flex gap-x-5 mx-4 p-3  font-semibold stroke-white hover:bg-gray-800 hover:stroke-secondary-500 rounded-md hover:text-secondary-500 cursor-pointer">
+        <span className="flex gap-x-5 mx-4 p-3 items-center font-semibold stroke-white hover:bg-gray-800  rounded-md hover:text-secondary-500 cursor-pointer">
           <LeaveIcon />
           <span>Logout</span>
         </span>
