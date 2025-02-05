@@ -22,7 +22,7 @@ export const NotificationMenu: FC = () => {
           className={`absolute top-10 sm:-right-4 -right-20 h-72 overflow-y-auto bg-gray-900 w-60 rounded shadow z-10 p-3 ease-in-out transition-all duration-500 ${myStyle.scrollNone}`}
         >
           <div>
-            <ul className="list-disc pl-2">
+            <ul className="list-disc pl-4">
               {NotificationMessages.map((msg, idx) => (
                 <li
                   key={idx}
