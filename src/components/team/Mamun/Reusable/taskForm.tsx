@@ -17,8 +17,8 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
 
     title: "",
     priority: "",
-    start: "",
-    end: "",
+    start: null,
+    end: null,
     description: "",
 
     subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
@@ -33,6 +33,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
     >
   ) => {
     const { name, value } = e.target;
+    console.log(name,value)
     setFormData({
       ...formData,
       [name]: value,
@@ -48,8 +49,8 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
 
       title: "",
       priority: "",
-      start: "",
-      end: "",
+      start: null,
+      end: null,
       description: "",
 
       subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
