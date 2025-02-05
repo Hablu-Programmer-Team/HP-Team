@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { dashItems } from "./data";
 import { ArrowDownIcon, LeaveIcon, RightArray, UserIcon } from "./icons";
@@ -20,31 +20,21 @@ export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
     setIsActive(idx);
   };
 
-  // useEffect(() => {
-  //   const checkScreenSize = () => {
-  //     if (window.innerWidth < 426) {
-  //       setOpenSidebar(false);
-  //     } else {
-  //       setOpenSidebar(true);
-  //     }
-  //   };
-
-  //   checkScreenSize();
-  //   window.addEventListener("resize", checkScreenSize);
-  //   return () => window.removeEventListener("resize", checkScreenSize);
-  // }, []);
-
   return (
     <aside
-      className={`h-screen max-w-xs relative transition-transform duration-300 ${
+      className={`h-screen max-w-[260px] relative transition-transform duration-300 ${
         openSidebar ? "translate-x-0 w-full" : "-translate-x-[260px] w-0"
       }`}
     >
       <button
         onClick={() => setOpenSidebar(!openSidebar)}
-        className="absolute -right-4 top-4 z-30 flex justify-center items-center cursor-pointer p-2 bg-gray-700 hover:bg-gray-800 transition-all duration-200 rounded-full border border-gray-100/20 hover:border-gray-100 "
+        className="absolute right-4 top-4 z-30 flex justify-center items-center cursor-pointer p-2 bg-gray-700 hover:bg-gray-800 transition-all duration-200 rounded-full border border-gray-100/20 hover:border-gray-100 "
       >
-        <RightArray className={`transition-transform text-gray-200`} />
+        <RightArray
+          className={`transition-transform text-gray-200 md:size-5 sm:size-3 ${
+            openSidebar ? "" : "rotate-180 delay-300"
+          }`}
+        />
       </button>
 
       <div
