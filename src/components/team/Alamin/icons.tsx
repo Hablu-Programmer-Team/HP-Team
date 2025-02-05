@@ -154,7 +154,7 @@ export const RightArray: FC<IconSvgProps> = (props) => (
   >
     <path
       fill="currentColor"
-      fill-rule="nonzero"
+      fillRule="nonzero"
       d="m26.812.58 10.513 10.424.088.082c.352.349.557.809.587 1.352l-.002.183c-.025.43-.19.842-.514 1.21l-.123.127L26.812 24.42a2.005 2.005 0 0 1-2.822 0 1.985 1.985 0 0 1 0-2.822l7.284-7.224H2C.897 14.375 0 13.486 0 12.385c0-1.102.897-1.992 2-1.992h29.04l-7.05-6.99a1.985 1.985 0 0 1 0-2.822 2.005 2.005 0 0 1 2.822 0"
     />
   </svg>
@@ -170,9 +170,9 @@ export const MenuIcon: FC<IconSvgProps> = (props) => (
   >
     <path
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
       d="M4 6h16M4 12h16M4 18h16"
     />
   </svg>
