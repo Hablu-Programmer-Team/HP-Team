@@ -17,8 +17,8 @@ export interface ITask {
   status: TStatus;
   priority: string;
   assign?: string;
-  start: Date | null;
-  end: Date | null;
+  start: Date;
+  end: Date;
 
   subTasks: ISubTask[];
 
@@ -35,8 +35,8 @@ export const taskList: ITask[] = [
 
     title: "Task 1",
     priority: "low",
-    start: null,
-    end: null,
+    start: new Date(),
+    end: new Date(),
     description: "Task 1 description",
 
     subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
