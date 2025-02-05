@@ -35,12 +35,14 @@ export const App = () => (
       <Route
         path="*"
         element={
-          <div className="text-center justify-center items-center mx-auto flex flex-col text-5xl h-screen">
-            <span className="text-red-500">404!</span>
-            <span className="text-black dark:text-gray-400 text-3xl">
-              Page not found
-            </span>
-          </div>
+          <Parent>
+            <div className="text-center justify-center items-center mx-auto flex flex-col text-5xl h-screen">
+              <span className="text-red-500">404!</span>
+              <span className="text-black dark:text-gray-400 text-3xl">
+                Page not found
+              </span>
+            </div>
+          </Parent>
         }
       />
     </Routes>

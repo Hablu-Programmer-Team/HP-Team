@@ -1,7 +1,7 @@
+import { cn } from "@/lib/utils/cn";
 import { FC, useState } from "react";
 import { Sidebar } from "../team/Alamin";
 import { Navbar } from "../team/Hasib";
-import { cn } from "@/lib/utils/cn";
 
 export const Parent: FC<IChildren> = ({ children }) => {
   const [openSidebar, setOpenSidebar] = useState<boolean>(true);
@@ -12,7 +12,12 @@ export const Parent: FC<IChildren> = ({ children }) => {
       {/* <div className=" max-w-sm"></div> */}
 
       <div className="transition-all duration-300 w-full">
-        <Navbar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
+        <Navbar
+          firstName="Salman"
+          lastName="Vai"
+          openSidebar={openSidebar}
+          setOpenSidebar={setOpenSidebar}
+        />
         <div
           className={cn(
             "h-[90svh] max-w-screen-2xl mx-auto p-2.5 overflow-y-auto"

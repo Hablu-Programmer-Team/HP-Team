@@ -14,7 +14,7 @@ export const ProfileMenu: FC = () => {
     <div className="relative">
       <button onClick={() => setIsProfileOpen(!profileOpen)}>
         <img
-          className="cursor-pointer duration-300 hover:scale-110 size-6 lg:size-[36px]"
+          className="cursor-pointer duration-300 hover:scale-110 size-6 lg:size-9 flex justify-center items-center"
           src="/profile.png"
           alt="Profile-Image"
         />
