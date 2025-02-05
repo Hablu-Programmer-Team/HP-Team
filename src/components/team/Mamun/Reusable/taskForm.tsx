@@ -61,7 +61,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
   };
 
   return (
-    <div className="border border-neutral-400/60 mt-6 md:mt-[39px] rounded-2xl">
+    <div className="border border-neutral-400/60 my-6 md:mt-[39px] rounded-2xl">
       <div className="sm:p-4 p-3 grid grid-cols-3 gap-10">
         <div className="col-span-3">
           <form className="text-white/50">
@@ -80,9 +80,9 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
               />
             </div>
 
-            <div className="my-6">
+            <div className="mb-6">
               <h1 className="font-semibold text-lg mb-2">Set Deadline:</h1>
-              <div className="grid grid-cols-4 grid-rows-2 gap-2 ">
+              <div className="grid grid-cols-4 gap-2 ">
                 <div className="sm:col-span-2 col-span-4 flex flex-col sm:flex-row sm:items-center items-start gap-2">
                   <label htmlFor="from" className="font-semibold text-sm">
                     From:
@@ -114,13 +114,20 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
             </div>
 
             <div className="grid grid-cols-4">
-              <div className="my-6 col-span-1">
+              <div className=" col-span-1">
                 <p className="font-semibold text-lg mb-2">Priority</p>
                 <select onChange={handleChange} name="priority" id="">
                   <option
                     className={cn("", SOption)}
                     value={formData.priority}
                     disabled
+                  >
+                    Select Priority
+                  </option>
+                  <option
+                    selected
+                    className={cn("", SOption)}
+                    value="select-priority"
                   >
                     Select Priority
                   </option>
@@ -136,7 +143,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
                 </select>
               </div>
 
-              <div className="my-6 col-span-1">
+              <div className=" col-span-1">
                 <p className="font-semibold text-lg mb-2">Assign</p>
                 <select onChange={handleChange} name="assign" id="">
                   <option
@@ -161,6 +168,13 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
                   <option className={cn("", SOption)} value="udoy">
                     Udoy
                   </option>
+                </select>
+              </div>
+
+              <div>
+                <h1>Team</h1>
+                <select name="" id="">
+                  <option value="team-one">Team One</option>
                 </select>
               </div>
             </div>
