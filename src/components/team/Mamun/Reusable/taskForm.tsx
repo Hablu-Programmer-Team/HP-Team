@@ -61,6 +61,11 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
     setIsOpen(false);
   };
 
+  const inputDate = (date: Date) => {
+    const bdTime = new Date(date.getTime() + 6 * 60 * 60 * 1000); // Convert UTC to BST
+    return bdTime.toISOString().slice(0, 16); // Keep only YYYY-MM-DDTHH:MM
+  };
+
   return (
     <div className="border border-neutral-400/60 my-6 md:mt-[39px] rounded-2xl">
       <div className="sm:p-4 p-3 grid grid-cols-3 gap-10">
@@ -92,7 +97,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
                     type="datetime-local"
                     id="from"
                     name="start"
-                    value={formData.start}
+                    value={inputDate(formData.start)}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
@@ -106,7 +111,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
                     type="datetime-local"
                     id="to"
                     name="end"
-                    value={formData.end}
+                    value={inputDate(formData.end)}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
