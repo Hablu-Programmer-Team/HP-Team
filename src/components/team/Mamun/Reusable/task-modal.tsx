@@ -18,7 +18,7 @@ export const Modal: FC<IProps> = ({
     >
       <div className="sm:p-5 p-2.5 relative">
         <button
-          className="absolute right-5 top-5 flex items-center justify-center font-medium text-neutral-500/30  hover:scale-105 hover:bg-error-700/20 hover:text-red-600  rounded-full cursor-pointer active:scale-95 transition-all"
+          className="absolute right-5 top-5 flex items-center justify-center font-medium text-neutral-500/30  hover:scale-105 hover:bg-error-700/20 hover:text-red-600  cursor-pointer active:scale-95 transition-all"
           onClick={toggleModal}
         >
           <CrossIcon className="sm:size-8" />

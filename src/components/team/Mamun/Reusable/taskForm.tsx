@@ -73,7 +73,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
   return (
     <div className=" rounded-2xl">
       <p className="font-bold text-white text-lg sm:text-2xl ps-3.5">My Task</p>
-      <div className="sm:p-4 p-3 grid grid-cols-3 gap-10">
+      <div className="sm:px-4 px-3  grid grid-cols-3 gap-10">
         <div className="col-span-3">
           <form className="text-white/50 pt-5">
             <div className="flex flex-col gap-2 mb-8">
