@@ -1,5 +1,4 @@
 import { IconSvgProps } from "@/types";
-import { p } from "node_modules/react-router/dist/development/fog-of-war-Ckdfl79L";
 import { FC } from "react";
 
 export const Gallery = () => (
