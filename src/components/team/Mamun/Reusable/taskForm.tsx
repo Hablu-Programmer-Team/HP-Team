@@ -17,7 +17,7 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
 
     title: "",
     priority: "",
-    start: null,
+    start: null, 
     end: null,
     description: "",
 
