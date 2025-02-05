@@ -35,7 +35,6 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
     >
   ) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({
       ...formData,
       [name]: value,

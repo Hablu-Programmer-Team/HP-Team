@@ -7,11 +7,7 @@ interface IProps extends IChildren {
   toggleModal: () => void;
 }
 
-export const Modal: FC<IProps> = ({
-  toggleModal,
-
-  children,
-}) => (
+export const Modal: FC<IProps> = ({ toggleModal, children }) => (
   <div className="absolute w-full flex justify-center items-center h-screen z-50 mx-4">
     <section
       className={`bg-gray-900 max-w-[800px] h-fit rounded-xl shadow-2xl overflow-y-auto ${myStyle.scrollNone}`}

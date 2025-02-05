@@ -15,7 +15,7 @@ export const AddTasks: FC = () => {
   const handleAddAllTask = (task: ITask) => {
     setAllTask((prevTask) => [...prevTask, task]);
   };
-  console.log(allTask);
+
   return (
     <>
       <div className="">
