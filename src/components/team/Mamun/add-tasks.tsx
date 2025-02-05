@@ -8,13 +8,7 @@ export const AddTasks: FC = () => {
   const [allTask, setAllTask] = useState<ITask[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const toggleModal = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleAddAllTask = (task: ITask) => {
-    setAllTask((prevTask) => [...prevTask, task]);
-  };
+  const addAllTask = (task: ITask) => setAllTask((prv) => [...prv, task]);
 
   return (
     <>
@@ -27,11 +21,8 @@ export const AddTasks: FC = () => {
         </button>
         {isOpen && (
           <div className="flex items-center justify-center absolute inset-0 bg-black/10">
-            <Modal cardName="My Task" toggleModal={toggleModal}>
-              <TaskForm
-                handleAddAllTask={handleAddAllTask}
-                setIsOpen={setIsOpen}
-              />
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+              <TaskForm addAllTask={addAllTask} setIsOpen={setIsOpen} />
             </Modal>
           </div>
         )}
