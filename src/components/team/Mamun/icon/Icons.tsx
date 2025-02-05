@@ -1,4 +1,5 @@
 import { IconSvgProps } from "@/types";
+import { p } from "node_modules/react-router/dist/development/fog-of-war-Ckdfl79L";
 import { FC } from "react";
 
 export const Gallery = () => (
@@ -69,5 +70,17 @@ export const PlusIcon: FC<IconSvgProps> = (props) => (
       fillRule="evenodd"
       d="M9 3v2H5.625v3h-2.25V5H0V3h3.375V0h2.25v3z"
     />
+  </svg>
+);
+
+export const UPDownIcon: FC<IconSvgProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 1024 1024"
+    {...props}
+  >
+    <path fill="currentColor" d="m512 768 448-512H64z" />
   </svg>
 );
