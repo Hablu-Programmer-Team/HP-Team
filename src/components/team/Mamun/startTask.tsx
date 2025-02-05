@@ -1,15 +1,11 @@
-import { FC, useState, type Dispatch, type SetStateAction } from "react";
-import { IAdd, TaskDataTypes } from "./index";
+import { FC, useState } from "react";
+import { Card } from "../Eyachir";
 import { TaskForm } from "./reusable/taskForm";
 import { Modal } from "./reusable/taskModal";
+import type { ITask } from "@/lib/database/task";
 
-interface FromPropsTypes extends IAdd {
-  addAllTask: Dispatch<SetStateAction<TaskDataTypes>>;
-  onClose: Dispatch<SetStateAction<boolean>>;
-}
-
-export const AddTasks: FC<FromPropsTypes> = () => {
-  const [allTask, setAllTask] = useState<TaskDataTypes[]>([]);
+export const AddTasks: FC = () => {
+  const [allTask, setAllTask] = useState<ITask[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleModal = () => {
@@ -25,20 +21,33 @@ export const AddTasks: FC<FromPropsTypes> = () => {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="px-4 py-2 bg-link-100 rounded-md cursor-pointer active:translate-y-1 hover:bg-link-200 transition-all font-semibold capitalize shadow-md m-4"
+          className="px-4 py-2 bg-link-700 rounded-md cursor-pointer active:translate-y-1 hover:bg-link-500 transition-all font-semibold capitalize shadow-md m-4"
         >
           Add Task
         </button>
         {isOpen && (
-          <Modal
-            onClose={setIsOpen}
-            cardName="Team task"
-            toggleModal={toggleModal}
-            addAllTask={handleAddAllTask}
-          >
-            <TaskForm />
+          <Modal cardName="My Task" toggleModal={toggleModal}>
+            <TaskForm
+              handleAddAllTask={handleAddAllTask}
+              setIsOpen={setIsOpen}
+            />
           </Modal>
         )}
+        <div>
+          {allTask.length !== 0 ? (
+            allTask.map((task) => (
+              <Card
+                deadline={2}
+                createdAt={task.createdAt}
+                taskName={task.title}
+                completed={0}
+                total={task.subTasks.length}
+              />
+            ))
+          ) : (
+            <p className="text-3xl text-center text-white">No task available</p>
+          )}
+        </div>
       </div>
     </>
   );

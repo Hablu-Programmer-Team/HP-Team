@@ -1,25 +1,30 @@
+import { ITask } from "@/lib/database/task";
 import { cn } from "@/lib/utils/cn";
 import { Dispatch, FC, useState, type SetStateAction } from "react";
-import { InputDateIcon, InputStyle, SOption, TaskDataTypes } from "..";
+import { InputDateIcon, InputStyle, SOption } from "..";
 
-interface FromPropsTypes extends TaskDataTypes {
-  onClose: Dispatch<SetStateAction<boolean>>;
-  addAllTask: Dispatch<SetStateAction<unknown>>;
-}
-{
-  /* <HTML | HTMLTextAreaElement | HTMLSelectElement> */
+interface IProps {
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  handleAddAllTask: (task: ITask) => void;
 }
 
-export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
-  const [formData, setFormData] = useState<TaskDataTypes>({
-    title: "",
-    createdAt: "",
-    deadline: "",
-    priority: "",
+export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
+  const [formData, setFormData] = useState<ITask>({
+    id: "1",
+    userId: "1",
     assign: "",
-    subTask: [],
+    status: "pending",
+
+    title: "",
+    priority: "",
+    start: "",
+    end: "",
     description: "",
-    timeLeft: "",
+
+    subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
+
+    createdAt: new Date(),
+    updatedAt: new Date(),
   });
 
   const handleChange = (
@@ -34,18 +39,25 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
     });
   };
   const handleSubmit = () => {
-    addAllTask(formData);
+    handleAddAllTask(formData);
     setFormData({
-      title: "",
-      createdAt: "",
-      deadline: "",
-      priority: "",
+      id: "1",
+      userId: "1",
       assign: "",
-      subTask: [],
+      status: "pending",
+
+      title: "",
+      priority: "",
+      start: "",
+      end: "",
       description: "",
-      timeLeft: "",
+
+      subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
-    onClose(false);
+    setIsOpen(false);
   };
 
   return (
@@ -78,8 +90,8 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
                   <input
                     type="datetime-local"
                     id="from"
-                    name="createdAt"
-                    value={formData.createdAt}
+                    name="start"
+                    value={formData.start}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
@@ -92,27 +104,12 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
                   <input
                     type="datetime-local"
                     id="to"
-                    name="deadline"
-                    value={formData.deadline}
+                    name="end"
+                    value={formData.end}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
                 </div>
-                {/* <div className="sm:col-span-2 col-span-4 flex flex-col sm:flex-row sm:items-center items-start gap-2">
-                  <label
-                    htmlFor="to"
-                    className="font-semibold text-sm text-nowrap"
-                  >
-                    Deadline:
-                  </label>
-                  <input
-                    type="text"
-                    value={timeDifference}
-                    placeholder="remaining time..."
-                    readOnly
-                    className="flex-1 w-full text-blue-400 sm:max-w-[88%] sm:ml-auto border rounded-md outline-none px-2 py-2 border-none "
-                  />
-                </div> */}
               </div>
             </div>
 
@@ -167,10 +164,6 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
                 </select>
               </div>
             </div>
-
-            {/* <div className="my-6 ">
-              <SubTask id={1} taskName="task 1" />
-            </div> */}
 
             {/* Task Description */}
             <div className="mt-4 flex flex-col gap-2">

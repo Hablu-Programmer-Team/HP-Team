@@ -10,7 +10,7 @@ interface CardProps {
   total: number;
   deadline: number;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
 }
 
 export const Card: FC<CardProps> = (props) => {

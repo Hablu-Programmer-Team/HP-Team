@@ -1,1 +1,7 @@
-export const Dashboard = () => <div>dashboard</div>;
+import { AddTasks } from "../team/Mamun/startTask";
+
+export const Dashboard = () => (
+  <div>
+    <AddTasks />
+  </div>
+);

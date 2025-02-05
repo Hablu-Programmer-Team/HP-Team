@@ -1,19 +1,17 @@
-import { FC, type Dispatch, type SetStateAction } from "react";
-import { IModal, TaskDataTypes } from "..";
+import { FC } from "react";
 import myStyle from "../../Alamin/sidebar.module.css";
 import { CrossIcon } from "../icon/Icons";
-import { TaskForm } from "./taskForm";
 
-interface ModalTypes extends IModal {
-  onClose: Dispatch<SetStateAction<boolean>>;
-  allAddTask: Dispatch<SetStateAction<TaskDataTypes>>;
+interface IProps extends IChildren {
+  cardName: string;
+  toggleModal: () => void;
 }
 
-export const Modal: FC<ModalTypes> = ({
+export const Modal: FC<IProps> = ({
   cardName,
   toggleModal,
-  onClose,
-  addAllTask,
+
+  children,
 }) => (
   <div className="absolute w-full h-screen bg-[#404042]/30 top-0 left-0 z-50 overflow-y-auto">
     <section
@@ -33,7 +31,7 @@ export const Modal: FC<ModalTypes> = ({
           </div>
         </div>
 
-        <TaskForm onClose={onClose} addAllTask={addAllTask} />
+        {children}
       </div>
     </section>
   </div>

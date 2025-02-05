@@ -16,10 +16,6 @@ export interface IAdd {
   btnName: string;
 }
 
-// export interface IPriorityProp {
-//   name: string;
-//   toggle: () => void;
-// }
 export interface TaskDataTypes {
   title: string;
   createdAt: string;
@@ -29,7 +25,6 @@ export interface TaskDataTypes {
   assign: string;
   subTask: [];
   description: string;
-  timeLeft?: string;
 }
 
 // priority-common
