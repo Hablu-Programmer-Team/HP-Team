@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
-import { TaskDataTypes } from "./index";
+import { Card } from "../Eyachir";
 import { TaskForm } from "./reusable/taskForm";
 import { Modal } from "./reusable/taskModal";
-import { Card } from "../Eyachir";
+import type { ITask } from "@/lib/database/task";
 
 export const AddTasks: FC = () => {
-  const [allTask, setAllTask] = useState<TaskDataTypes[]>([]);
+  const [allTask, setAllTask] = useState<ITask[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleModal = () => {
@@ -31,10 +31,22 @@ export const AddTasks: FC = () => {
               handleAddAllTask={handleAddAllTask}
               setIsOpen={setIsOpen}
             />
-          </Modal>  
+          </Modal>
         )}
         <div>
-          <Card deadline={3000} createdAt={new Date()} taskName="our team"  completed={10} total={10}  />
+          {allTask.length !== 0 ? (
+            allTask.map((task) => (
+              <Card
+                deadline={2}
+                createdAt={task.createdAt}
+                taskName={task.title}
+                completed={0}
+                total={task.subTasks.length}
+              />
+            ))
+          ) : (
+            <p className="text-3xl text-center text-white">No task available</p>
+          )}
         </div>
       </div>
     </>

@@ -1,21 +1,30 @@
+import { ITask } from "@/lib/database/task";
 import { cn } from "@/lib/utils/cn";
 import { Dispatch, FC, useState, type SetStateAction } from "react";
-import { InputDateIcon, InputStyle, SOption, TaskDataTypes } from "..";
+import { InputDateIcon, InputStyle, SOption } from "..";
 
 interface IProps {
-  setIsOpen: Dispatch<SetStateAction<boolean>>,
-  handleAddAllTask: (task: TaskDataTypes) => void
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  handleAddAllTask: (task: ITask) => void;
 }
 
-export const TaskForm: FC<IProps> = ({ setIsOpen,handleAddAllTask }) => {
-  const [formData, setFormData] = useState<TaskDataTypes>({
-    title: "",
-    createdAt: "",
-    deadline: "",
-    priority: "",
+export const TaskForm: FC<IProps> = ({ setIsOpen, handleAddAllTask }) => {
+  const [formData, setFormData] = useState<ITask>({
+    id: "1",
+    userId: "1",
     assign: "",
-    subTask: [],
+    status: "pending",
+
+    title: "",
+    priority: "",
+    start: "",
+    end: "",
     description: "",
+
+    subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
+
+    createdAt: new Date(),
+    updatedAt: new Date(),
   });
 
   const handleChange = (
@@ -32,13 +41,21 @@ export const TaskForm: FC<IProps> = ({ setIsOpen,handleAddAllTask }) => {
   const handleSubmit = () => {
     handleAddAllTask(formData);
     setFormData({
-      title: "",
-      createdAt: "",
-      deadline: "",
-      priority: "",
+      id: "1",
+      userId: "1",
       assign: "",
-      subTask: [],
+      status: "pending",
+
+      title: "",
+      priority: "",
+      start: "",
+      end: "",
       description: "",
+
+      subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
+
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
     setIsOpen(false);
   };
@@ -73,8 +90,8 @@ export const TaskForm: FC<IProps> = ({ setIsOpen,handleAddAllTask }) => {
                   <input
                     type="datetime-local"
                     id="from"
-                    name="createdAt"
-                    value={formData.createdAt}
+                    name="start"
+                    value={formData.start}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
@@ -87,8 +104,8 @@ export const TaskForm: FC<IProps> = ({ setIsOpen,handleAddAllTask }) => {
                   <input
                     type="datetime-local"
                     id="to"
-                    name="deadline"
-                    value={formData.deadline}
+                    name="end"
+                    value={formData.end}
                     className={cn("", InputStyle, InputDateIcon)}
                     onChange={handleChange}
                   />
@@ -147,8 +164,6 @@ export const TaskForm: FC<IProps> = ({ setIsOpen,handleAddAllTask }) => {
                 </select>
               </div>
             </div>
-
-
 
             {/* Task Description */}
             <div className="mt-4 flex flex-col gap-2">
