@@ -1,14 +1,10 @@
-import { FC, useState, type Dispatch, type SetStateAction } from "react";
-import { IAdd, TaskDataTypes } from "./index";
+import { FC, useState } from "react";
+import { TaskDataTypes } from "./index";
 import { TaskForm } from "./reusable/taskForm";
 import { Modal } from "./reusable/taskModal";
+import { Card } from "../Eyachir";
 
-interface FromPropsTypes extends IAdd {
-  addAllTask: Dispatch<SetStateAction<TaskDataTypes>>;
-  onClose: Dispatch<SetStateAction<boolean>>;
-}
-
-export const AddTasks: FC<FromPropsTypes> = () => {
+export const AddTasks: FC = () => {
   const [allTask, setAllTask] = useState<TaskDataTypes[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -25,20 +21,21 @@ export const AddTasks: FC<FromPropsTypes> = () => {
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="px-4 py-2 bg-link-100 rounded-md cursor-pointer active:translate-y-1 hover:bg-link-200 transition-all font-semibold capitalize shadow-md m-4"
+          className="px-4 py-2 bg-link-700 rounded-md cursor-pointer active:translate-y-1 hover:bg-link-500 transition-all font-semibold capitalize shadow-md m-4"
         >
           Add Task
         </button>
         {isOpen && (
-          <Modal
-            onClose={setIsOpen}
-            cardName="Team task"
-            toggleModal={toggleModal}
-            addAllTask={handleAddAllTask}
-          >
-            <TaskForm />
-          </Modal>
+          <Modal cardName="My Task" toggleModal={toggleModal}>
+            <TaskForm
+              handleAddAllTask={handleAddAllTask}
+              setIsOpen={setIsOpen}
+            />
+          </Modal>  
         )}
+        <div>
+          <Card deadline={3000} createdAt={new Date()} taskName="our team"  completed={10} total={10}  />
+        </div>
       </div>
     </>
   );

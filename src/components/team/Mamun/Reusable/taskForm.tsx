@@ -2,15 +2,12 @@ import { cn } from "@/lib/utils/cn";
 import { Dispatch, FC, useState, type SetStateAction } from "react";
 import { InputDateIcon, InputStyle, SOption, TaskDataTypes } from "..";
 
-interface FromPropsTypes extends TaskDataTypes {
-  onClose: Dispatch<SetStateAction<boolean>>;
-  addAllTask: Dispatch<SetStateAction<unknown>>;
-}
-{
-  /* <HTML | HTMLTextAreaElement | HTMLSelectElement> */
+interface IProps {
+  setIsOpen: Dispatch<SetStateAction<boolean>>,
+  handleAddAllTask: (task: TaskDataTypes) => void
 }
 
-export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
+export const TaskForm: FC<IProps> = ({ setIsOpen,handleAddAllTask }) => {
   const [formData, setFormData] = useState<TaskDataTypes>({
     title: "",
     createdAt: "",
@@ -19,7 +16,6 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
     assign: "",
     subTask: [],
     description: "",
-    timeLeft: "",
   });
 
   const handleChange = (
@@ -34,7 +30,7 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
     });
   };
   const handleSubmit = () => {
-    addAllTask(formData);
+    handleAddAllTask(formData);
     setFormData({
       title: "",
       createdAt: "",
@@ -43,9 +39,8 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
       assign: "",
       subTask: [],
       description: "",
-      timeLeft: "",
     });
-    onClose(false);
+    setIsOpen(false);
   };
 
   return (
@@ -98,21 +93,6 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
                     onChange={handleChange}
                   />
                 </div>
-                {/* <div className="sm:col-span-2 col-span-4 flex flex-col sm:flex-row sm:items-center items-start gap-2">
-                  <label
-                    htmlFor="to"
-                    className="font-semibold text-sm text-nowrap"
-                  >
-                    Deadline:
-                  </label>
-                  <input
-                    type="text"
-                    value={timeDifference}
-                    placeholder="remaining time..."
-                    readOnly
-                    className="flex-1 w-full text-blue-400 sm:max-w-[88%] sm:ml-auto border rounded-md outline-none px-2 py-2 border-none "
-                  />
-                </div> */}
               </div>
             </div>
 
@@ -168,9 +148,7 @@ export const TaskForm: FC<FromPropsTypes> = ({ onClose, addAllTask }) => {
               </div>
             </div>
 
-            {/* <div className="my-6 ">
-              <SubTask id={1} taskName="task 1" />
-            </div> */}
+
 
             {/* Task Description */}
             <div className="mt-4 flex flex-col gap-2">
