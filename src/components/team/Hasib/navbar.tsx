@@ -18,7 +18,7 @@ export const Navbar: FC<TProps> = ({
   firstName,
   lastName,
 }) => (
-  <div className="flex h-fit bg-gray-900/70 text-gray-100 w-full justify-between sm:justify-between items-center ps-2.5 pe-5 lg:ps-5 lg:pe-10 py-3 border-b border-b-neutral-400/35">
+  <div className="flex h-fit bg-gray-900/70 text-gray-100 w-full justify-between sm:justify-between items-center sm:ps-4 ps-2.5 pe-5 lg:ps-5 lg:pe-10 py-3 border-b border-b-neutral-400/35">
     <div className="flex gap-x-2.5 ">
       <button
         className="cursor-pointer"
@@ -37,8 +37,6 @@ export const Navbar: FC<TProps> = ({
         </div>
       </NavLink>
     </div>
-
-    {/* Navbar Icon & Profile */}
 
     <div className="flex items-center gap-x-[10px] lg:gap-x-[22px]">
       <SearchItem />

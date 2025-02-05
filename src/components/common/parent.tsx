@@ -9,7 +9,6 @@ export const Parent: FC<IChildren> = ({ children }) => {
   return (
     <div className="flex w-full">
       <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
-      {/* <div className=" max-w-sm"></div> */}
 
       <div className="transition-all duration-300 w-full">
         <Navbar
