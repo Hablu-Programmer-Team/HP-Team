@@ -33,7 +33,7 @@ export const Login = () => {
         Login
       </h1>
       <div>
-        <form onSubmit={handleSubmit} className="w-full space-y-6">
+        <form onSubmit={handleSubmit} className="w-full space-y-2 md:space-y-6">
           <div className={animateInputWrapperStyle}>
             <div className="absolute animate-animateBorderInput w-[300px] h-[200px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className="bg-[#030721]">
@@ -60,7 +60,7 @@ export const Login = () => {
           <Field>
             <div className="w-full relative">
               <button
-                className={`relative max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% ${buttonBeforeAbsolute}  ${buttonAfterAbsolute} after:w-0 hover:after:w-full before:w-0 hover:before:w-full`}
+                className={`relative mt-5 md:mt-0 max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% ${buttonBeforeAbsolute}  ${buttonAfterAbsolute} after:w-0 hover:after:w-full before:w-0 hover:before:w-full`}
               >
                 <span className="relative z-50  tracking-widest font-bold text-gray-300 bg-linear-to-r  ">
                   Login

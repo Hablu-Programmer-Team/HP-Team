@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils/cn";
 import { type FC } from "react";
 
 const conicBorderClassName =
@@ -14,8 +15,9 @@ export const buttonAfterAbsolute =
 
 export const AuthWrapper: FC<IChildren> = ({ children }) => (
   <div
-    className={`w-full relative p-2 md:p-5 bg-[#030712] overflow-hidden h-screen flex flex-col items-center justify-center text-white ${buttonAfterAbsolute} ${buttonBeforeAbsolute} `}
+    className={`w-full relative p-2 md:p-5 bg-[#030712] overflow-hidden h-screen flex flex-col items-center justify-center text-white ${buttonAfterAbsolute} ${buttonBeforeAbsolute}`}
   >
+    <div className={cn(` rotate-[180deg] absolute inset-0 z-50 after:bg-blue-950/5 opacity-20 hover:after:w-full hover:before:w-full after:w-1/2 before:bg-blue-950/5 before:w-1/2 transition duration-300 `,buttonBeforeAbsolute,buttonAfterAbsolute)}></div>
     <div className={conicBorderClassName}>
       <div className="relative z-50 innerShadow max-w-[600px] w-full min-h-[400px] bg-[#030712] p-2 md:p-10 rounded-tl-[40px] rounded-tr-[1rem] rounded-br-[40px] rounded-bl-[1rem] flex flex-col gap-10 place-content-center ">
         <div className="absolute mx-auto w-[200px] h-[200px] bg-[#070d38] shadow-2xl shadow-[#030721]  blur-2xl rounded-full z-0"></div>

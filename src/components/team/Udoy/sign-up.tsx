@@ -36,7 +36,7 @@ export const SignUp: FC = () => {
         Sign Up
       </h1>
       <div>
-        <form onSubmit={handleSubmit} className="w-full space-y-6">
+        <form onSubmit={handleSubmit} className="w-full space-y-2 md:space-y-6">
           <div className={animateInputWrapperStyle}>
             <div className="absolute w-[400px] h-[400px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className={`${feildStyles} flex items-center gap-5`}>
@@ -76,7 +76,7 @@ export const SignUp: FC = () => {
             <div className="w-full relative">
               <button
                 className={cn(
-                  `relative max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% after:w-full hover:after:w-0 before:w-full hover:before:w-0`,
+                  `relative mt-5 md:mt-0 max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% after:w-full hover:after:w-0 before:w-full hover:before:w-0`,
                   buttonBeforeAbsolute,
                   buttonAfterAbsolute
                 )}
