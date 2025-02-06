@@ -25,9 +25,7 @@ export const SideContent: FC<SidebarProps> = ({
         className="absolute right-2 top-4 z-30  cursor-pointer p-2 bg-gray-900 hover:bg-gray-800 transition-all duration-200 rounded-full"
       >
         <RightArray
-          className={`transition-transform text-gray-200 md:size-5 sm:size-3 ${
-            openSidebar ? "" : "rotate-180 delay-300"
-          }`}
+          className={`transition-transform text-gray-200 md:size-5 sm:size-3 -rotate-180`}
         />
       </button>
       <div

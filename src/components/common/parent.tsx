@@ -7,17 +7,17 @@ export const Parent: FC<IChildren> = ({ children }) => {
   const [openSidebar, setOpenSidebar] = useState<boolean>(true);
 
   return (
-    <div className="flex w-full ">
+    <div className="flex w-full overflow-x-hidden">
       <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
 
-      <div className="transition-all duration-300 w-full relative">
+      <div className="transition-all h-screen overflow-y-hidden duration-300 w-full relative">
         <Navbar
           firstName="Salman"
           lastName="Vai"
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}
         />
-        <div className={cn(`h-[90svh] overflow-y-auto `)}>{children}</div>
+        <div className={cn(`overflow-x-hidden`)}>{children}</div>
       </div>
     </div>
   );
