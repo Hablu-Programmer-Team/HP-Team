@@ -5,7 +5,7 @@ import { Card } from "./UI/card";
 
 interface ValueType {
   name: string;
-  imgsrc?: string;
+  imgSrc?: string;
   email: string;
   number: number;
   userName: string;
@@ -15,7 +15,7 @@ interface ValueType {
 export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
   const initialState: ValueType = {
     name: "Arvin Tushar",
-    imgsrc: "",
+    imgSrc: "",
     email: "alaminmridha2004@gmail.com",
     userName: "alamin2004",
     number: 8801600000000,
@@ -56,7 +56,7 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
               <div className="relative ms-5">
                 <div className="size-20 md:size-34 rounded-full bg-amber-100/20 grid place-items-center overflow-hidden">
                   <img
-                    src={isValue.imgsrc || "../user-circle.svg"}
+                    src={isValue.imgSrc || "../user-circle.svg"}
                     alt="Profile Picture"
                     className="size-full"
                   />

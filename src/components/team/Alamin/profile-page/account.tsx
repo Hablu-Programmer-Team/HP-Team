@@ -26,7 +26,7 @@ export const Account = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
           </div>
 
           <div>
-            <strong className="text-xl md:text-2xl">User Name</strong>
+            <strong className="text-xl md:text-2xl">Your Name</strong>
             <p className="font-light mb-3 text-sm md:text-base">User Name</p>
             <p className="md:max-w-2/3 lg:max-w-1/2 mx-auto text-sm px-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
