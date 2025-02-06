@@ -55,13 +55,6 @@
   --color-neutral-text-secondary: #82869e;
   --color-neutral-text-primary: #434657;
   --color-neutral-text-title: #1b1d29;
-  --animate-animateBorderInput: animateBorderInput 10s infinite;
-
-  @keyframes animateBorderInput {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
 }
 
 @layer components {
@@ -96,28 +89,4 @@
   }
 
   /* Typhography Style End  */
-}
-
-@layer utilities {
-  .text_conic_color {
-    background-image: conic-gradient(var(--color-error-700),
-        var(--color-success-700),
-        #1168af,
-        var(--color-pending-700),
-        #29347e,
-        var(--color-secondary-700),
-        var(--color-primary-700),
-        var(--color-link-700));
-  }
-
-  .innerShadow {
-    box-shadow: inset 10px 10px 50px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .input_conic_gradient {
-    background: conic-gradient(from 0.25turn at -90% 60%,
-        #1675c2,
-        #030721,
-        transparent 20deg);
-  }
 }
