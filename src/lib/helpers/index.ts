@@ -20,6 +20,7 @@ export const buttonVariants = cva(
         lg: "px-4 py-2 rounded-md px-8",
         xl: "px-9 py-3",
         icon: "size-10 p-2",
+        full: "w-full max-w-full py-2",
       },
       radius: {
         sm: "rounded-sm",

@@ -1,4 +1,9 @@
-import { Dashboard, Login, Profile, Registration } from "@/components/pages";
+import {
+  Dashboard,
+  Login,
+  ProfilePage,
+  Registration,
+} from "@/components/pages";
 import { Route, Routes } from "react-router";
 
 export const App = () => (
@@ -7,6 +12,6 @@ export const App = () => (
     <Route path="/login" element={<Login />} />
     <Route path="/registration" element={<Registration />} />
     <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/profile" element={<Profile />} />
+    <Route path="/profile" element={<ProfilePage />} />
   </Routes>
 );
