@@ -1,4 +1,4 @@
-type TStatus = "pending" | "in-progress" | "incomplete" | "completed";
+export type TStatus = "pending" | "in-progress" | "incomplete" | "completed";
 
 export interface ISubTask {
   taskId: string;
