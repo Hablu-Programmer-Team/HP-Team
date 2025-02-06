@@ -1,12 +1,12 @@
 import { FC } from "react";
 
-interface FeildProps extends IClassNameWithChildren {
+interface FieldProps extends IClassNameWithChildren {
   htmlFor?: string;
   error?: string;
   label?: string;
 }
 
-const Field: FC<FeildProps> = ({
+const Field: FC<FieldProps> = ({
   label,
   children,
   htmlFor,
