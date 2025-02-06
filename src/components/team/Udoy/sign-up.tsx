@@ -8,7 +8,7 @@ import {
   feildStyles,
   inputsStyles,
 } from "./auth-wrapper";
-import Field from "./field";
+import { Field } from "./field";
 
 interface UserStateProps {
   userName: string;

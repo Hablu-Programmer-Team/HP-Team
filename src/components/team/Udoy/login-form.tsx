@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Field from "./field";
 
 import {
   AuthWrapper,
@@ -9,6 +8,7 @@ import {
   feildStyles,
   inputsStyles,
 } from "./auth-wrapper";
+import { Field } from "./field";
 
 interface UserStateProps {
   userEmail: string;
