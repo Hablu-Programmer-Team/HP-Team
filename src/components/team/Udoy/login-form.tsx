@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import {
   AuthWrapper,
   animateInputWrapperStyle,
   buttonAfterAbsolute,
   buttonBeforeAbsolute,
-  feildStyles,
+  fieldStyles,
   inputsStyles,
 } from "./auth-wrapper";
 import { Field } from "./field";
+import { cn } from "@/lib/utils/cn";
 
 interface UserStateProps {
   userEmail: string;
@@ -19,10 +20,10 @@ export const Login = () => {
     userEmail: "",
     password: "",
   });
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const names: string = e.target.name;
     const value = e.target.value;
     setUser({ ...user, [names]: value });
@@ -47,7 +48,7 @@ export const Login = () => {
             </Field>
           </div>
           <div className={animateInputWrapperStyle}>
-            <Field className={feildStyles}>
+            <Field className={fieldStyles}>
               <input
                 onChange={handleInputChange}
                 className={`${inputsStyles} `}
@@ -60,7 +61,11 @@ export const Login = () => {
           <Field>
             <div className="w-full relative">
               <button
-                className={`relative mt-5 md:mt-0 max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% ${buttonBeforeAbsolute}  ${buttonAfterAbsolute} after:w-0 hover:after:w-full before:w-0 hover:before:w-full`}
+                className={cn(
+                  `relative mt-5 md:mt-0 max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% after:w-0 hover:after:w-full before:w-0 hover:before:w-full`,
+                  buttonBeforeAbsolute,
+                  buttonAfterAbsolute
+                )}
               >
                 <span className="relative z-50  tracking-widest font-bold text-gray-300 bg-linear-to-r  ">
                   Login

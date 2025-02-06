@@ -5,7 +5,7 @@ import {
   animateInputWrapperStyle,
   buttonAfterAbsolute,
   buttonBeforeAbsolute,
-  feildStyles,
+  fieldStyles,
   inputsStyles,
 } from "./auth-wrapper";
 import { Field } from "./field";
@@ -39,7 +39,7 @@ export const SignUp: FC = () => {
         <form onSubmit={handleSubmit} className="w-full space-y-2 md:space-y-6">
           <div className={animateInputWrapperStyle}>
             <div className="absolute w-[400px] h-[400px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
-            <Field className={`${feildStyles} flex items-center gap-5`}>
+            <Field className={`${fieldStyles} flex items-center gap-5`}>
               <input
                 onChange={handleInputChange}
                 className={inputsStyles}
@@ -62,7 +62,7 @@ export const SignUp: FC = () => {
             </Field>
           </div>
           <div className={animateInputWrapperStyle}>
-            <Field className={feildStyles}>
+            <Field className={fieldStyles}>
               <input
                 onChange={handleInputChange}
                 className={`${inputsStyles} `}

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { CommentIcon } from "../Eyachir/icons";
+import { PlusIcon } from "../Mamun/icon/Icons";
 import { Button } from "./button";
 
 type ButtonVariants = "primary" | "secondary" | "accent" | "outline";
@@ -23,7 +23,7 @@ const ButtonGroup: FC<ButtonGroupProps> = ({ variant, radius }) => (
     <Button variant={variant}>Click me</Button>
     {buttonSizes.map((size) => (
       <Button key={size} variant={variant} size={size} radius={radius}>
-        {size === "icon" ? <CommentIcon /> : "Click me"}
+        {size === "icon" ? <PlusIcon /> : "Click me"}
       </Button>
     ))}
   </div>
