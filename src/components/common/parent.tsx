@@ -17,13 +17,7 @@ export const Parent: FC<IChildren> = ({ children }) => {
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}
         />
-        <div
-          className={cn(
-            `h-[90svh] max-w-screen-2xl mx-auto p-2.5 overflow-y-auto `
-          )}
-        >
-          {children}
-        </div>
+        <div className={cn(`h-[90svh] overflow-y-auto `)}>{children}</div>
       </div>
     </div>
   );

@@ -16,3 +16,19 @@ export const ProgressIcon: FC<IconSvgProps> = (props) => (
     />
   </svg>
 );
+
+export const ThreeDotsIcon: FC<IconSvgProps> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    // xml:space="preserve"
+    width="20"
+    height="20"
+    viewBox="0 0 52 52"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M8 20c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6 2.7-6 6-6m18 0c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6 2.7-6 6-6m18 0c3.3 0 6 2.7 6 6s-2.7 6-6 6-6-2.7-6-6 2.7-6 6-6"
+    />
+  </svg>
+);
