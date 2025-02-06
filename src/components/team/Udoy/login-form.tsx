@@ -8,7 +8,7 @@ import {
   buttonBeforeAbsolute,
   feildStyles,
   inputsStyles,
-} from "./authWrapper";
+} from "./auth-wrapper";
 
 interface UserStateProps {
   userEmail: string;

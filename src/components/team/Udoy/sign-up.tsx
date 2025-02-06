@@ -1,4 +1,5 @@
-import React, { useState, type FC } from "react";
+import { cn } from "@/lib/utils/cn";
+import { useState, type ChangeEvent, type FC } from "react";
 import {
   AuthWrapper,
   animateInputWrapperStyle,
@@ -6,7 +7,7 @@ import {
   buttonBeforeAbsolute,
   feildStyles,
   inputsStyles,
-} from "./authWrapper";
+} from "./auth-wrapper";
 import Field from "./field";
 
 interface UserStateProps {
@@ -21,10 +22,10 @@ export const SignUp: FC = () => {
     userEmail: "",
     password: "",
   });
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const names: string = e.target.name;
     const value = e.target.value;
     setUser({ ...user, [names]: value });
@@ -74,7 +75,11 @@ export const SignUp: FC = () => {
           <Field>
             <div className="w-full relative">
               <button
-                className={`relative max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% ${buttonBeforeAbsolute}  ${buttonAfterAbsolute} after:w-full hover:after:w-0 before:w-full hover:before:w-0`}
+                className={cn(
+                  `relative max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% after:w-full hover:after:w-0 before:w-full hover:before:w-0`,
+                  buttonBeforeAbsolute,
+                  buttonAfterAbsolute
+                )}
               >
                 <span className="relative z-50  tracking-widest font-bold  bg-linear-to-r  bg-clip-text text-transparent text_conic_color  ">
                   Sign Up
