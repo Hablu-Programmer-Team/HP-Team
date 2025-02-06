@@ -1,7 +1,7 @@
-import { DashboardLayout } from "../team/Eyachir/dashboard-layout";
+import { AddTasks } from "../team/Mamun/add-tasks";
 
 export const Dashboard = () => (
   <div>
-    <DashboardLayout />
+    <AddTasks />
   </div>
 );
