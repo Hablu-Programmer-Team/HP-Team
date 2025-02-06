@@ -4,52 +4,60 @@ import {
   ProfilePage,
   Registration,
 } from "@/components/pages";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Parent } from "./components/common";
+import { ProtectedRoutes } from "./components/common/protected-routes";
+import { initializeUsers } from "./lib/database/users";
 
-export const App = () => (
-  <div className="bg-[#030712] text-slate-200">
-    <Routes>
-      <Route
-        index
-        element={
-          <Parent>
-            <Dashboard />
-          </Parent>
-        }
-      />
-      <Route path="/login" element={<Login />} />
-      <Route path="/registration" element={<Registration />} />
-      <Route
-        path="/dashboard"
-        element={
-          <Parent>
-            <Dashboard />
-          </Parent>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <Parent>
-            <ProfilePage />
-          </Parent>
-        }
-      />
+export const App = () => {
+  initializeUsers();
+  return (
+    <div className="bg-[#030712] text-slate-200">
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route
+          index
+          element={
+            <ProtectedRoutes>
+              <Parent>
+                <Dashboard />
+              </Parent>
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoutes>
+              <Parent>
+                <Dashboard />
+              </Parent>
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoutes>
+              <Parent>
+                <ProfilePage />
+              </Parent>
+            </ProtectedRoutes>
+          }
+        />
 
-      <Route
-        path="*"
-        element={
-          <Parent>
-            <div className="text-center justify-center items-center mx-auto flex flex-col text-5xl h-screen">
-              <span className="text-red-500">404!</span>
-              <span className="text-black dark:text-gray-400 text-3xl">
-                Page not found
-              </span>
-            </div>
-          </Parent>
-        }
-      />
-    </Routes>
-  </div>
-);
+        <Route
+          path="*"
+          element={
+            <Navigate
+              to="/login"
+              replace
+              state={{ from: window.location.pathname }}
+            />
+          }
+        />
+      </Routes>
+    </div>
+  );
+};

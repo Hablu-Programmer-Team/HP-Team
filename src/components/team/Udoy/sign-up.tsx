@@ -1,49 +1,61 @@
+import { getUsers, saveUsers, User } from "@/lib/database/users";
 import { cn } from "@/lib/utils/cn";
-import { useState, type ChangeEvent, type FC } from "react";
+import { useState, type FC } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  AuthWrapper,
   animateInputWrapperStyle,
   buttonAfterAbsolute,
   buttonBeforeAbsolute,
   fieldStyles,
   inputsStyles,
-} from "./auth-wrapper";
+} from ".";
+import { AuthWrapper } from "./auth-wrapper";
 import { Field } from "./field";
 
-interface UserStateProps {
-  userName: string;
-  userEmail: string;
-  password: string;
-}
-
 export const SignUp: FC = () => {
-  const [user, setUser] = useState<UserStateProps>({
-    userName: "",
-    userEmail: "",
-    password: "",
-  });
-  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleSignUp = (): void => {
+    const users: User[] = getUsers();
+
+    if (users.some((user) => user.email === email)) {
+      setError("Email already exists! Try Logged in");
+      return;
+    }
+
+    const newUser: User = {
+      name,
+      email,
+      password,
+    };
+    saveUsers([...users, newUser]);
+
+    alert("Sign Up Successful! You can now Log In");
+    navigate("/login");
   };
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const names: string = e.target.name;
-    const value = e.target.value;
-    setUser({ ...user, [names]: value });
-  };
+
   return (
     <AuthWrapper>
       <h1 className="h3 opacity-80 font-bold bg-clip-text text-transparent text_conic_color inline-block mx-auto">
         Sign Up
       </h1>
+      {error && <p className="text-red-500">{error}</p>}
       <div>
-        <form onSubmit={handleSubmit} className="w-full space-y-2 md:space-y-6">
+        <form className="w-full space-y-2 md:space-y-6">
           <div className={animateInputWrapperStyle}>
             <div className="absolute w-[400px] h-[400px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className={`${fieldStyles} flex items-center gap-5`}>
               <input
-                onChange={handleInputChange}
+                // onChange={handleInputChange}
+                onChange={(e) => setName(e.target.value)}
                 className={inputsStyles}
-                type="text"
+                // type="text"
+                value={name}
+                required
                 name="userName"
                 placeholder="Enter Your Name"
               />
@@ -53,9 +65,12 @@ export const SignUp: FC = () => {
             <div className="absolute animate-animateBorderInput w-[300px] h-[200px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className="bg-[#030721]">
               <input
-                onChange={handleInputChange}
+                // onChange={handleInputChange}
+                onChange={(e) => setEmail(e.target.value)}
                 className={inputsStyles}
-                type="email"
+                // type="email"
+                value={email}
+                required
                 name="userEmail"
                 placeholder="Enter Your Email"
               />
@@ -64,9 +79,12 @@ export const SignUp: FC = () => {
           <div className={animateInputWrapperStyle}>
             <Field className={fieldStyles}>
               <input
-                onChange={handleInputChange}
+                // onChange={handleInputChange}
+                onChange={(e) => setPassword(e.target.value)}
                 className={`${inputsStyles} `}
-                type="password"
+                // type="password"
+                value={password}
+                required
                 name="password"
                 placeholder="Password"
               />
@@ -75,6 +93,7 @@ export const SignUp: FC = () => {
           <Field>
             <div className="w-full relative">
               <button
+                onClick={handleSignUp}
                 className={cn(
                   `relative mt-5 md:mt-0 max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% after:w-full hover:after:w-0 before:w-full hover:before:w-0`,
                   buttonBeforeAbsolute,
@@ -87,6 +106,14 @@ export const SignUp: FC = () => {
               </button>
             </div>
           </Field>
+          <div>
+            <p className="text-sm">
+              Already have an account?{" "}
+              <a className="text-primary-500" href="/login">
+                Log In
+              </a>
+            </p>
+          </div>
         </form>
       </div>
     </AuthWrapper>
