@@ -95,7 +95,10 @@ export const LoginForm = () => {
           <div>
             <p className="text-center">
               Don&apos;t have an account?{" "}
-              <a href="/registration" className="text-blue-500">
+              <a
+                href="/registration"
+                className="text-blue-500 hover:underline transition-all duration-200"
+              >
                 Sign Up
               </a>
             </p>

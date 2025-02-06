@@ -109,7 +109,10 @@ export const SignUp: FC = () => {
           <div>
             <p className="text-sm">
               Already have an account?{" "}
-              <a className="text-primary-500" href="/login">
+              <a
+                className="text-primary-500 hover:text-primary-600 hover:underline transition-colors duration-200"
+                href="/login"
+              >
                 Log In
               </a>
             </p>
