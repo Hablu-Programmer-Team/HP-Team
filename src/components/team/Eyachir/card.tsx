@@ -9,10 +9,8 @@ interface CardProps {
   completed: number;
   total: number;
   deadline: number;
-  comments: number;
-  shares: number;
   createdAt: Date;
-  updatedAt: Date;
+  updatedAt?: Date;
 }
 
 export const Card: FC<CardProps> = (props) => {

@@ -1,25 +1,45 @@
-import { FC } from "react";
-
-import { ProfileMenu } from "./profilemenu";
+import { Dispatch, FC, SetStateAction } from "react";
+import { NavLink } from "react-router-dom";
+import { MenuIcon } from "../Alamin/icons";
 import { Items } from "./items";
+import { ProfileMenu } from "./profilemenu";
 import { SearchItem } from "./searchitem";
 
+type TProps = {
+  firstName: string;
+  lastName: string;
+  openSidebar: boolean;
+  setOpenSidebar: Dispatch<SetStateAction<boolean>>;
+};
 
-export const Navbar: FC = () => (
-  
-  <div className="flex  justify-end sm:justify-between items-center px-5 lg:px-10 py-4 shadow-sm ">
-    <h1 className="hidden sm:block font-bold text-base lg:text-xl ">
-      Hello 
-      <span className="bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text ">
-        Salman
-      </span>{" "}
-      Vai👋
-    </h1>
+export const Navbar: FC<TProps> = ({
+  openSidebar,
+  setOpenSidebar,
+  firstName,
+  lastName,
+}) => (
+  <div className="flex h-fit bg-gray-900/70 text-gray-100 w-full justify-between sm:justify-between items-center sm:ps-4 px-5 lg:px-10 py-3 border-b border-b-neutral-400/35">
+    <div className="flex gap-x-2.5 ">
+      <button
+        className="cursor-pointer"
+        hidden={openSidebar}
+        onClick={() => setOpenSidebar(true)}
+      >
+        <MenuIcon />
+      </button>
 
-    {/* Navbar Icon & Profile */}
-     
-    <div className="flex items-center space-x-[10px] lg:space-x-[22px]">
-      <SearchItem/>
+      <NavLink to="/profile">
+        <div className="hidden sm:block font-bold text-base lg:text-xl ">
+          <span className="bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text">
+            {firstName}
+          </span>{" "}
+          <span>{lastName}</span>
+        </div>
+      </NavLink>
+    </div>
+
+    <div className="flex items-center gap-x-[10px] lg:gap-x-[22px]">
+      <SearchItem />
       <Items />
       <ProfileMenu />
     </div>
