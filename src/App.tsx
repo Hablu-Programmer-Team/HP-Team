@@ -1,4 +1,9 @@
-import { Dashboard, Login, Profile, Registration } from "@/components/pages";
+import {
+  Dashboard,
+  Login,
+  ProfilePage,
+  Registration,
+} from "@/components/pages";
 import { Route, Routes } from "react-router-dom";
 import { Parent } from "./components/common";
 
@@ -27,7 +32,7 @@ export const App = () => (
         path="/profile"
         element={
           <Parent>
-            <Profile />
+            <ProfilePage />
           </Parent>
         }
       />
