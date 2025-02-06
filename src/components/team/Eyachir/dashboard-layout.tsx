@@ -85,13 +85,13 @@ const tasksBoard: ITaskBoard[] = [
   {
     id: 3,
     title: "Completed",
-    des: "This item is in review",
+    des: "This item has been completed",
     status: "completed",
   },
   {
     id: 4,
     title: "Incomplete",
-    des: "This item hasn't been started",
+    des: "This item has not been completed",
     status: "incomplete",
   },
 ];
