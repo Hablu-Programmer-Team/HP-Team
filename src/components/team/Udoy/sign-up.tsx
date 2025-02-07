@@ -1,6 +1,6 @@
 import { getUsers, saveUsers, User } from "@/lib/database/users";
 import { cn } from "@/lib/utils/cn";
-import { useState, type FC } from "react";
+import { FormEvent, useState, type FC } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   animateInputWrapperStyle,
@@ -19,11 +19,22 @@ export const SignUp: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSignUp = (): void => {
-    const users: User[] = getUsers();
+  const handleSignUp = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    if (!name || !email || !password) {
+      setError("All fields are required");
+      return;
+    }
+
+    const users: User[] = getUsers();
     if (users.some((user) => user.email === email)) {
       setError("Email already exists! Try Logged in");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long");
       return;
     }
 
@@ -45,7 +56,7 @@ export const SignUp: FC = () => {
       </h1>
       {error && <p className="text-red-500">{error}</p>}
       <div>
-        <form className="w-full space-y-2 md:space-y-6">
+        <form onSubmit={handleSignUp} className="w-full space-y-2 md:space-y-6">
           <div className={animateInputWrapperStyle}>
             <div className="absolute w-[400px] h-[400px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className={`${fieldStyles} flex items-center gap-5`}>
@@ -93,7 +104,7 @@ export const SignUp: FC = () => {
           <Field>
             <div className="w-full relative">
               <button
-                onClick={handleSignUp}
+                type="submit"
                 className={cn(
                   `relative mt-5 md:mt-0 max-w-[10rem] overflow-hidden w-full px-5 py-2 transition-all duration-500 cursor-pointer group rounded-lg bg-linear-to-r from-[#030712] via-blue-500/50 to-[#030721] to-100% after:w-full hover:after:w-0 before:w-full hover:before:w-0`,
                   buttonBeforeAbsolute,

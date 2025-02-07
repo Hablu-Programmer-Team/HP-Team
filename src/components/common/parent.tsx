@@ -4,7 +4,7 @@ import { Sidebar } from "../team/Alamin";
 import { Navbar } from "../team/Hasib";
 
 export const Parent: FC<IChildren> = ({ children }) => {
-  const [openSidebar, setOpenSidebar] = useState<boolean>(true);
+  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
   return (
     <div className="flex w-full overflow-x-hidden">
