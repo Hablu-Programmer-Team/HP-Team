@@ -1,4 +1,4 @@
-import { useAuth } from "@/components/common/auth-context";
+import { useAuth } from "@/lib/database/auth-context";
 import { cn } from "@/lib/utils/cn";
 import { FormEvent, useState } from "react";
 import {

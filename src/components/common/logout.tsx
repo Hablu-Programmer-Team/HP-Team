@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./auth-context";
+import { useAuth } from "../../lib/database/auth-context";
 
 export const useLogout = () => {
   const { logout } = useAuth();
