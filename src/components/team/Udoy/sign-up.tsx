@@ -1,4 +1,4 @@
-import { getUsers, saveUsers, User } from "@/lib/database/users";
+import { useAuth } from "@/components/common/auth-context";
 import { cn } from "@/lib/utils/cn";
 import { FormEvent, useState, type FC } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { AuthWrapper } from "./auth-wrapper";
 import { Field } from "./field";
 
 export const SignUp: FC = () => {
+  const { signup } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,31 +23,13 @@ export const SignUp: FC = () => {
   const handleSignUp = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
-      setError("All fields are required");
-      return;
-    }
-
-    const users: User[] = getUsers();
-    if (users.some((user) => user.email === email)) {
-      setError("Email already exists! Try Logged in");
-      return;
-    }
-
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters long");
-      return;
-    }
-
-    const newUser: User = {
-      name,
-      email,
-      password,
-    };
-    saveUsers([...users, newUser]);
-
-    alert("Sign Up Successful! You can now Log In");
-    navigate("/login");
+    !name || !email || !password
+      ? setError("All fields are required")
+      : password.length < 8
+      ? setError("Password must be at least 8 characters long")
+      : !signup(name, email, password)
+      ? setError("Email already exists! Try Logging in")
+      : (alert("Sign Up Successful! You can now Log In"), navigate("/login"));
   };
 
   return (
@@ -61,13 +44,12 @@ export const SignUp: FC = () => {
             <div className="absolute w-[400px] h-[400px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className={`${fieldStyles} flex items-center gap-5`}>
               <input
-                // onChange={handleInputChange}
-                onChange={(e) => setName(e.target.value)}
-                className={inputsStyles}
-                // type="text"
-                value={name}
                 required
-                name="userName"
+                type="text"
+                name="name"
+                value={name}
+                className={inputsStyles}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Enter Your Name"
               />
             </Field>
@@ -76,13 +58,12 @@ export const SignUp: FC = () => {
             <div className="absolute animate-animateBorderInput w-[300px] h-[200px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className="bg-[#030721]">
               <input
-                // onChange={handleInputChange}
-                onChange={(e) => setEmail(e.target.value)}
-                className={inputsStyles}
-                // type="email"
-                value={email}
                 required
-                name="userEmail"
+                type="email"
+                name="email"
+                value={email}
+                className={inputsStyles}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter Your Email"
               />
             </Field>
@@ -90,13 +71,12 @@ export const SignUp: FC = () => {
           <div className={animateInputWrapperStyle}>
             <Field className={fieldStyles}>
               <input
-                // onChange={handleInputChange}
-                onChange={(e) => setPassword(e.target.value)}
-                className={`${inputsStyles} `}
-                // type="password"
-                value={password}
                 required
+                type="password"
                 name="password"
+                value={password}
+                className={`${inputsStyles} `}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />
             </Field>
