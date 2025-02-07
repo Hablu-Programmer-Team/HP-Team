@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import myStyle from "../Alamin/sidebar.module.css";
 import { dashItems } from "./data";
 import { LeaveIcon, RightArray, UserIcon } from "./icons";
+import { useLogout } from "@/components/common/logout";
 
 interface SidebarProps {
   openSidebar: boolean;
@@ -18,6 +19,7 @@ export const SideContent: FC<SidebarProps> = ({
   lastName,
 }) => {
   const [isActive, setIsActive] = useState<number | null>(null);
+  const logout = useLogout();
   return (
     <>
       <button
@@ -66,10 +68,13 @@ export const SideContent: FC<SidebarProps> = ({
         </div>
       </div>
       <div className="border-t border-r  absolute bottom-0 bg-gray-900 border-gray-400/35 w-full py-2">
-        <span className="flex gap-x-5 mx-4 p-3 items-center font-semibold stroke-white hover:bg-gray-800  rounded-md hover:text-secondary-500 cursor-pointer">
+        <button
+          onClick={logout}
+          className="flex gap-x-5 px-8 p-3 items-center font-semibold stroke-white hover:bg-gray-800  rounded-md hover:text-secondary-500 cursor-pointer w-full"
+        >
           <LeaveIcon />
           <span>Logout</span>
-        </span>
+        </button>
       </div>
     </>
   );

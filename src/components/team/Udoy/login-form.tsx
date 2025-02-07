@@ -1,7 +1,7 @@
 import { getUsers } from "@/lib/database/users";
 import { cn } from "@/lib/utils/cn";
 import { FormEvent, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   animateInputWrapperStyle,
   buttonAfterAbsolute,
@@ -17,6 +17,7 @@ export const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,8 +29,11 @@ export const LoginForm = () => {
     );
 
     if (isValidUser) {
-      setError("");
+      const expiry = new Date().getTime() + 12 * 60 * 60 * 1000;
+      localStorage.setItem("authUser", JSON.stringify({ email, expiry }));
+
       setIsLoggedIn(true);
+      navigate("/dashboard");
     } else {
       setError("Invalid email or password");
     }
