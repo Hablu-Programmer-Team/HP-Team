@@ -12,8 +12,7 @@ export const Parent: FC<IChildren> = ({ children }) => {
 
       <div className="transition-all h-screen overflow-y-hidden duration-300 w-full relative">
         <Navbar
-          firstName="Salman"
-          lastName="Vai"
+          name="Salman Vai"
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}
         />

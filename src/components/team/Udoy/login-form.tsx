@@ -21,7 +21,6 @@ export const LoginForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const users = getUsers();
 
     const isValidUser = users.some(
@@ -54,13 +53,12 @@ export const LoginForm = () => {
             <div className="absolute animate-animateBorderInput w-[300px] h-[200px] rounded-lg top-0 input_conic_gradient inset-0 -z-50"></div>
             <Field className="bg-[#030721]">
               <input
-                // onChange={handleInputChange}
-                onChange={(e) => setEmail(e.target.value)}
                 required
-                className={inputsStyles}
-                // type="email"
+                type="email"
+                name="email"
                 value={email}
-                name="userEmail"
+                onChange={(e) => setEmail(e.target.value)}
+                className={inputsStyles}
                 placeholder="Enter Your Email"
               />
             </Field>
@@ -68,13 +66,12 @@ export const LoginForm = () => {
           <div className={animateInputWrapperStyle}>
             <Field className={fieldStyles}>
               <input
-                // onChange={handleInputChange}
-                onChange={(e) => setPassword(e.target.value)}
                 required
-                className={`${inputsStyles} `}
-                // type="password"
-                value={password}
+                type="password"
                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={`${inputsStyles} `}
                 placeholder="Password"
               />
             </Field>

@@ -33,10 +33,10 @@ export const DashboardLayout = () => (
               <p>
                 <CircleIcon
                   className={cn("stroke-2 text-white", {
-                    "text-red-600": task.status === "pending",
+                    "text-purple-500": task.status === "pending",
                     "text-amber-500": task.status === "in-progress",
                     "text-green-500": task.status === "completed",
-                    "text-purple-500": task.status === "incomplete",
+                    "text-red-600": task.status === "incomplete",
                   })}
                 />
               </p>
