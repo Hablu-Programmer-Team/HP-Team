@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { IAdd, IFormData } from "./index";
-import { Modal } from "./reusable/modal";
+import { Modal } from "./reusable/task-modal";
 import { TaskForm } from "./reusable/taskForm";
 import { validateForm } from "./reusable/validator";
 
