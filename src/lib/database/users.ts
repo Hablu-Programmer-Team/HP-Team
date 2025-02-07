@@ -4,7 +4,7 @@ export type User = {
     password: string;
 };
 
-const premiumUsers: User[] = [
+export const premiumUsers: User[] = [
     { name: "Salman Vai", email: "salman@hpteam.com", password: "Teacher@hpTeam" },
     { name: "Alamin Mridha", email: "alamin@hpteam.com", password: "Member@hpTeam" },
     { name: "Eyachir Arafat", email: "eyachir@hpteam.com", password: "Member@hpTeam" },

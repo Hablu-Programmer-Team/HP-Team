@@ -1,7 +1,6 @@
-import { getUsers } from "@/lib/database/users";
+import { useAuth } from "@/components/common/auth-context";
 import { cn } from "@/lib/utils/cn";
 import { FormEvent, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import {
   animateInputWrapperStyle,
   buttonAfterAbsolute,
@@ -11,15 +10,12 @@ import {
 } from ".";
 import { AuthWrapper } from "./auth-wrapper";
 import { Field } from "./field";
-import { useAuth } from "@/components/common/auth-context";
 
 export const LoginForm = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,26 +24,6 @@ export const LoginForm = () => {
       setError("Invalid email or password");
     }
   };
-  //   const users = getUsers();
-
-  //   const isValidUser = users.some(
-  //     (user) => user.email === email && user.password === password
-  //   );
-
-  //   if (isValidUser) {
-  //     const expiry = new Date().getTime() + 12 * 60 * 60 * 1000;
-  //     localStorage.setItem("authUser", JSON.stringify({ email, expiry }));
-
-  //     setIsLoggedIn(true);
-  //     navigate("/dashboard");
-  //   } else {
-  //     setError("Invalid email or password");
-  //   }
-  // };
-
-  // if (isLoggedIn) {
-  //   return <Navigate to="/dashboard" />;
-  // }
 
   return (
     <AuthWrapper>

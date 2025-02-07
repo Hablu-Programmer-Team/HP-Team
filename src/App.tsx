@@ -7,10 +7,8 @@ import {
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Parent } from "./components/common";
 import { ProtectedRoutes } from "./components/common/protected-routes";
-import { initializeUsers } from "./lib/database/users";
 
 export const App = () => {
-  initializeUsers();
   return (
     <div className="bg-[#030712] text-slate-200">
       <Routes>

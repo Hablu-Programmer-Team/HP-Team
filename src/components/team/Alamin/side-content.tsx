@@ -8,15 +8,13 @@ import { useLogout } from "@/components/common/logout";
 interface SidebarProps {
   openSidebar: boolean;
   setOpenSidebar: Dispatch<SetStateAction<boolean>>;
-  firstName: string;
-  lastName: string;
+  name: string;
 }
 
 export const SideContent: FC<SidebarProps> = ({
   openSidebar,
   setOpenSidebar,
-  firstName,
-  lastName,
+  name,
 }) => {
   const [isActive, setIsActive] = useState<number | null>(null);
   const logout = useLogout();
@@ -37,10 +35,7 @@ export const SideContent: FC<SidebarProps> = ({
           <div className="size-20 p-1.5 my-3 flex justify-center items-center rounded-full ring-2 ring-white ring-inset border-3 border-secondary-500 bg-black/20 ">
             {<UserIcon className="size-12" />}
           </div>
-          <h2 className="font-bold text-lg text-nowrap space-x-1">
-            <span>{firstName}</span>
-            <span>{lastName}</span>
-          </h2>
+          <h2 className="font-bold text-lg text-nowrap space-x-1">{name}</h2>
           <p className="text-sm">example@gmail.com</p>
         </div>
 

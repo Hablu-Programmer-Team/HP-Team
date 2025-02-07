@@ -1,12 +1,6 @@
+import { initializeUsers, User } from "@/lib/database/users";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-type User = {
-  //   name: string;
-  email: string;
-  password: string;
-};
-
 type AuthContextType = {
   user: User | null;
   login: (email: string, password: string) => boolean;
@@ -21,6 +15,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    initializeUsers();
     const storedUser = localStorage.getItem("authUser");
     if (storedUser) {
       setUser(JSON.parse(storedUser));

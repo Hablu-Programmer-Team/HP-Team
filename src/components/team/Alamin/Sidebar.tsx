@@ -17,8 +17,7 @@ export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
         <SideContent
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}
-          firstName="Salman"
-          lastName="Vai"
+          name="Salman Vai"
         />
       </div>
 
