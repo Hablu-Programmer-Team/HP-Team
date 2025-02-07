@@ -7,13 +7,13 @@ export const ProfileMenu: FC = () => {
   const logout = useLogout();
 
   const menuItems = [
-    { to: "/profile", icon: "/user.svg", label: "MY Profile" },
-    { to: "/contact", icon: "/contact.svg", label: "MY Contact" },
-    { to: "/setting", icon: "/setting.svg", label: "Account Setting" },
+    { to: "/profile", icon: "/user.svg", label: "My Profile" },
+    { to: "/contacts", icon: "/contact.svg", label: "My Contact" },
+    { to: "/profile/settings", icon: "/setting.svg", label: "Account Setting" },
   ];
 
   return (
-    <div className="relative">
+    <div className="relative z-40">
       <button onClick={() => setIsProfileOpen(!profileOpen)}>
         <img
           className="cursor-pointer duration-300 hover:scale-110 size-6 lg:size-9 flex justify-center items-center"

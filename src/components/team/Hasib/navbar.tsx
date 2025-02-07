@@ -11,14 +11,10 @@ type TProps = {
   setOpenSidebar: Dispatch<SetStateAction<boolean>>;
 };
 
-export const Navbar: FC<TProps> = ({ openSidebar, setOpenSidebar, name }) => (
+export const Navbar: FC<TProps> = ({ setOpenSidebar, name }) => (
   <div className="flex h-fit bg-gray-900/70 text-gray-100 w-full justify-between sm:justify-between items-center sm:ps-4 px-5 lg:px-10 py-3 border-b border-b-neutral-400/35">
     <div className="flex gap-x-2.5 ">
-      <button
-        className="cursor-pointer"
-        hidden={openSidebar}
-        onClick={() => setOpenSidebar(true)}
-      >
+      <button className="cursor-pointer" onClick={() => setOpenSidebar(true)}>
         <MenuIcon />
       </button>
 
@@ -26,7 +22,7 @@ export const Navbar: FC<TProps> = ({ openSidebar, setOpenSidebar, name }) => (
         <div className="hidden sm:block font-bold text-base lg:text-xl ">
           <span className="bg-gradient-to-r from-orange-700 via-blue-500 to-green-400 text-transparent bg-clip-text">
             {name}
-          </span>{" "}
+          </span>
         </div>
       </NavLink>
     </div>

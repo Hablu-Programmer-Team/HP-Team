@@ -6,6 +6,7 @@ type AuthContextType = {
   login: (email: string, password: string) => boolean;
   signup: (name: string, email: string, password: string) => boolean;
   logout: () => void;
+  updateUser: (updatedUser: Partial<User>) => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,6 +17,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
   const navigate = useNavigate();
+
+  const updateUser = (updatedData: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...updatedData };
+      setUser(updatedUser);
+      localStorage.setItem("authUser", JSON.stringify(updatedUser));
+    }
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const updatedUsers = users.map((u: User) => {
+      u.email === user?.email ? { ...u, ...updatedData } : u;
+    });
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+  };
 
   useEffect(() => {
     initializeUsers();
@@ -61,7 +75,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, login, signup, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -21,7 +21,7 @@ export const DashboardLayout = () => (
     </div>
 
     <div
-      className={`flex px-5 lg:px-10 justify-start gap-4 overflow-x-auto py-10 ${Scrollbar.customScrollbar}`}
+      className={`flex px-5 lg:px-10 justify-start gap-4 overflow-x-auto pt-10 pb-4 ${Scrollbar.customScrollbar}`}
     >
       {tasksBoard.map((task) => (
         <div

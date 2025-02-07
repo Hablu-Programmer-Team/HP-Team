@@ -1,5 +1,6 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { SideContent } from "./side-content";
+import { useAuth } from "@/lib/database/auth-context";
 
 interface SidebarProps {
   openSidebar: boolean;
@@ -7,6 +8,7 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
+  const { user } = useAuth();
   return (
     <>
       <div
@@ -17,7 +19,8 @@ export const Sidebar: FC<SidebarProps> = ({ openSidebar, setOpenSidebar }) => {
         <SideContent
           openSidebar={openSidebar}
           setOpenSidebar={setOpenSidebar}
-          name="Salman Vai"
+          name={user?.name || ""}
+          email={user?.email || ""}
         />
       </div>
 

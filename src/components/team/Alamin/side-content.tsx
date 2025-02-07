@@ -1,21 +1,19 @@
+import { useLogout } from "@/components/common/logout";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { NavLink } from "react-router-dom";
 import myStyle from "../Alamin/sidebar.module.css";
 import { dashItems } from "./data";
 import { LeaveIcon, RightArray, UserIcon } from "./icons";
-import { useLogout } from "@/components/common/logout";
 
 interface SidebarProps {
   openSidebar: boolean;
   setOpenSidebar: Dispatch<SetStateAction<boolean>>;
   name: string;
+  email: string;
 }
 
-export const SideContent: FC<SidebarProps> = ({
-  openSidebar,
-  setOpenSidebar,
-  name,
-}) => {
+export const SideContent: FC<SidebarProps> = ({ ...props }) => {
+  const { name, email, openSidebar, setOpenSidebar } = props;
   const [isActive, setIsActive] = useState<number | null>(null);
   const logout = useLogout();
   return (
@@ -36,7 +34,7 @@ export const SideContent: FC<SidebarProps> = ({
             {<UserIcon className="size-12" />}
           </div>
           <h2 className="font-bold text-lg text-nowrap space-x-1">{name}</h2>
-          <p className="text-sm">example@gmail.com</p>
+          <p className="text-sm">{email}</p>
         </div>
 
         <div className="flex flex-col relative mt-48">
