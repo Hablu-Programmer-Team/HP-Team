@@ -25,9 +25,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       localStorage.setItem("authUser", JSON.stringify(updatedUser));
     }
     const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const updatedUsers = users.map((u: User) => {
-      u.email === user?.email ? { ...u, ...updatedData } : u;
-    });
+    const updatedUsers = users.map((u: User) =>
+      u.email === user?.email ? { ...u, ...updatedData } : u
+    );
     localStorage.setItem("users", JSON.stringify(updatedUsers));
   };
 
