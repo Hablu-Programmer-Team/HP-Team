@@ -4,27 +4,26 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { LockIcon, PenIcon, TwoStepIcon } from "./icon";
 import { Card } from "./UI/card";
-
-interface ValueType {
-  name: string;
-  imgSrc?: string;
-  email: string;
-  number: number;
-  userName: string;
-  description: string;
-}
+import { User } from "@/lib/database/users";
 
 export const Settings = () => {
   const { user, updateUser } = useAuth();
   const [isChanged, setIsChanged] = useState(false);
-  const [isValue, setIsValue] = useState<ValueType>({
-    name: user?.name || "",
-    imgSrc: user?.imgSrc || "",
-    email: user?.email || "",
-    userName: user?.userName || "",
-    number: user?.number || 0,
-    description: user?.description || "",
-  });
+  const [isValue, setIsValue] = useState<User>(user || ({} as User));
+
+  useEffect(() => {
+    if (!user) return;
+    setIsValue((prev) => ({
+      ...prev,
+      name: user.name || "",
+      imgSrc: user.imgSrc || "",
+      email: user.email || "",
+      password: user.password || "",
+      userName: user.userName || "",
+      number: user.number || 0,
+      description: user.description || "",
+    }));
+  }, [user]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,8 +42,9 @@ export const Settings = () => {
   };
 
   useEffect(() => {
+    if (!user) return;
     setIsChanged(JSON.stringify(isValue) !== JSON.stringify(user));
-  }, [isValue]);
+  }, [isValue, user]);
 
   const handleSave = () => {
     updateUser(isValue);
