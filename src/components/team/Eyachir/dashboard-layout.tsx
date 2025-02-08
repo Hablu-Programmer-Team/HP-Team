@@ -1,6 +1,8 @@
-import { TStatus } from "@/lib/database/task";
+import { useTaskData } from "@/hooks/use-task-data";
+import { TStatus, type ITask } from "@/lib/database/task";
 import { cn } from "@/lib/utils/cn";
 import { useState } from "react";
+import { Card } from ".";
 import { PlusIcon } from "../Mamun/icon/Icons";
 import { Modal } from "../Mamun/reusable/task-modal";
 import { TaskForm } from "../Mamun/reusable/taskForm";
@@ -9,14 +11,36 @@ import Scrollbar from "./scrollbar.module.css";
 
 export const DashboardLayout = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const { allTask } = useTaskData() || {};
+  const [editTask,setEditTask] = useState<ITask | null>(null)
 
+  const [clickTimeout, setClickTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const handleSingleClick = () => {
+    if (clickTimeout === null) {
+      setClickTimeout(
+        setTimeout(() => {
+          setClickTimeout(null);
+        }, 300) 
+      );
+    }
+  };
+
+  const handleDoubleClick = (task:ITask) => {
+    if (clickTimeout) {
+      clearTimeout(clickTimeout);
+    }
+    setClickTimeout(null);
+    setEditTask(task)
+    setIsOpenModal(!isOpenModal)
+  };
   return (
     <div className="overflow-x-hidden">
       {/* add Task  */}
       {isOpenModal && (
         <div className="flex items-center justify-center absolute inset-0 bg-black/10">
           <Modal isOpen={isOpenModal} setIsOpen={setIsOpenModal}>
-            <TaskForm setIsOpen={setIsOpenModal} />
+            <TaskForm editTask={editTask} setEditTask={setEditTask} setIsOpen={setIsOpenModal} />
           </Modal>
         </div>
       )}
@@ -70,10 +94,36 @@ export const DashboardLayout = () => {
               </button>
             </div>
             <p className="text-gray-600">{task.des}</p>
-            <button className="flex items-center gap-x-2 absolute bottom-4 left-6 bg-gray-800 hover:bg-gray-700 py-1 px-2 text-white text-sm active:scale-95 transition-all duration-200 rounded-lg cursor-pointer">
+            <button onClick={()=>{
+              setIsOpenModal(!isOpenModal)
+            }} className="flex items-center gap-x-2 absolute bottom-4 left-6 bg-gray-800 hover:bg-gray-700 py-1 px-2 text-white text-sm active:scale-95 transition-all duration-200 rounded-lg cursor-pointer">
               <PlusIcon className="size-3" />
               Add
             </button>
+            {/* have been randered all task data with card  */}
+            <div className="space-y-4 mt-5">
+              {allTask &&
+                allTask.map((t) => {
+                  if (t.status === task.status)
+                    return (
+                      <div
+                        onDoubleClick={()=>{
+                          handleDoubleClick(t)
+                        }}
+                        onClick={handleSingleClick}
+                        key={t.id}
+                      >
+                        <Card
+                          taskName={t.title}
+                          total={t.subTasks.length}
+                          createdAt={t.createdAt}
+                          deadline={1}
+                          completed={0}
+                        />
+                      </div>
+                    );
+                })}
+            </div>
           </div>
         ))}
       </div>
@@ -114,3 +164,4 @@ const tasksBoard: ITaskBoard[] = [
     status: "incomplete",
   },
 ];
+

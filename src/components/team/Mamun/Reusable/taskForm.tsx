@@ -11,30 +11,37 @@ import {
 import { InputDateIcon, InputStyle, SOption } from "..";
 import { UPDownIcon } from "../icon/Icons";
 
-interface IProps {
+interface IEditProps {
+  editTask: ITask | null;
+  setEditTask: Dispatch<SetStateAction<ITask | null>>;
+}
+
+interface IProps extends IEditProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const TaskForm: FC<IProps> = ({ setIsOpen }) => {
-  const { addAllTask } = useTaskData() || {};
+export const TaskForm: FC<IProps> = ({ setIsOpen, editTask, setEditTask }) => {
   const [isToggle, setIsToggle] = useState<boolean>(false);
-  const [formData, setFormData] = useState<ITask>({
-    id: crypto.randomUUID(),
-    userId: "1",
-    assign: "",
-    status: "pending",
-    team: "",
-    title: "",
-    priority: "",
-    start: new Date(),
-    end: new Date(),
-    description: "",
+  const { addAllTask, addEditTask } = useTaskData() || {};
+  const [formData, setFormData] = useState<ITask>(
+    editTask || {
+      id: crypto.randomUUID(),
+      userId: "1",
+      assign: "",
+      status: "pending",
+      team: "",
+      title: "",
+      priority: "",
+      start: new Date(),
+      end: new Date(),
+      description: "",
 
-    subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
+      subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
 
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+  );
   type ChangeType = ChangeEvent<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
@@ -44,8 +51,12 @@ export const TaskForm: FC<IProps> = ({ setIsOpen }) => {
   };
 
   const handleSubmit = () => {
-    if (addAllTask) {
-      addAllTask(formData);
+    if (editTask && addEditTask) {
+      addEditTask(formData);
+    } else {
+      if (addAllTask) {
+        addAllTask(formData);
+      }
     }
     // setFormData({
     //   id: "1",
