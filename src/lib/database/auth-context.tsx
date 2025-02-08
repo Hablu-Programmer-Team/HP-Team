@@ -1,6 +1,7 @@
 import { initializeUsers, User } from "@/lib/database/users";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 type AuthContextType = {
   user: User | null;
   login: (email: string, password: string) => boolean;

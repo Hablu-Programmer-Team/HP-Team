@@ -1,3 +1,4 @@
+import { useTaskData } from "@/hooks/use-task-data";
 import { ITask } from "@/lib/database/task";
 import { cn } from "@/lib/utils/cn";
 import {
@@ -12,17 +13,17 @@ import { UPDownIcon } from "../icon/Icons";
 
 interface IProps {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  addAllTask: (task: ITask) => void;
 }
 
-export const TaskForm: FC<IProps> = ({ setIsOpen, addAllTask }) => {
+export const TaskForm: FC<IProps> = ({ setIsOpen }) => {
+  const { addAllTask } = useTaskData() || {};
   const [isToggle, setIsToggle] = useState<boolean>(false);
   const [formData, setFormData] = useState<ITask>({
-    id: "1",
+    id: crypto.randomUUID(),
     userId: "1",
     assign: "",
     status: "pending",
-
+    team: "",
     title: "",
     priority: "",
     start: new Date(),
@@ -34,7 +35,6 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, addAllTask }) => {
     createdAt: new Date(),
     updatedAt: new Date(),
   });
-
   type ChangeType = ChangeEvent<
     HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
   >;
@@ -44,29 +44,30 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, addAllTask }) => {
   };
 
   const handleSubmit = () => {
-    addAllTask(formData);
-    setFormData({
-      id: "1",
-      userId: "1",
-      assign: "",
-      status: "pending",
-
-      title: "",
-      priority: "",
-      start: new Date(),
-      end: new Date(),
-      description: "",
-
-      subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
-
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
+    if (addAllTask) {
+      addAllTask(formData);
+    }
+    // setFormData({
+    //   id: "1",
+    //   userId: "1",
+    //   assign: "",
+    //   status: "pending",
+    //   team: "",
+    //   title: "",
+    //   priority: "",
+    //   start: new Date(),
+    //   end: new Date(),
+    //   description: "",
+    //   subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
+    //   createdAt: new Date(),
+    //   updatedAt: new Date(),
+    // });
     setIsOpen(false);
   };
 
   const inputDate = (date: Date) => {
-    const bdTime = new Date(date.getTime() + 6 * 60 * 60 * 1000); // Convert UTC to BST
+    const d = new Date(date);
+    const bdTime = new Date(d.getTime() + 6 * 60 * 60 * 1000); // Convert UTC to BST
     return bdTime.toISOString().slice(0, 16); // Keep only YYYY-MM-DDTHH:MM
   };
 
@@ -132,12 +133,12 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, addAllTask }) => {
                 onChange={handleChange}
                 name="priority"
                 className="outline-none"
+                value={formData.priority}
               >
                 <option
                   className={cn("", SOption)}
                   value={formData.priority}
                   disabled
-                  selected
                 >
                   Select Priority
                 </option>
@@ -166,12 +167,12 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, addAllTask }) => {
                 onChange={handleChange}
                 name="assign"
                 className="outline-none"
+                value={formData.assign}
               >
                 <option
                   className={cn("", SOption)}
                   value={formData.assign}
                   disabled
-                  selected
                 >
                   Assign
                 </option>
@@ -199,12 +200,12 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, addAllTask }) => {
                 className="outline-none"
                 onChange={handleChange}
                 name="team"
+                value={formData.team}
               >
                 <option
                   className={cn("", SOption)}
                   value={formData.assign}
                   disabled
-                  selected
                 >
                   Select Team
                 </option>
