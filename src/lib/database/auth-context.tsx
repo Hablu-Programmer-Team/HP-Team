@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
+
 type AuthContextType = {
   user: User | null;
   login: (email: string, password: string) => boolean;
