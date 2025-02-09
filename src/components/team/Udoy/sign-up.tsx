@@ -25,8 +25,8 @@ export const SignUp: FC = () => {
 
     !name || !email || !password
       ? setError("All fields are required")
-      : password.length < 8
-      ? setError("Password must be at least 8 characters long")
+      : password.length < 6
+      ? setError("Password must be at least 6 characters long")
       : !signup(name, email, password)
       ? setError("Email already exists! Try Logging in")
       : (alert("Sign Up Successful! You can now Log In"), navigate("/login"));

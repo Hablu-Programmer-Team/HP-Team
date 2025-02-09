@@ -1,10 +1,11 @@
+import { ImgChange } from "@/components/common/img-change";
 import { Button } from "@/components/team/Udoy/button";
 import { useAuth } from "@/lib/database/auth-context";
+import { User } from "@/lib/database/users";
 import { ChangeEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { LockIcon, PenIcon, TwoStepIcon } from "./icon";
+import { LockIcon, TwoStepIcon } from "./icon";
 import { Card } from "./UI/card";
-import { User } from "@/lib/database/users";
 
 export const Settings = () => {
   const { user, updateUser } = useAuth();
@@ -73,7 +74,7 @@ export const Settings = () => {
                     alt="Profile Picture"
                     className="size-full"
                   />
-                  <div className="absolute bottom-1 md:bottom-2 right-0 bg-primary-600 p-1 md:p-2 rounded-full cursor-pointer">
+                  {/* <div className="absolute bottom-1 md:bottom-2 right-0 bg-primary-600 p-1 md:p-2 rounded-full cursor-pointer">
                     <PenIcon className="size-3.5 md:size-4.5" />
                     <input
                       type="file"
@@ -82,7 +83,8 @@ export const Settings = () => {
                       onChange={handleFileChange}
                       className="absolute rounded-full -translate-y-6 md:-translate-y-6 -translate-x-2 size-full cursor-pointer opacity-0"
                     />
-                  </div>
+                  </div> */}
+                  <ImgChange handleFileChange={handleFileChange} />
                 </div>
               </div>
 
