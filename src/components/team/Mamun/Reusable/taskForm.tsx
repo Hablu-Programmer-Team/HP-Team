@@ -22,7 +22,7 @@ interface IProps extends IEditProps {
 
 export const TaskForm: FC<IProps> = ({ setIsOpen, editTask, setEditTask }) => {
   const [isToggle, setIsToggle] = useState<boolean>(false);
-  const { addAllTask, addEditTask } = useTaskData() || {};
+  const { addTask, addEditTask } = useTaskData() || {};
   const [formData, setFormData] = useState<ITask>(
     editTask || {
       id: crypto.randomUUID(),
@@ -54,8 +54,8 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, editTask, setEditTask }) => {
     if (editTask && addEditTask) {
       addEditTask(formData);
     } else {
-      if (addAllTask) {
-        addAllTask(formData);
+      if (addTask) {
+        addTask(formData);
       }
     }
     // setFormData({

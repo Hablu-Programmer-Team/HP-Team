@@ -1,18 +1,20 @@
 import { useTaskData } from "@/hooks/use-task-data";
 import { TStatus, type ITask } from "@/lib/database/task";
 import { cn } from "@/lib/utils/cn";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Card } from ".";
 import { PlusIcon } from "../Mamun/icon/Icons";
 import { Modal } from "../Mamun/reusable/task-modal";
 import { TaskForm } from "../Mamun/reusable/taskForm";
+import { DragableArea } from "./dragable-area";
 import { CircleIcon, ThreeDotsIcon } from "./icons";
 import Scrollbar from "./scrollbar.module.css";
 
 export const DashboardLayout = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { allTask } = useTaskData() || {};
-  const [editTask,setEditTask] = useState<ITask | null>(null)
+  const { allTask, setAllTask } = useTaskData() || {};
+  const [editTask, setEditTask] = useState<ITask | null>(null);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const [clickTimeout, setClickTimeout] = useState<NodeJS.Timeout | null>(null);
 
@@ -21,18 +23,30 @@ export const DashboardLayout = () => {
       setClickTimeout(
         setTimeout(() => {
           setClickTimeout(null);
-        }, 300) 
+        }, 300)
       );
     }
   };
 
-  const handleDoubleClick = (task:ITask) => {
+  const handleDrop = (status: TStatus, position: number) => {
+    if (activeCard === null) return;
+    if (position !== null && allTask) {
+      const singleTask: ITask = allTask[activeCard];
+      const updatedTaks = allTask.filter((_, index) => index !== activeCard);
+      updatedTaks.splice(position + 1, 0, { ...singleTask, status });
+      if (setAllTask) {
+        setAllTask([...updatedTaks]);
+      }
+    }
+  };
+
+  const handleDoubleClick = (task: ITask) => {
     if (clickTimeout) {
       clearTimeout(clickTimeout);
     }
     setClickTimeout(null);
-    setEditTask(task)
-    setIsOpenModal(!isOpenModal)
+    setEditTask(task);
+    setIsOpenModal(!isOpenModal);
   };
   return (
     <div className="overflow-x-hidden">
@@ -40,7 +54,11 @@ export const DashboardLayout = () => {
       {isOpenModal && (
         <div className="flex items-center justify-center absolute inset-0 bg-black/10">
           <Modal isOpen={isOpenModal} setIsOpen={setIsOpenModal}>
-            <TaskForm editTask={editTask} setEditTask={setEditTask} setIsOpen={setIsOpenModal} />
+            <TaskForm
+              editTask={editTask}
+              setEditTask={setEditTask}
+              setIsOpen={setIsOpenModal}
+            />
           </Modal>
         </div>
       )}
@@ -94,33 +112,49 @@ export const DashboardLayout = () => {
               </button>
             </div>
             <p className="text-gray-600">{task.des}</p>
-            <button onClick={()=>{
-              setIsOpenModal(!isOpenModal)
-            }} className="flex items-center gap-x-2 absolute bottom-4 left-6 bg-gray-800 hover:bg-gray-700 py-1 px-2 text-white text-sm active:scale-95 transition-all duration-200 rounded-lg cursor-pointer">
+            <button
+              onClick={() => {
+                setIsOpenModal(!isOpenModal);
+              }}
+              className="flex items-center gap-x-2 absolute bottom-4 left-6 bg-gray-800 hover:bg-gray-700 py-1 px-2 text-white text-sm active:scale-95 transition-all duration-200 rounded-lg cursor-pointer"
+            >
               <PlusIcon className="size-3" />
               Add
             </button>
             {/* have been randered all task data with card  */}
-            <div className="space-y-4 mt-5">
+            <div className=" mt-5">
+              <DragableArea handleDrop={() => handleDrop(task.status, 0)} />
               {allTask &&
-                allTask.map((t) => {
+                allTask.map((t, indx) => {
                   if (t.status === task.status)
                     return (
-                      <div
-                        onDoubleClick={()=>{
-                          handleDoubleClick(t)
-                        }}
-                        onClick={handleSingleClick}
-                        key={t.id}
-                      >
-                        <Card
-                          taskName={t.title}
-                          total={t.subTasks.length}
-                          createdAt={t.createdAt}
-                          deadline={1}
-                          completed={0}
+                      <React.Fragment key={t.id}>
+                        <div
+                          onDoubleClick={() => {
+                            handleDoubleClick(t);
+                          }}
+                          onClick={handleSingleClick}
+                        >
+                          <Card
+                            onDragStarts={() => {
+                              setActiveCard(indx);
+                            }}
+                            onDragEnds={() => {
+                              setActiveCard(null);
+                            }}
+                            taskName={t.title}
+                            total={t.subTasks.length}
+                            createdAt={t.createdAt}
+                            deadline={1}
+                            completed={0}
+                          />
+                        </div>
+                        <DragableArea
+                          handleDrop={() =>
+                            handleDrop(task.status, indx)
+                          }
                         />
-                      </div>
+                      </React.Fragment>
                     );
                 })}
             </div>
@@ -164,4 +198,3 @@ const tasksBoard: ITaskBoard[] = [
     status: "incomplete",
   },
 ];
-

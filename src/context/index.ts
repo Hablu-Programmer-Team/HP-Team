@@ -1,10 +1,11 @@
 import { ITask } from "@/lib/database/task";
-import { createContext } from "react";
+import { createContext, type Dispatch, type SetStateAction } from "react";
 
 type ITaskDataProps = {
   allTask: ITask[];
-  addAllTask: (task: ITask) => void;
+  addTask: (task: ITask) => void;
   addEditTask:(task:ITask) => void
+  setAllTask:Dispatch<SetStateAction<ITask[]>>
 };
 
 const TaskDataContext = createContext<ITaskDataProps | null>(null);

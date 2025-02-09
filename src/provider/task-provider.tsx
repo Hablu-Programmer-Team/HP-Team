@@ -23,21 +23,6 @@ export const TaskDataProvider: FC<IChildren> = ({ children }) => {
         updatedAt: new Date(),
       },
       {
-        id: "dkfdkfdfddfd",
-        userId: "1",
-        assign: "udoy",
-        status: "pending",
-        team: "team tow",
-        title: "task 1",
-        priority: "low",
-        start: new Date(),
-        end: new Date(),
-        description: "",
-        subTasks: [{ taskId: "1", title: "Subtask 1", checked: false }],
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
         id: "dkfdkfdfddfdfdfdf",
         userId: "1",
         assign: "udoy",
@@ -84,13 +69,13 @@ export const TaskDataProvider: FC<IChildren> = ({ children }) => {
       },
       
   ]);
-  const addAllTask = (task: ITask) => setAllTask([...allTask, task]);
+  const addTask = (task: ITask) => setAllTask([...allTask, task]);
   const addEditTask = (task:ITask) => {
     setAllTask(allTask.map((t)=> t.id === task.id ? task : t))
   }
 
   return (
-    <TaskDataContext.Provider value={{allTask,addAllTask,addEditTask}}>
+    <TaskDataContext.Provider value={{allTask,addTask,addEditTask,setAllTask}}>
       {children}
     </TaskDataContext.Provider>
   );
