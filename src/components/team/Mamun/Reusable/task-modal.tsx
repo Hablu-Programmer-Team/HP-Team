@@ -1,10 +1,10 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import myStyle from "../../Alamin/sidebar.module.css";
 import { CrossIcon } from "../icon/Icons";
 
 interface IProps extends IChildren {
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: () => void;
 }
 
 export const Modal: FC<IProps> = ({ isOpen, setIsOpen, children }) => {
@@ -13,7 +13,7 @@ export const Modal: FC<IProps> = ({ isOpen, setIsOpen, children }) => {
   useEffect(() => {
     const handleClickOutSide = (e: MouseEvent) => {
       if (modelRef.current && !modelRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
+        setIsOpen();
       }
     };
 
@@ -31,7 +31,7 @@ export const Modal: FC<IProps> = ({ isOpen, setIsOpen, children }) => {
         <div className="sm:p-5 p-2.5 relative">
           <button
             className="absolute right-5 top-5 flex items-center justify-center font-medium text-neutral-500/30  hover:scale-105 hover:text-red-500/50  cursor-pointer active:scale-95 transition-all"
-            onClick={() => setIsOpen((prev) => !prev)}
+            onClick={() => setIsOpen()}
           >
             <CrossIcon className="sm:size-8" />
           </button>

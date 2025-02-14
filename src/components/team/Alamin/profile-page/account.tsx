@@ -1,12 +1,10 @@
 import { Button } from "@/components/team/Udoy/button";
-
-const datas = [
-  { label: "All", count: 20 },
-  { label: "Complete", count: 15 },
-  { label: "Incomplete", count: 5 },
-];
-
-export const Account = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
+import { useAuth } from "@/lib/database/auth-context";
+import { NavLink } from "react-router-dom";
+import { MyTasksData } from "../data";
+// { onEdit }: { onEdit: (edit: boolean) => void }
+export const Account = () => {
+  const { user } = useAuth();
   return (
     <>
       <div className="w-full text-white">
@@ -26,8 +24,10 @@ export const Account = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
           </div>
 
           <div>
-            <strong className="text-xl md:text-2xl">Your Name</strong>
-            <p className="font-light mb-3 text-sm md:text-base">User Name</p>
+            <strong className="text-xl md:text-2xl">{user?.name}</strong>
+            <p className="font-light mb-3 text-sm md:text-base">
+              {user?.email}
+            </p>
             <p className="md:max-w-2/3 lg:max-w-1/2 mx-auto text-sm px-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis,
               rerum molestias eum illo velit aperiam nobis autem nihil nemo? Hic
@@ -37,7 +37,7 @@ export const Account = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
           </div>
 
           <div className="my-10 md:my-14 flex justify-center items-center ">
-            {datas.map(({ label, count }, idx) => (
+            {MyTasksData.map(({ label, count }, idx) => (
               <div
                 key={idx}
                 className="w-24 md:w-40 h-28 flex flex-col justify-center even:border-x even:border-gray-400"
@@ -50,9 +50,16 @@ export const Account = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
             ))}
           </div>
 
-          <Button variant="primary" size="xl" onClick={() => onEdit(true)}>
-            Update Profile
-          </Button>
+          <NavLink to="settings">
+            <Button
+              variant="primary"
+              size="lg"
+              radius="md"
+              // onClick={() => onEdit(true)}
+            >
+              Edit Profile
+            </Button>
+          </NavLink>
         </div>
       </div>
     </>

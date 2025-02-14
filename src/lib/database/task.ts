@@ -11,7 +11,7 @@ export interface ISubTask {
 export interface ITask {
   id: string;
   userId: string;
-
+  team:string,
   title: string;
   description: string;
   status: TStatus;
@@ -32,7 +32,7 @@ export const taskList: ITask[] = [
     userId: "1",
     assign: "1",
     status: "pending",
-
+    team:"",
     title: "Task 1",
     priority: "low",
     start: new Date(),

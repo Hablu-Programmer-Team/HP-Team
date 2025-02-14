@@ -1,17 +1,19 @@
+import { useLogout } from "@/components/common/logout";
 import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export const ProfileMenu: FC = () => {
   const [profileOpen, setIsProfileOpen] = useState(false);
+  const logout = useLogout();
 
   const menuItems = [
-    { to: "/profile", icon: "/user.svg", label: "MY Profile" },
-    { to: "/contact", icon: "/contact.svg", label: "MY Contact" },
-    { to: "/setting", icon: "/setting.svg", label: "Account Setting" },
+    { to: "/profile", icon: "/user.svg", label: "My Profile" },
+    { to: "/contacts", icon: "/contact.svg", label: "My Contact" },
+    { to: "/profile/settings", icon: "/setting.svg", label: "Account Setting" },
   ];
 
   return (
-    <div className="relative">
+    <div className="relative z-40">
       <button onClick={() => setIsProfileOpen(!profileOpen)}>
         <img
           className="cursor-pointer duration-300 hover:scale-110 size-6 lg:size-9 flex justify-center items-center"
@@ -42,7 +44,10 @@ export const ProfileMenu: FC = () => {
             ))}
           </div>
           <div className=" border-gray-300/20 border-t">
-            <button className="flex items-center group font-semibold gap-3 cursor-pointer ps-8 py-2 hover:text-error-500">
+            <button
+              onClick={logout}
+              className="flex items-center group font-semibold gap-3 cursor-pointer ps-8 py-2 hover:text-error-500"
+            >
               <img
                 className="hover:scale-125 transition-all duration-200"
                 src="/logout.svg"

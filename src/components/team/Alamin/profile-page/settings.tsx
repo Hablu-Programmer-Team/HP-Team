@@ -1,29 +1,31 @@
+import { ImgChange } from "@/components/common/img-change";
 import { Button } from "@/components/team/Udoy/button";
-import { LockIcon, PenIcon, TwoStapIcon } from "./icon";
+import { useAuth } from "@/lib/database/auth-context";
+import { User } from "@/lib/database/users";
 import { ChangeEvent, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { LockIcon, TwoStepIcon } from "./icon";
 import { Card } from "./UI/card";
 
-interface ValueType {
-  name: string;
-  imgSrc?: string;
-  email: string;
-  number: number;
-  userName: string;
-  description: string;
-}
-
-export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
-  const initialState: ValueType = {
-    name: "Arvin Tushar",
-    imgSrc: "",
-    email: "alaminmridha2004@gmail.com",
-    userName: "alamin2004",
-    number: 8801600000000,
-    description: "Inter your Bio...",
-  };
-
-  const [isValue, setIsValue] = useState<ValueType>(initialState);
+export const Settings = () => {
+  const { user, updateUser } = useAuth();
   const [isChanged, setIsChanged] = useState(false);
+  const [isValue, setIsValue] = useState<User>(user || ({} as User));
+
+  useEffect(() => {
+    if (!user) return;
+    setIsValue((prev) => ({
+      ...prev,
+      name: user.name || "",
+      imgSrc: user.imgSrc || "",
+      email: user.email || "",
+      password: user.password || "",
+      userName: user.userName || "",
+      number: user.number || 0,
+      description: user.description || "",
+    }));
+  }, [user]);
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -31,23 +33,35 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
     setIsValue((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Check if any field has changed
-  useEffect(() => {
-    setIsChanged(JSON.stringify(isValue) !== JSON.stringify(initialState));
-  }, [isValue]);
-
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setIsValue((prev) => ({ ...prev, imgsrc: imageUrl }));
+      setIsValue((prev) => ({ ...prev, imgSrc: imageUrl }));
       setIsChanged(true);
     }
   };
+
+  useEffect(() => {
+    if (!user) return;
+    setIsChanged(JSON.stringify(isValue) !== JSON.stringify(user));
+  }, [isValue, user]);
+
+  const handleSave = () => {
+    updateUser(isValue);
+    alert("Profile updated successfully.");
+    setIsChanged(false);
+  };
+
+  const settings = [
+    { name: "Change Password", icon: <LockIcon /> },
+    { name: "Two Step Verification", icon: <TwoStepIcon /> },
+  ];
+
   return (
     <>
-      <div className="w-full text-white space-y-6 md:space-y-5 px-1 md:px-4">
-        <h2 className="text-2xl md:text-3xl font-medium hidden md:block">
+      <div className="w-full pt-12 text-gray-300 container mx-auto space-y-6 md:space-y-5 px-2 md:px-4">
+        <h2 className="text-xl md:text-2xl font-medium hidden md:block pb-10">
           Settings
         </h2>
         <form>
@@ -60,16 +74,17 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
                     alt="Profile Picture"
                     className="size-full"
                   />
-                  <div className="absolute bottom-1 md:bottom-2 right-0 bg-primary-600 p-1 md:p-2 rounded-full cursor-pointer">
+                  {/* <div className="absolute bottom-1 md:bottom-2 right-0 bg-primary-600 p-1 md:p-2 rounded-full cursor-pointer">
                     <PenIcon className="size-3.5 md:size-4.5" />
                     <input
                       type="file"
-                      id="imgsrc"
+                      id="imgSrc"
                       accept="image/*"
                       onChange={handleFileChange}
                       className="absolute rounded-full -translate-y-6 md:-translate-y-6 -translate-x-2 size-full cursor-pointer opacity-0"
                     />
-                  </div>
+                  </div> */}
+                  <ImgChange handleFileChange={handleFileChange} />
                 </div>
               </div>
 
@@ -82,16 +97,18 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
             </div>
 
             {!isChanged ? (
-              <Button
-                onClick={() => onEdit(false)}
-                children="Back Account"
-                size="lg"
-                className="hidden md:flex"
-                variant="secondary"
-              />
+              <NavLink to="/profile">
+                <Button
+                  // onClick={handleSave}
+                  children="Back Account"
+                  size="lg"
+                  className="hidden md:flex"
+                  variant="secondary"
+                />
+              </NavLink>
             ) : (
               <Button
-                onClick={(e) => e.preventDefault()}
+                onClick={handleSave}
                 children="Save Change"
                 size="lg"
                 className="bg-success-700 hidden md:flex"
@@ -113,6 +130,7 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
                     value={isValue.name}
                     onChange={handleChange}
                     className="size-full outline-none border-none bg-transparent"
+                    placeholder="Enter your name"
                   />
                 }
               </Card>
@@ -128,6 +146,7 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
                     value={isValue.userName}
                     onChange={handleChange}
                     className="size-full outline-none border-none bg-transparent"
+                    placeholder="Enter your username"
                   />
                 }
               </Card>
@@ -143,6 +162,7 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
                   value={isValue.email}
                   onChange={handleChange}
                   className="size-full outline-none border-none bg-transparent"
+                  placeholder="Enter your email"
                 />
               </Card>
 
@@ -156,6 +176,7 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
                   value={isValue.number}
                   onChange={handleChange}
                   className="size-full outline-none border-none bg-transparent appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-moz-appearance]:textfield"
+                  placeholder="Enter your number"
                 />
               </Card>
             </div>
@@ -174,29 +195,30 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
                   onChange={handleChange}
                   className="w-full text-base border-none outline-none resize-none "
                   rows={4}
+                  placeholder="Enter your bio"
                 />
               </Card>
             </div>
           </div>
         </form>
 
-        <div className="gap-4 md:gap-8 col-span-2 grid grid-cols-2 -mb-2 md:m-0">
-          <Card className="flex flex-col md:flex-row text-center items-center gap-2 md:gap-4 cursor-pointer hover:scale-[1.01] transition-all hover:shadow-lg shadow-blue-300/15">
-            <LockIcon className="fill-white size-10 md:size-12 p-2.5 md:p-3 rounded-full bg-amber-200/10" />
-            <h2 className="text-xl md:text-2xl font-medium">Change Password</h2>
-          </Card>
-          <Card className="flex flex-col md:flex-row text-center items-center gap-2 md:gap-4 cursor-pointer hover:scale-[1.01] transition-all hover:shadow-lg shadow-blue-300/15">
-            <TwoStapIcon className="fill-white size-10 md:size-12 p-2.5 md:p-3 rounded-full bg-amber-200/10" />
-            <h2 className="text-xl md:text-2xl font-medium">
-              Two Stap Varification
-            </h2>
-          </Card>
+        <div className="gap-4 md:gap-8 grid grid-cols-2 -mb-2 md:m-0">
+          {settings.map((item, idx) => (
+            <Card
+              key={idx}
+              className="flex flex-col md:flex-row text-center items-center gap-2 md:gap-4 cursor-pointer hover:scale-[1.01] transition-all hover:shadow-lg shadow-blue-300/15"
+            >
+              <p className="fill-white size-10 md:size-12 p-2.5 md:p-3 rounded-full bg-amber-200/10">
+                {item.icon}
+              </p>
+              <h2 className="text-xl md:text-2xl font-medium">{item.name}</h2>
+            </Card>
+          ))}
         </div>
 
         <div className="flex justify-center w-full">
           {!isChanged ? (
             <Button
-              onClick={() => onEdit(false)}
               children="Back Account"
               size="lg"
               className="md:hidden mt-7 max-w-full w-full"
@@ -204,6 +226,7 @@ export const Settings = ({ onEdit }: { onEdit: (edit: boolean) => void }) => {
             />
           ) : (
             <Button
+              onClick={handleSave}
               children="Save Change"
               size="lg"
               className="bg-success-700 md:hidden mt-7"

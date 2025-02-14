@@ -1,7 +1,5 @@
-import { FC, SVGProps } from "react";
-
-type IconSvgProps = SVGProps<SVGSVGElement>;
-
+import { IconSvgProps } from "@/types";
+import { FC } from "react";
 export const ProgressIcon: FC<IconSvgProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

@@ -1,3 +1,4 @@
+import { useLogout } from "@/components/common/logout";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { NavLink } from "react-router-dom";
 import myStyle from "../Alamin/sidebar.module.css";
@@ -7,17 +8,14 @@ import { LeaveIcon, RightArray, UserIcon } from "./icons";
 interface SidebarProps {
   openSidebar: boolean;
   setOpenSidebar: Dispatch<SetStateAction<boolean>>;
-  firstName: string;
-  lastName: string;
+  name: string;
+  email: string;
 }
 
-export const SideContent: FC<SidebarProps> = ({
-  openSidebar,
-  setOpenSidebar,
-  firstName,
-  lastName,
-}) => {
+export const SideContent: FC<SidebarProps> = ({ ...props }) => {
+  const { name, email, openSidebar, setOpenSidebar } = props;
   const [isActive, setIsActive] = useState<number | null>(null);
+  const logout = useLogout();
   return (
     <>
       <button
@@ -35,11 +33,8 @@ export const SideContent: FC<SidebarProps> = ({
           <div className="size-20 p-1.5 my-3 flex justify-center items-center rounded-full ring-2 ring-white ring-inset border-3 border-secondary-500 bg-black/20 ">
             {<UserIcon className="size-12" />}
           </div>
-          <h2 className="font-bold text-lg text-nowrap">
-            <span>{firstName}</span>
-            <span>{lastName}</span>
-          </h2>
-          <p className="text-sm">example@gmail.com</p>
+          <h2 className="font-bold text-lg text-nowrap space-x-1">{name}</h2>
+          <p className="text-sm">{email}</p>
         </div>
 
         <div className="flex flex-col relative mt-48">
@@ -66,10 +61,13 @@ export const SideContent: FC<SidebarProps> = ({
         </div>
       </div>
       <div className="border-t border-r  absolute bottom-0 bg-gray-900 border-gray-400/35 w-full py-2">
-        <span className="flex gap-x-5 mx-4 p-3 items-center font-semibold stroke-white hover:bg-gray-800  rounded-md hover:text-secondary-500 cursor-pointer">
+        <button
+          onClick={logout}
+          className="flex gap-x-5 px-8 p-3 items-center font-semibold stroke-white hover:bg-gray-800  rounded-md hover:text-secondary-500 cursor-pointer w-full"
+        >
           <LeaveIcon />
           <span>Logout</span>
-        </span>
+        </button>
       </div>
     </>
   );

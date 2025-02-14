@@ -72,7 +72,7 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
     <div className="flex items-center justify-between">
       <p
         className={cn(
-          `p-1.5 text-[12px] border shadow-md font-bold rounded-xl `,
+          `p-1.5 text-[10px] border font-bold rounded-xl `,
           btnColor,
           ZoomOnHover
         )}
@@ -82,7 +82,7 @@ export const Deadline: FC<TimeLeftProps> = (props) => {
       </p>
       <p
         className={cn(
-          " text-neutral-200/40 hover:text-neutral-100",
+          " text-neutral-200/40 text-[13px] hover:text-neutral-100",
           ZoomOnHover
         )}
       >

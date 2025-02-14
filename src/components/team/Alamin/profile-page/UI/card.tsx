@@ -1,14 +1,12 @@
 import { cn } from "@/lib/utils/cn";
-import React, { ReactNode } from "react";
-
+import { FC, ReactNode } from "react";
 
 interface CardProps {
   children: ReactNode;
-  className?: string ;
+  className?: string;
 }
 
-
-export const Card: React.FC<CardProps> = ({ children, className }) => {
+export const Card: FC<CardProps> = ({ children, className }) => {
   return (
     <div
       className={cn(

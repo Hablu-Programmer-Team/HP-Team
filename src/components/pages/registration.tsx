@@ -1,1 +1,7 @@
-export const Registration = () => <div>registration</div>;
+import { SignUp } from "../team/Udoy/sign-up";
+
+export const Registration = () => (
+  <div>
+    <SignUp />
+  </div>
+);

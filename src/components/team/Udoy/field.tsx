@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils/cn";
 import { FC } from "react";
 
 interface FieldProps extends IClassNameWithChildren {
@@ -13,7 +14,7 @@ export const Field: FC<FieldProps> = ({
   error,
   className,
 }) => (
-  <div className={`${className} overflow-hidden rounded-xl`}>
+  <div className={cn("overflow-hidden rounded-xl", className)}>
     {label && <label htmlFor={htmlFor}>{label}</label>}
     {children}
     {!!error && <div role="alert">{error}</div>}

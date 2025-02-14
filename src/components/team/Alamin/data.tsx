@@ -35,3 +35,9 @@ export const NotificationMessages: string[] = [
   "System update available. Restart to apply changes.",
   "Your order has been shipped and is on the way.",
 ];
+
+export const MyTasksData = [
+  { label: "All", count: 20 },
+  { label: "Complete", count: 15 },
+  { label: "Incomplete", count: 5 },
+];
