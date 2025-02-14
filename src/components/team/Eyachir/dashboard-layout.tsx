@@ -9,19 +9,29 @@ import { TaskForm } from "../Mamun/reusable/taskForm";
 import { DragableArea } from "./dragable-area";
 import { CircleIcon, ThreeDotsIcon } from "./icons";
 import Scrollbar from "./scrollbar.module.css";
+import { TaskDetailsModal } from "./task-details-modal";
 
+type ModalType = {
+  task: ITask | null;
+  status: boolean;
+};
 export const DashboardLayout = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const { allTask, setAllTask } = useTaskData() || {};
   const [editTask, setEditTask] = useState<ITask | null>(null);
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [isTaskDetailsPopup, setIsTaskDetailsPopup] = useState<ModalType>({
+    status: false,
+    task: null,
+  });
+  const { allTask, setAllTask } = useTaskData() || {};
 
   const [clickTimeout, setClickTimeout] = useState<NodeJS.Timeout | null>(null);
 
-  const handleSingleClick = () => {
+  const handleSingleClick = (task: ITask) => {
     if (clickTimeout === null) {
       setClickTimeout(
         setTimeout(() => {
+          setIsTaskDetailsPopup({ ...isTaskDetailsPopup, status: true, task });
           setClickTimeout(null);
         }, 300)
       );
@@ -49,11 +59,21 @@ export const DashboardLayout = () => {
     setIsOpenModal(!isOpenModal);
   };
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden relative max-h-[700px]">
+      {/* task modal popup  */}
+      {isTaskDetailsPopup.status && (
+        <TaskDetailsModal
+          task={isTaskDetailsPopup.task}
+          onClose={() => setIsTaskDetailsPopup({ task: null, status: false })}
+        />
+      )}
       {/* add Task  */}
       {isOpenModal && (
         <div className="flex items-center justify-center absolute inset-0 bg-black/10">
-          <Modal isOpen={isOpenModal} setIsOpen={setIsOpenModal}>
+          <Modal isOpen={isOpenModal} setIsOpen={()=>{
+            setIsOpenModal(false)
+            setEditTask(null)
+          }}>
             <TaskForm
               editTask={editTask}
               setEditTask={setEditTask}
@@ -133,7 +153,9 @@ export const DashboardLayout = () => {
                           onDoubleClick={() => {
                             handleDoubleClick(t);
                           }}
-                          onClick={handleSingleClick}
+                          onClick={() => {
+                            handleSingleClick(t);
+                          }}
                         >
                           <Card
                             onDragStarts={() => {
@@ -150,9 +172,7 @@ export const DashboardLayout = () => {
                           />
                         </div>
                         <DragableArea
-                          handleDrop={() =>
-                            handleDrop(task.status, indx)
-                          }
+                          handleDrop={() => handleDrop(task.status, indx)}
                         />
                       </React.Fragment>
                     );

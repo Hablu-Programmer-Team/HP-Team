@@ -148,7 +148,6 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, editTask, setEditTask }) => {
               >
                 <option
                   className={cn("", SOption)}
-                  value={formData.priority}
                   disabled
                 >
                   Select Priority
@@ -182,7 +181,6 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, editTask, setEditTask }) => {
               >
                 <option
                   className={cn("", SOption)}
-                  value={formData.assign}
                   disabled
                 >
                   Assign
@@ -215,7 +213,6 @@ export const TaskForm: FC<IProps> = ({ setIsOpen, editTask, setEditTask }) => {
               >
                 <option
                   className={cn("", SOption)}
-                  value={formData.assign}
                   disabled
                 >
                   Select Team
